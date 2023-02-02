@@ -269,51 +269,55 @@
 
 <section id="section-ack" class="informative">
   <h2>Acknowledgements</h2>
-  <p>The editor of the RDF 1.1 edition acknowledges valuable
-    contributions from Gregg Kellogg, Andy Seaborne, Eric
-    Prud'hommeaux, Dave Beckett, David Robillard, Gregory Williams,
-    Antoine Zimmermann, Sandro Hawke, Richard Cyganiak, Pat Hayes,
-    Henry S. Thompson, Bob Ferris, Henry Story, Andreas Harth, Lee
-    Feigenbaum, Peter Ansell, Evan Patton and David Booth.</p>
-  <p>This specification is a product of extensive deliberations by the
-    members of the RDF Working Group chaired by Guus Schreiber and David Wood.
-    It draws upon the eariler specification in <em><a href="http://sw.deri.org/2008/07/n-quads/">N-Quads: Extending N-Triples with Context</a></em>,
-    edited by Richard Cyganiak, Andreas Harth, and Aidan Hogan.</p>
+
+  <section class="informative">
+    <h3>Acknowledgements for RDF 1.1</h3>
+    <p>The editor of the RDF 1.1 edition acknowledges valuable
+      contributions from Gregg Kellogg, Andy Seaborne, Eric
+      Prud'hommeaux, Dave Beckett, David Robillard, Gregory Williams,
+      Antoine Zimmermann, Sandro Hawke, Richard Cyganiak, Pat Hayes,
+      Henry S. Thompson, Bob Ferris, Henry Story, Andreas Harth, Lee
+      Feigenbaum, Peter Ansell, Evan Patton and David Booth.</p>
+    <p>This specification is a product of extensive deliberations by the
+      members of the RDF Working Group chaired by Guus Schreiber and David Wood.
+      It draws upon the eariler specification in <em><a href="http://sw.deri.org/2008/07/n-quads/">N-Quads: Extending N-Triples with Context</a></em>,
+      edited by Richard Cyganiak, Andreas Harth, and Aidan Hogan.</p>
+  </section>
+
+  <section class="informative">
+    <h3>Acknowledgements for RDF 1.2</h3>
+
+    <p>In addition to the editors, the following people have contributed to this specification:
+      <span id="gh-contributors"></span>
+    </p>
+
+    <p data-include="common/participants.html"></p>
+
+    <p class="ednote">Recognize members of the Task Force? Not an easy to find list of contributors.</p>
+  </section>
 </section>
 
-<section id="sec-changes" class="appendix">
-  <h2>Change Log</h2>
+<section class="appendix informative" id="changes-11">
+  <h2>Changes between publication as Note and RDF 1.1 Recommendation</h2>
 
-  <section>
-    <h3>Changes between Proposed Recommendation and Recommendation</h3>
-    <ul>
-      <li><a href="http://lists.w3.org/Archives/Public/public-rdf-comments/2014Feb/0009.html">Bug in grammar rule [7]</a> concerning language-typed literals fixed.</li>
-      <li>Link to original N-Quads proposal included.</li>
-    </ul>
-  </section>
+  <ul>
+    <li>White space rules defined outside of grammar, as in Turtle.</li>
+    <li>Comment processing defined.</li>
+    <li>Parsing is defined.</li>
+    <li>Recommendation track, not a working group Note.</li>
+    <li>A normative reference to RDF Concepts was added.</li>
+    <li>Informative note about <code>text/x-nquads</code> historical media type added.</li>
+    <li><a href="http://lists.w3.org/Archives/Public/public-rdf-comments/2014Feb/0009.html">Bug in grammar rule [7]</a> concerning language-typed literals fixed.</li>
+    <li>Link to original N-Quads proposal included.</li>
+  </ul>
+</section>
 
-  <section>
-    <h3>Changes between Candidate Recommendation and Proposed Recommendation</h3>
-    <ul>
-      <li>A normative reference to RDF Concepts was added.</li>
-      <li>Informative note about <code>text/x-nquads</code> historical media type added.</li>
-    </ul>
-  </section>
+<section class="appendix informative" id="changes-12">
+  <h2>Changes between RDF 1.1 and RDF 1.2</h2>
 
-  <section>
-    <h3>Changes between Last Call Working Draft and Candidate Recommendation</h3>
-    <p>No substitutive changes.</p>
-  </section>
-
-  <section>
-    <h3>Changes between publication as Note and Last Call Working Draft</h3>
-    <ul>
-      <li>White space rules defined outside of grammar, as in Turtle.</li>
-      <li>Comment processing defined.</li>
-      <li>Parsing is defined.</li>
-      <li>Recommendation track, not a working group Note.</li>
-    </ul>
-  </section>
+  <ul>
+    
+  </ul>
 </section>
 
 <section id="sec-mediaReg" class="appendix">
