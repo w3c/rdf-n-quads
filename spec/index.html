@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>RDF 1.2 N-Quads</title>
   <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
@@ -54,15 +54,15 @@
 <body>
 
 <section id='abstract'>
-  <p>N-Quads is a line-based, plain text format for encoding an RDF dataset.</p>
+  <p>N-Quads is a line-based, plain text format for encoding an <a href="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>.</p>
 </section>
 
 <section id='sotd'>
   <p>This document is part of the RDF 1.2 document suite.
-  The N-Quads format is a line-based RDF syntax with a similar flavor as N-Triples
-  [[RDF12-N-TRIPLES]]. N-Quads is a syntactic superset of N-Triples. 
+  The N-Quads format is a line-based RDF syntax,
+  which is an extension of N-Triples [[RDF12-N-TRIPLES]].
   The main distinction is that N-Quads allows the encoding of multiple graphs
-  in a single document .</p>
+  in a single document representing an <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">RDF Dataset</a>.</p>
 
   <section id="related" data-include="./common/related.html"></section>
 </section>
@@ -77,8 +77,17 @@
     [[!RDF12-CONCEPTS]].
   </p>
 
-  <p>N-quads statements are a sequence of RDF terms representing the subject, predicate, object and graph label
-    of an RDF Triple and the graph it is part of in a dataset.
+  <p>As with N-Triples, an N-Quads document contains no parsing directives.</p>
+
+  <p>N-Quads statements are a sequence of RDF terms representing the
+    <a data-cite="RDF12-CONCEPTS#dfn-subject">subject</a>,
+    <a data-cite="RDF12-CONCEPTS#dfn-predicate">predicate</a>, and
+    <a data-cite="RDF12-CONCEPTS#dfn-object">object</a>
+    of an <a data-cite="RDF12-CONCEPTS#dfn-rdf-triple">RDF Triple</a>
+    and an optional <a data-cite="RDF12-CONCEPTS#dfn-graph-name">graph name</a>
+    identifying a <a data-cite="RDF12-CONCEPTS#dfn-named-graph">named graph</a>
+    associated with the triple within an <a href="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>,
+    also known as a <a data-cite="RDF12-CONCEPTS#dfn-quad"></a>.
     These may be separated by white space (spaces <code>#x20</code> or tabs <code>#x9</code>).
     This sequence is terminated by a '<code>.</code>' and a new line (optional at the end of a document).</p>
 
@@ -91,15 +100,33 @@
     -->
   </pre>
 
+  <p>The <a href="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a> represented by an N-Quads document contains
+    exactly each <a data-cite="RDF12-CONCEPTS#dfn-quad">quad</a> matching the N-Quads
+    <a href="#grammar-production-statement"><code>statement</code></a> production.
+  </p>
+
 </section>
 
 <section>
   <h2>N-Quads Language</h2>
   <section id="simple-triples">
     <h3>Simple Statements</h3>
-    <p>The simplest statement is a sequence of (subject, predicate, object) terms
-      forming an RDF triple and an optional blank node label or IRI labeling what graph
-      in a dataset the triple belongs to,
+
+    <p>A simple statement extends the
+      <a data-cite="RDF12-N-TRIPLES#simple-triples">definition of simple triple</a> in [[RDF12-N-TRIPLES]]
+      with an optional <a data-cite="RDF12-CONCEPTS#dfn-named-graph">named graph</a>.</p>
+
+    <p>The simplest statement is a sequence of
+      (<a data-cite="RDF12-CONCEPTS#dfn-subject">subject</a>,
+      <a data-cite="RDF12-CONCEPTS#dfn-predicate">predicate</a>,
+      <a data-cite="RDF12-CONCEPTS#dfn-object">object</a>) terms
+      forming an <a data-cite="RDF12-CONCEPTS#dfn-rdf-triple">RDF triple</a>
+      and an optional
+      <a data-cite="RDF12-CONCEPTS#dfn-graph-name">graph name</a>
+      (a <a data-cite="RDF12-CONCEPTS#dfn-blank-node-label">blank node label</a>
+      or <a data-cite="RDF12-CONCEPTS#dfn-iri">IRI</a>) labeling what
+      <a data-cite="RDF12-CONCEPTS#dfn-named-graph">named graph</a>
+      in a <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">dataset</a> the triple belongs to,
       all are separated by whitespace and terminated by '<code>.</code>' after each statement.</p>
 
     <pre class="example nquads" data-transform="updateExample">
@@ -108,15 +135,16 @@
       -->
     </pre>
 
-    <p>The graph label IRI can be omitted, in which case the triples are considered
-      part of the default graph of the RDF dataset.<p>
+    <p>The <a data-cite="RDF12-CONCEPTS#dfn-graph-name">graph name</a> can be omitted, in which case the triples are considered
+      part of the
+      <a data-cite="RDF12-CONCEPTS#dfn-default-graph">default graph</a> of the <a href="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>.<p>
   </section>
 
   <section id="sec-iri">
     <h3>IRIs</h3>
 
     <p>
-      <a data-cite="RDF12-CONCEPTS#iri">IRIs</a> may be written only as absolute IRIs.
+      As in N-Triples, <a data-cite="RDF12-CONCEPTS#iri">IRIs</a> may be written only as absolute IRIs.
       IRIs are enclosed in '&lt;' and '&gt;' and may contain numeric escape sequences (described below).
       For example <code>&lt;http://example.org/#green-goblin&gt;</code>.
     </p>
@@ -125,7 +153,8 @@
   <section id="sec-literals">
     <h3>RDF Literals</h3>
 
-    <p><a data-cite="RDF12-CONCEPTS#literal">Literals</a> are used to identify values such as strings, numbers, dates.</p>
+    <p>As in N-Triples,
+      <a data-cite="RDF12-CONCEPTS#literal">literals</a> are used to identify values such as strings, numbers, dates.</p>
 
     <p>
       Literals (Grammar production <a href="#grammar-production-literal">Literal</a>)
@@ -135,7 +164,7 @@
       a sequence of permitted characters or numeric escape sequence or string escape sequence,
       and a final delimiter.
       Literals may not contain the characters <code>"</code>,
-      code title="LINE FEED"><sub>LF</sub></code>,
+      <code title="LINE FEED"><sub>LF</sub></code>,
       or <code title="CARRIAGE RETURN"><sub>CR</sub></code>.
       In addition '<code>\</code>' (<span class="codepoint">U+005C</span>)
       may not appear in any quoted literal except as part of an escape sequence.
@@ -152,7 +181,8 @@
   <section id="BNodes">
     <h3>RDF Blank Nodes</h3>
     <p>
-      <a data-cite="RDF12-CONCEPTS#blank-node">RDF blank nodes</a> in N-Quads are expressed as <code>_:</code>
+      As in N-Triples,
+      <a data-cite="RDF12-CONCEPTS#blank-node">RDF blank nodes</a> are expressed as <code>_:</code>
       followed by a blank node label which is a series of name characters.
       The characters in the label are built upon <a href="#grammar-production-PN_CHARS_BASE">PN_CHARS_BASE</a>,
       liberalized as follows:
@@ -176,6 +206,10 @@
       _:bob <http://xmlns.com/foaf/0.1/knows> _:alice <http://example.org/graphs/james> .
       -->
     </pre>
+  <p class="issue" data-number="2">
+    Note open <a href="https://www.w3.org/2001/sw/wiki/RDF1.1_Errata#erratum_30">erratum</a> on aligning the definition and production
+    for blank node lables with Turtle.
+  </p>
   </section>
 </section>
 
@@ -185,11 +219,16 @@
     <li>N-Quads documents
     <li>N-Quads parsers
   </ul>
-  <p>A conforming <strong>N-Quads document</strong> is a Unicode string that conforms to the grammar and additional constraints defined in <a href="#sec-grammar" class="sectionRef"></a>, starting with the <a href="#grammar-production-nquadsDoc"><code>nquadsDoc</code> production</a>. An N-Quad document serializes an RDF dataset.</p>
+  <p>A conforming <strong>N-Quads document</strong> is a Unicode string that conforms to the grammar and additional constraints defined in <a href="#sec-grammar" class="sectionRef"></a>,
+    starting with the <a href="#grammar-production-nquadsDoc"><code>nquadsDoc</code> production</a>.
+    An N-Quads document serializes an <a href="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>.</p>
 
   <p class="note">N-Quads documents do not provide a way of serializing empty graphs that may be part of an RDF dataset.</p>
 
-  <p>A conforming <strong>N-Quads parser</strong> is a system capable of reading N-Quads documents on behalf of an application. It makes the serialized RDF graph, as defined in <a href="#sec-parsing" class="sectionRef"></a>, available to the application, usually through some form of API.</p>
+  <p>A conforming <strong>N-Quads parser</strong> is a system capable of reading N-Quads documents on behalf of an application.
+    It makes the serialized <a href="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>,
+    as defined in <a href="#sec-parsing" class="sectionRef"></a>,
+    available to the application, usually through some form of API.</p>
 
   <p>The IRI that identifies the N-Quads language is: <code>http://www.w3.org/ns/formats/N-Quads</code></p>
 
@@ -216,7 +255,7 @@
 <section id="sec-grammar">
   <h3>Grammar</h3>
 
-  <p>An N-Quads document is a Unicode[[!UNICODE]] character string encoded in UTF-8.
+  <p>An N-Quads document is a Unicode [[!UNICODE]] character string encoded in UTF-8.
     Unicode code points only in the range U+0 to U+10FFFF inclusive are allowed.</p>
 
   <p>White space (tab <code>U+0009</code> or space <code>U+0020</code>) is used to separate two terminals which would otherwise be (mis-)recognized as one terminal. White space is significant in the production <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>.</p>
@@ -264,7 +303,17 @@
 
   <section id="rdf-dataset-construction">
     <h3>RDF Dataset Construction</h3>
-    <p>An N-Quads document defines an RDF dataset composed of RDF graphs composed of a set of RDF triples. The  <code><a href="#grammar-production-statement">statement</a></code> production produces a triple defined by the terms constructed for <code><a href="#grammar-production-subject">subject</a></code>, <code><a href="#grammar-production-predicate">predicate</a></code> and <code><a href="#grammar-production-object">object</a></code>. This RDF triple is added to the graph labeled by the production <code><a href="#grammar-production-graphLabel">graphLabel</a></code>, if no <code>graphLabel</code> is present the triple is added to the RDF datasets default graph.</p>
+    <p>An N-Quads document defines an <a href="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>
+      composed of <a href="RDF12-CONCEPTS#dfn-rdf-graph">RDF graphs</a> composed of a set of
+      <a href="RDF12-CONCEPTS#dfn-rdf-triple">RDF triples</a>.
+      The  <code><a href="#grammar-production-statement">statement</a></code> production produces a
+      triple defined by the terms constructed for
+      <code><a href="#grammar-production-subject">subject</a></code>,
+      <code><a href="#grammar-production-predicate">predicate</a></code>, and
+      <code><a href="#grammar-production-object">object</a></code>.
+      This RDF triple is added to the <a data-cite="RDF12-CONCEPTS#dfn-named-graph">graph</a> labeled by
+      the production <code><a href="#grammar-production-graphLabel">graphLabel</a></code>,
+      if no <code>graphLabel</code> is present the triple is added to the RDF dataset's default graph.</p>
   </section>
 </section>
 
@@ -317,7 +366,8 @@
   <h2>Changes between RDF 1.1 and RDF 1.2</h2>
 
   <ul>
-    
+    <li>N-Quads is now described as a syntactic superset of [[RDF12-N-TRIPLES]].</li>
+    <li>Add <a href="#canonical-quads" class="sectionRef"></a> to define the canonical form of N-Quads.</li>
   </ul>
 </section>
 
@@ -425,5 +475,8 @@
 </section>
 
 <section id="index"></section>
+<section class="appendix" id="issue-summary">
+  <!-- A list of issues will magically appear here -->
+</section>
 </body>
 </html>
