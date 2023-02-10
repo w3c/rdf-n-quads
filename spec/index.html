@@ -213,6 +213,39 @@
   </section>
 </section>
 
+<section id="canonical-quads">
+  <h2>A Canonical form of N-Quads</h2>
+  <p>This section defined a canonical form of N-Quads which has
+    less variability in layout. The grammar for the language is the
+    same.  Implementers are encouraged to produce this form.</p>
+  <p>Canonical N-Quads has the following additional constraints on layout:</p>
+  <ul>
+    <li>The whitespace following <code>subject</code>,
+      <code>predicate</code>, 
+      <code>object</code>,
+      and <code>graphLabel</code> if present, MUST be a single space, 
+      (<code>U+0020</code>).  All other locations that allow 
+      whitespace MUST be empty.</li>
+    <li>There MUST be no comments.</li>
+    <li><code>HEX</code> MUST use only uppercase letters (<code>[A-F]</code>).</li>
+    <li>Characters MUST NOT be represented by <code>UCHAR</code>.</li>
+    <li>Within <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>,
+      only the characters 
+      <code>U+0022</code>, <code>U+005C</code>, <code>U+000A</code>, <code>U+000D</code>
+       are encoded using <code>ECHAR</code>.
+      <code>ECHAR</code> MUST NOT be used for characters that are
+      allowed directly in
+      <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>. </li>
+  </ul>
+  <div class="issue" data-number="2">
+    Note open errata:
+    <ul>
+      <li><a href="https://www.w3.org/2001/sw/wiki/RDF1.1_Errata#erratum_32">32 – Issues with N-Quads/N-Triples canonicalization</a>.</li>
+      <li><a href="https://www.w3.org/2001/sw/wiki/RDF1.1_Errata#erratum_33">33 – Ambiguity of canonical N-Triples</a></li>
+    </ul>
+  </div>
+</section>
+
 <section id="conformance">
   <p>This specification defines conformance criteria for:</p>
   <ul>
