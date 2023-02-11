@@ -89,7 +89,9 @@
     associated with the triple within an <a href="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>,
     also known as a <a data-cite="RDF12-CONCEPTS#dfn-quad">quad</a>.
     These may be separated by white space (spaces <code>#x20</code> or tabs <code>#x9</code>).
-    This sequence is terminated by a '<code>.</code>' and a new line (optional at the end of a document).</p>
+    This sequence is terminated by a '<code>.</code>'
+    (optionaly proceded by white space),
+    and a new line (optional at the end of a document).</p>
 
   <pre class="example nquads" data-transform="updateExample">
     <!--
@@ -109,6 +111,13 @@
 
 <section>
   <h2>N-Quads Language</h2>
+
+    <p>An N-Quads document is composed of a sequence
+      of <a href="#simple-triples">simple statements</a>,
+      one for each line.
+      Lines consisteng entirely of white space  (spaces <code>U+0020</code> or tabs <code>U+0009</code>)
+      and/or comments are permitted before or after each triple.</p>
+
   <section id="simple-triples">
     <h3>Simple Statements</h3>
 
@@ -127,7 +136,9 @@
       or <a data-cite="RDF12-CONCEPTS#dfn-iri">IRI</a>) labeling what
       <a data-cite="RDF12-CONCEPTS#dfn-named-graph">named graph</a>
       in a <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">dataset</a> the triple belongs to,
-      all are separated by whitespace and terminated by '<code>.</code>' after each statement.</p>
+      all are separated by whitespace and terminated by '<code>.</code>' after each statement.
+      White space MAY occur beteween elements of this sequence.
+      Comments MAY occur after the terminating '<code>.</code>'.</p>
 
     <pre class="example nquads" data-transform="updateExample">
       <!--
@@ -291,7 +302,8 @@
   <p>An N-Quads document is a Unicode [[!UNICODE]] character string encoded in UTF-8.
     Unicode code points only in the range U+0 to U+10FFFF inclusive are allowed.</p>
 
-  <p>White space (tab <code>U+0009</code> or space <code>U+0020</code>) is used to separate two terminals which would otherwise be (mis-)recognized as one terminal. White space is significant in the production <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>.</p>
+  <p>White space (tab U+0009 or space U+0020) is allowed but not required between any two terminals.
+    White space is significant in the production <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>.</p>
 
   <p>Comments in N-Quads take the form of '<code>#</code>',
     outside an <code>IRIREF</code> or <code>STRING_LITERAL_QUOTE</code>,
@@ -401,6 +413,10 @@
   <ul>
     <li>N-Quads is now described as a syntactic superset of [[RDF12-N-TRIPLES]].</li>
     <li>Add <a href="#canonical-quads" class="sectionRef"></a> to define the canonical form of N-Quads.</li>
+    <li>Clarify the use of white space to separate RDF terms and the trailing `.` in a triple.
+      Lines composed entirely of white space and/or comments are also allowed.</li>
+    <li>Removed language about white space use between terminals that would otherwise
+      be (mis-)recognized, is this can't happen in N-Triples.</li>
   </ul>
 </section>
 
