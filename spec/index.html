@@ -71,7 +71,10 @@
   <h2>Introduction</h2>
 
   <p>
-    This document defines N-Quads, an easy to parse, line-based,
+    This document defines N-Quads, a concrete syntax for 
+    RDF [[RDF12-CONCEPTS]],
+    and an extension of N-Triples [[RDF12-N-TRIPLES]].
+    N-Quads is an easy to parse, line-based,
     concrete syntax for
     <a data-cite="RDF12-CONCEPTS#section-dataset">RDF Datasets</a>
     [[!RDF12-CONCEPTS]].
@@ -90,10 +93,11 @@
     also known as a <a data-cite="RDF12-CONCEPTS#dfn-quad">quad</a>.
     These may be separated by white space (spaces <code>#x20</code> or tabs <code>#x9</code>).
     This sequence is terminated by a '<code>.</code>'
-    (optionaly proceded by white space),
+    (optionaly proceded by white space and/or a comment),
     and a new line (optional at the end of a document).</p>
 
-  <pre class="example nquads" data-transform="updateExample">
+  <pre id="ex-comments" class="example nquads" data-transform="updateExample"
+       title="Use of comments in N-Quads">
     <!--
     <http://one.example/subject1> <http://one.example/predicate1> <http://one.example/object1> <http://example.org/graph3> . # comments here
     # or on a line by themselves
@@ -109,14 +113,21 @@
 
 </section>
 
-<section>
+<section id="sec-n-quads-language" class="informative">
   <h2>N-Quads Language</h2>
 
-    <p>An N-Quads document is composed of a sequence
-      of <a href="#simple-triples">simple statements</a>,
-      one for each line.
-      Lines consisteng entirely of white space  (spaces <code>U+0020</code> or tabs <code>U+0009</code>)
-      and/or comments are permitted before or after each triple.</p>
+  <p>An N-Quads document allows writing down an
+    <a href="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>
+    in a textual form.
+    An RDF dataset is made up of <a href="#simple-triples">simple statements</a>
+    consisting of a
+    <a data-cite="RDF12-CONCEPTS#dfn-subject">subject</a>,
+    <a data-cite="RDF12-CONCEPTS#dfn-predicate">predicate</a>,
+    <a data-cite="RDF12-CONCEPTS#dfn-object">object</a>, an optional
+    <a data-cite="RDF12-CONCEPTS#dfn-graph-name">graph name</a>
+    and optional blank lines.
+    Comments may be given after a '<code>#</code>' that is not part of
+    another lexical token and continue to the end of the line.</p>
 
   <section id="simple-triples">
     <h3>Simple Statements</h3>
@@ -135,20 +146,23 @@
       (a <a data-cite="RDF12-CONCEPTS#dfn-blank-node-label">blank node label</a>
       or <a data-cite="RDF12-CONCEPTS#dfn-iri">IRI</a>) labeling what
       <a data-cite="RDF12-CONCEPTS#dfn-named-graph">named graph</a>
-      in a <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">dataset</a> the triple belongs to,
-      all are separated by whitespace and terminated by '<code>.</code>' after each statement.
-      White space MAY occur beteween elements of this sequence.
-      Comments MAY occur after the terminating '<code>.</code>'.</p>
+      in a <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">dataset</a> the triple belongs to.
+      White space (spaces <code>U+0020</code> or tabs <code>U+0009</code>) may surround terms,
+      except where significant as noted in the <a href="#n-quads-grammar">grammar</a>.</p>
 
-    <pre class="example nquads" data-transform="updateExample">
-      <!--
-      <http://example.org/#spiderman> <http://www.perceive.net/schemas/relationship/enemyOf> <http://example.org/#green-goblin> <http://example.org/graphs/spiderman> .</script>
-      -->
-    </pre>
+    <p>Comments are treated as white space, and may be given after a '<code>#</code>' that is not part of
+      another lexical token and continue to the end of the line.</p>
 
     <p>The <a data-cite="RDF12-CONCEPTS#dfn-graph-name">graph name</a> can be omitted, in which case the triples are considered
       part of the
       <a data-cite="RDF12-CONCEPTS#dfn-default-graph">default graph</a> of the <a href="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>.<p>
+
+    <pre id="ex-simple-statement" class="example nquads" data-transform="updateExample"
+         title="Simple Statement">
+      <!--
+      <http://example.org/#spiderman> <http://www.perceive.net/schemas/relationship/enemyOf> <http://example.org/#green-goblin> <http://example.org/graphs/spiderman> .</script>
+      -->
+    </pre>
   </section>
 
   <section id="sec-iri">
@@ -167,25 +181,30 @@
     <p>As in N-Triples,
       <a data-cite="RDF12-CONCEPTS#literal">literals</a> are used to identify values such as strings, numbers, dates.</p>
 
-    <p>
-      Literals (Grammar production <a href="#grammar-production-literal">Literal</a>)
-      have a lexical form followed by a language tag, a datatype IRI, or neither.
-      The representation of the lexical form consists of an
-      initial delimiter <code>"</code> (<span class="codepoint">U+0022</span>),
+    <p>The representation of the lexical form consists of an
+      initial delimiter <code>&quot;</code> (<span class="codepoint">U+0022</span>),
       a sequence of permitted characters or numeric escape sequence or string escape sequence,
-      and a final delimiter.
-      Literals may not contain the characters <code>"</code>,
-      <code title="LINE FEED"><sub>LF</sub></code>,
-      or <code title="CARRIAGE RETURN"><sub>CR</sub></code>.
+      and a final delimiter.</p>
+
+    <p>Literals may not contain the characters <code>&quot;</code>,
+      <code title="LINE FEED"><sub>LF</sub></code> (<span class="codepoint">U+000A</span>), or
+      <code title="CARRIAGE RETURN"><sub>CR</sub></code> (<span class="codepoint">U+000D</span>)
+      except in their escaped forms.
       In addition '<code>\</code>' (<span class="codepoint">U+005C</span>)
-      may not appear in any quoted literal except as part of an escape sequence.
-      The corresponding <a data-cite="RDF12-CONCEPTS#lexical-form">RDF lexical form</a> is
-      the characters between the delimiters, after processing any escape sequences.
-      If present, the <a data-cite="RDF12-CONCEPTS#language-tag">language tag</a> is preceded by a
-      '<code>@</code>' (<span class="codepoint">U+0040</span>).
+      may not appear in any quoted literal except as part of an escape sequence
+      and a <code>"</code> (<span class="codepoint">U+0022</span>) character
+      can only be included in a quote literal using an escape sequence.
+      </p>
+
+    <p>The corresponding <a data-cite="RDF12-CONCEPTS#lexical-form">RDF lexical form</a>
+      is the characters between the delimiters, after processing any escape sequences.
+      If present, the <a data-cite="RDF12-CONCEPTS#language-tag">language tag</a>
+      is preceded by a '<code>@</code>' (<span class="codepoint">U+0040</span>).
       If there is no language tag, there may be a <a data-cite="RDF12-CONCEPTS#datatype-iri">datatype IRI</a>,
       preceded by '<code>^^</code>' (<span class="codepoint">U+005E</span> <span class="codepoint">U+005E</span>).
-      If there is no datatype IRI and no language tag, the datatype is <code>xsd:string</code>.
+      If there is no datatype IRI and no language tag
+      it is a <a data-cite="RDF12-CONCEPTS#simple-literal">simple literal</a>
+      and the datatype is <code>http://www.w3.org/2001/XMLSchema#string</code>.
     </p>
   </section>
 
@@ -199,44 +218,47 @@
       liberalized as follows:
     </p>
     <ul>
-      <li>The characters <code>_</code> and digits may appear anywhere in a blank node label.</li>
+      <li>The characters <code>_</code> and <code>[0-9]</code> may appear anywhere in a blank node label.</li>
       <li>The character <code>.</code> may appear anywhere except the first or last character.</li>
-      <li>The characters <code>-</code>, <code>U+00B7</code>,
-        <code>U+0300</code> to <code>U+036F</code>
-        and <code>U+203F</code> to <code>U+2040</code>
-        are permitted anywhere except the first character.</li>
+      <li>The characters <code>-</code>, <code>U+00B7</code>, <code>U+0300</code> to <code>U+036F</code> and <code>U+203F</code> to <code>U+2040</code> are permitted anywhere except the first character.</li>
     </ul>
     <p>
       A fresh RDF blank node is allocated for each unique blank node label in a document.
       Repeated use of the same blank node label identifies the same RDF blank node.
     </p>
 
-    <pre class="example nquads" data-transform="updateExample">
+    <pre id="ex-bnodes" class="example ntriples" data-transform="updateExample"
+         title="Blank nodes in N-Quads">
       <!--
-      _:alice <http://xmlns.com/foaf/0.1/knows> _:bob <http://example.org/graphs/john> .
-      _:bob <http://xmlns.com/foaf/0.1/knows> _:alice <http://example.org/graphs/james> .
+      _:alice <http://xmlns.com/foaf/0.1/knows> _:bob .
+      _:bob <http://xmlns.com/foaf/0.1/knows> _:alice .
       -->
     </pre>
-  <p class="issue" data-number="2">
-    Note open <a href="https://www.w3.org/2001/sw/wiki/RDF1.1_Errata#erratum_30">erratum</a> on aligning the definition and production
-    for blank node lables with Turtle.
-  </p>
+    <p class="issue" data-number="2">
+      Note open <a href="https://www.w3.org/2001/sw/wiki/RDF1.1_Errata#erratum_30">erratum</a> on aligning the definition and production
+      for blank node lables with Turtle.
+    </p>
   </section>
 </section>
 
 <section id="canonical-quads">
   <h2>A Canonical form of N-Quads</h2>
-  <p>This section defined a canonical form of N-Quads which has
-    less variability in layout. The grammar for the language is the
-    same.  Implementers are encouraged to produce this form.</p>
+
+  <p>This section defines a canonical form of N-Quads which has
+    less variability in layout.
+    The grammar for the language is the same.</p>
+
+  <p class="note">Even when not explicitly serializing
+    canonical N-Quads, implementers are encouraged to produce this form.</p>
+
   <p>Canonical N-Quads has the following additional constraints on layout:</p>
   <ul>
-    <li>The whitespace following <code>subject</code>,
+    <li>The white space following <code>subject</code>,
       <code>predicate</code>, 
       <code>object</code>,
       and <code>graphLabel</code> if present, MUST be a single space, 
       (<code>U+0020</code>).  All other locations that allow 
-      whitespace MUST be empty.</li>
+      white space MUST be empty.</li>
     <li>There MUST be no comments.</li>
     <li><code>HEX</code> MUST use only uppercase letters (<code>[A-F]</code>).</li>
     <li>Characters MUST NOT be represented by <code>UCHAR</code>.</li>
@@ -269,7 +291,8 @@
 
   <p class="note">N-Quads documents do not provide a way of serializing empty graphs that may be part of an RDF dataset.</p>
 
-  <p>A conforming <strong>N-Quads parser</strong> is a system capable of reading N-Quads documents on behalf of an application.
+  <p>A conforming <dfn class="lint-ignore">>N-Quads parser</dfn> is a system capable of
+    reading N-Quads documents on behalf of an application.
     It makes the serialized <a href="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>,
     as defined in <a href="#sec-parsing" class="sectionRef"></a>,
     available to the application, usually through some form of API.</p>
@@ -280,9 +303,9 @@
     <h2>Media Type and Content Encoding</h2>
 
     <p>The media type of N-Quads is <code>application/n-quads</code>.
-    The content encoding of N-Quads is always UTF-8.
-    See <a href="#sec-mediaReg">N-Quads Media Type</a> for the media type
-    registration form.
+      The content encoding of N-Quads is always UTF-8.
+      See <a href="#sec-mediaReg">N-Quads Media Type</a> for the media type
+      registration form.
     </p>
 
     <section id="sec-other-media-types">
@@ -296,29 +319,54 @@
   </section>
 </section>
 
-<section id="sec-grammar">
-  <h3>Grammar</h3>
+<section id="n-quads-grammar"><span id="sec-grammar"></span>
+  <h3>N-Quads Grammar</h3>
 
-  <p>An N-Quads document is a Unicode [[!UNICODE]] character string encoded in UTF-8.
-    Unicode code points only in the range U+0 to U+10FFFF inclusive are allowed.</p>
+  <p>An N-Quads document is a Unicode [[!UNICODE]] character string encoded in UTF-8.</p>
 
-  <p>White space (tab U+0009 or space U+0020) is allowed but not required between any two terminals.
-    White space is significant in the production <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>.</p>
+  <section id="sec-grammar-ws">
+    <h3>White Space</h3>
 
-  <p>Comments in N-Quads take the form of '<code>#</code>',
-    outside an <code>IRIREF</code> or <code>STRING_LITERAL_QUOTE</code>,
-    and continue to the end of line (<code>EOL</code>) or end of file
-    if there is no end of line after the comment marker.
-    Comments are treated as white space.</p>
+    <p>White space (tab U+0009 or space U+0020) is allowed outside of terminals.
+      Rule names below in capitals indicate where white space is significant.
+</p>
 
-  <p>The <abbr title="Extended Backus–Naur Form">EBNF</abbr> used here is defined in XML 1.0
-    [[!EBNF-NOTATION]].</p>
+    <p>White space is significant in the production <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>.</p>
 
-  <p>Escape sequence rules are the same as Turtle [[RDF12-TURTLE]].
-    However, as only the <a href="#grammar-production-STRING_LITERAL_QUOTE"><code>STRING_LITERAL_QUOTE</code></a> production
-    is allowed new lines in literals MUST be escaped.</p>
+    <p>A blank line, consisting of only white space and/or a comment,
+      may appear wherever a <code><a href="#grammar-production-triple">triple</a></code> production is allowed,
+      and are treated as white space.</p>
 
-  <div data-include="nquads-bnf.html"></div>
+    <p class="note">As with, N-Triples [[RDF12-N-TRIPLES]],
+      N-Quads allows only horizontal white space  (tab U+0009 or space U+0020).</p>
+  </section>
+
+  <section id="sec-grammar-comments">
+    <h3>Comments</h3>
+
+    <p>Comments in N-Quads start at '<code>#</code>'
+      outside an <a href="#grammar-production-IRIREF">IRIREF</a> or <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>,
+      and continue to the end of line
+      (marked by characters
+      <code title="CARRIAGE RETURN"><sub>CR</sub></code> (<span class="codepoint">U+000D</span> or
+      <code title="LINE FEED"><sub>LF</sub></code> (<span class="codepoint">U+000A</span>))
+      or end of file if there is no end of line after the comment
+      marker.
+      Comments are treated as white space.</p>
+  </section>
+
+  <section id="sec-grammar-grammar">
+    <h3>Grammar</h3>
+
+    <p>The <abbr title="Extended Backus–Naur Form">EBNF</abbr> used
+      here is defined in XML 1.0 [[EBNF-NOTATION]].</p>
+
+    <p>Escape sequence rules are the same as N-Triples [[RDF12-N-TRIPLES]] and Turtle [[RDF12-TURTLE]].
+      However, as only the <a href="#grammar-production-STRING_LITERAL_QUOTE"><code>STRING_LITERAL_QUOTE</code></a>
+      production is allowed new lines in literals MUST be escaped.</p>
+
+    <div data-include="nquads-bnf.html"></div>
+  </section>
 </section>
 
 <section id="sec-parsing">
@@ -382,6 +430,8 @@
   <section class="informative">
     <h3>Acknowledgments for RDF 1.2</h3>
 
+    <p>The editors of the RDF 1.2 edition acknowledge valuable contributions from Andy Seabourn.</p>
+
     <p>In addition to the editors, the following people have contributed to this specification:
       <span id="gh-contributors"></span>
     </p>
@@ -411,12 +461,19 @@
   <h2>Changes between RDF 1.1 and RDF 1.2</h2>
 
   <ul>
-    <li>N-Quads is now described as a syntactic superset of [[RDF12-N-TRIPLES]].</li>
+    <li>N-Quads is now described as an extension of N-Triples [[RDF12-N-TRIPLES]].</li>
     <li>Add <a href="#canonical-quads" class="sectionRef"></a> to define the canonical form of N-Quads.</li>
-    <li>Clarify the use of white space to separate RDF terms and the trailing `.` in a triple.
-      Lines composed entirely of white space and/or comments are also allowed.</li>
+    <li>Better align the use of white space and comments with [[RDF12-TURTLE]].</li>
     <li>Removed language about white space use between terminals that would otherwise
       be (mis-)recognized, is this can't happen in N-Triples.</li>
+    <li>Clarify the use of blank lines, including those composed of whitespace
+      and/or comments.
+      Comments can appear at the end of a triple before the newline as
+      was already evident from <a href="#ex-comments"></a>.</li>
+    <li>Create separate subsections of <a href="#n-quads-grammar"></a>
+      for <a href="#sec-grammar-ws">White space</a> and
+      <a href="#sec-grammar-comments">Comments</a>,
+      better mirroring [[RDF12-TURTLE]].</li>
   </ul>
 </section>
 
