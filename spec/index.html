@@ -272,6 +272,80 @@
       <li>The token <code><a href="#grammar-production-EOL">EOL</a></code> MUST be a single <code>U+000A</code>.</li>
       <li>The final <code><a href="#grammar-production-EOL">EOL</a></code> MUST be provided.</li>
   </ul>
+
+  <div class="issue markdown" data-number="16">
+    <p>Re-consider the use of `UCHAR` and `ECHAR` escapes in N-Triples/N-Quads canonicalization.
+      The 1.1-based recommendation prohibits the use of `UCHAR` (`U+XXXX`)
+      and allows `ECHAR` only for `U+0022` (quote `\"`),
+      `U+005C` (backslash `\\`),
+      `U+000A` (<code title="LINE FEED"><sub>LF</sub></code> `\n`),
+      and `U+000D` (<code title="CARRIAGE RETURN"><sub>CR</sub></code> `\r`).
+      However, the use of control characters can obfuscate text when presented,
+      creating a potential security concern.</p>
+
+    <p>A future version may consider requiring all characters between
+      `U+0000` and `U+001F` (other than `U+000A` (<code title="LINE FEED"><sub>LF</sub></code>)
+      and `U+000D` (<code title="CARRIAGE RETURN"><sub>CR</sub></code>))
+      to be represented using `UCHAR`.</p>
+  </div>
+</section>
+
+<section id="privacy-considerations">
+  <h2>Privacy Considerations</h2>
+  <p class="ednote">TODO</p>  
+</section>
+
+<section id="security">
+  <h2>Security Considerations</h2>
+
+  <p>The <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>
+    production allows the use of unescaped control characters.
+    Although this specification does not directly expose this content to an end user,
+    it might be presented through 
+    If presented through a user agent, this may cause the </p>
+
+  <p>N-Quads is a general-purpose assertion language;
+    applications may evaluate given data to infer more assertions or to dereference IRIs,
+    invoking the security considerations of the scheme for that IRI.
+    Note in particular, the privacy issues in [[!RFC3023]] section 10 for HTTP IRIs.
+    Data obtained from an inaccurate or malicious data source may lead to inaccurate or misleading conclusions,
+    as well as the dereferencing of unintended IRIs.
+    Care must be taken to align the trust in consulted resources with the sensitivity of
+    the intended use of the data;
+    inferences of potential medical treatments would likely require different trust than inferences
+    for trip planning.</p>
+
+  <p>N-Quads is used to express arbitrary application data; security considerations
+    will vary by domain of use. Security tools and protocols applicable to text
+    (e.g. PGP encryption, MD5 sum validation, password-protected compression)
+    may also be used on N-Quads documents.
+    Security/privacy protocols must be imposed which reflect the sensitivity of the embedded information.</p>
+
+  <p>N-Quads can express data which is presented to the user, for example, RDF Schema labels.
+    Application rendering strings retrieved from untrusted N-Quads documents,
+    or using unescaped characters,
+    must ensure that malignant strings may not be used to mislead the reader.
+    The security considerations in the media type registration for XML ([[!RFC3023]] section 10)
+    provide additional guidance around the expression of arbitrary data and markup.</p>
+
+  <p>N-Quads uses IRIs as term identifiers.
+    Applications interpreting data expressed in N-Quads should address the security issues of
+    [[[!RFC3987]]] [[!RFC3987]] Section 8, as well as
+    [[[!RFC3986]]] [[!RFC3986]] Section 7.</p>
+
+  <p>Multiple IRIs may have the same appearance. Characters in different scripts may
+    look similar (a Cyrillic &quot;&#1086;&quot; may appear similar to a Latin &quot;o&quot;).
+    A character followed by combining characters may have the same visual representation
+    as another character
+    (LATIN SMALL LETTER E followed by COMBINING ACUTE ACCENT has the same visual representation
+    as LATIN SMALL LETTER E WITH ACUTE).
+    <!-- (<code>foo:resum&#40751;code> and <code>f&#1086;&#1086;:resume&#769;</code>)-->
+    Any person or application that is writing or interpreting data in
+    TriG must take care to use the IRI that matches the intended semantics,
+    and avoid IRIs that make look similar.
+    Further information about matching of similar characters can be found
+    in [[[UNICODE-SECURITY]]] [[UNICODE-SECURITY]] and
+     [[[RFC3987]]] [[RFC3987]] Section 8.</p>
 </section>
 
 <section id="privacy-considerations">
