@@ -259,6 +259,11 @@
       and <code>graphLabel</code> if present, MUST be a single space, 
       (<code>U+0020</code>).  All other locations that allow 
       white space MUST be empty.</li>
+    <li><a data-cite="RDF12-CONCEPTS#literal">Literals</a> with the
+      datatype <code>http://www.w3.org/2001/XMLSchema#string</code>
+      MUST NOT use the datatype IRI part of the <a href="#grammar-production-literal">literal</a>,
+      and are represented using only <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>.
+    </li>
     <li>There MUST be no comments or <a>blank lines</a>.</li>
     <!--li><code><a href="#grammar-production-HEX">HEX</a></code> MUST use only uppercase letters (<code>[A-F]</code>).</li-->
     <li>Characters MUST NOT be represented by <code><a href="#grammar-production-UCHAR">UCHAR</a></code>.</li>
@@ -273,7 +278,7 @@
       <li>The final <code><a href="#grammar-production-EOL">EOL</a></code> MUST be provided.</li>
   </ul>
 
-  <div class="issue markdown" data-number="16">
+  <div class="issue" data-number="16">
     <p>Re-consider the use of `UCHAR` and `ECHAR` escapes in N-Triples/N-Quads canonicalization.
       The 1.1-based recommendation prohibits the use of `UCHAR` (`U+XXXX`)
       and allows `ECHAR` only for `U+0022` (quote `\"`),
