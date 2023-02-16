@@ -609,7 +609,11 @@
       <a href="#sec-grammar-comments">Comments</a>,
       better mirroring [[RDF12-TURTLE]].</li>
     <li>Updated the <a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a>
-      grammar production to be consisten with with Turtle.</li>
+      grammar production to be consistent with with Turtle.
+      Formerly, <a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a>
+      included "`:`" in N-Triples and N-Quads, but not in Turtle and TriG.
+      <a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a> is a component
+      of <a href="#grammar-production-PN_CHARS_U">BLANK_NODE_LABEL</a>.</li>
     <li>Separated <a href="#security"></a> from <a href="#sec-mediatype"></a>
       and updated language.</li>
   </ul>
