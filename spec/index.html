@@ -249,18 +249,17 @@
 
   <p>Canonical N-Quads has the following additional constraints on layout:</p>
   <ul>
-    <li>The white space following <code>subject</code>,
+    <li>White space MUST NOT be used except after
+      <code>subject</code>,
       <code>predicate</code>, 
       <code>object</code>,
-      and <code>graphLabel</code> if present, MUST be a single space, 
-      (<code>U+0020</code>).  All other locations that allow 
-      white space MUST be empty.</li>
+      and <code>graphLabel</code>
+      where it MUST be a single space (<code>U+0020</code>).</li>
     <li><a data-cite="RDF12-CONCEPTS#literal">Literals</a> with the
       datatype <code>http://www.w3.org/2001/XMLSchema#string</code>
       MUST NOT use the datatype IRI part of the <a href="#grammar-production-literal">literal</a>,
       and are represented using only <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>.
     </li>
-    <li>There MUST be no comments or <a>blank lines</a>.</li>
     <!--li><code><a href="#grammar-production-HEX">HEX</a></code> MUST use only uppercase letters (<code>[A-F]</code>).</li-->
     <li>Characters MUST NOT be represented by <code><a href="#grammar-production-UCHAR">UCHAR</a></code>.</li>
     <li>Within <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>,
@@ -287,6 +286,7 @@
     <p>A future version may consider requiring all characters between
       `U+0000` and `U+001F` (other than `U+000A` (<code title="LINE FEED"><sub>LF</sub></code>)
       and `U+000D` (<code title="CARRIAGE RETURN"><sub>CR</sub></code>))
+      along with `U+007F` <code title="delete">DEL</code>
       to be represented using `UCHAR`.</p>
   </div>
 </section>
