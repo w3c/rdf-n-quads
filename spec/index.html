@@ -302,8 +302,8 @@
   <p>The <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>
     production allows the use of unescaped control characters.
     Although this specification does not directly expose this content to an end user,
-    it might be presented through 
-    If presented through a user agent, this may cause the </p>
+    it might be presented through a user agent, which may cause the presented text to 
+    be obfuscated due to presentation of such characters.</p>
 
   <p>N-Quads is a general-purpose assertion language;
     applications may evaluate given data to infer more assertions or to dereference IRIs,
@@ -325,7 +325,8 @@
   <p>N-Quads can express data which is presented to the user, such as RDF Schema labels.
     Application rendering strings retrieved from untrusted N-Quads documents,
     or using unescaped characters,
-    must ensure that strings may not be used to mislead the reader.
+must try to prevent such strings from being used to mislead the reader,
+through warnings and any other appropriate means.
     The security considerations in the media type registration for XML ([[!RFC3023]] section 10)
     provide additional guidance around the expression of arbitrary data and markup.</p>
 
