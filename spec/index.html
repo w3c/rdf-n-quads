@@ -328,12 +328,11 @@
   <p>N-Quads can express data which is presented to the user, such as RDF Schema labels.
     Applications rendering strings retrieved from untrusted N-Quads documents,
     or using unescaped characters,
-    SHOULD prevent such strings from being used to mislead the reader,
-    through warnings and any other appropriate means.
+    SHOULD ensure that malignant strings may not be used to mislead the reader.
     The security considerations in the media type registration for XML ([[!RFC3023]] section 10)
     provide additional guidance around the expression of arbitrary data and markup.</p>
 
-  <p>N-Quads uses IRIs as term identifiers.
+  <p>N-Quads uses <a>IRIs</a> as term identifiers.
     Applications interpreting data expressed in N-Quads SHOULD address the security issues of
     [[[!RFC3987]]] [[!RFC3987]] Section 8, as well as
     [[[!RFC3986]]] [[!RFC3986]] Section 7.</p>
