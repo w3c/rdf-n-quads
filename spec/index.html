@@ -245,9 +245,13 @@
     The grammar for the language is the same.</p>
 
   <p class="note">A canonical form of N-Quads can be used to ensure
-    that the form of a quad is unique for a given choice of
-    <a data-cite="RDF12-CONCEPTS#dfn-blank-node-identifier">blank node indentifiers</a>
-    and the ordering of those quads in a document.</p>
+    that variations in the syntactic representation of terms
+    within that quad is determined; each code point
+    can be represented by only one of
+    <code><a href="#grammar-production-UCHAR">UCHAR</a></code>,
+    <code><a href="#grammar-production-ECHAR">ECHAR</a></code>,
+    and unencoded character
+    where the relevant production allows for a choice in representation.</p>
 
   <p>Canonical N-Quads has the following additional constraints on layout:</p>
   <ul>
