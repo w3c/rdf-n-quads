@@ -93,7 +93,7 @@
     also known as a <a data-cite="RDF12-CONCEPTS#dfn-quad">quad</a>.
     These may be separated by white space (spaces <code>#x20</code> or tabs <code>#x9</code>).
     This sequence is terminated by a '<code>.</code>'
-    (optionally proceded by white space and/or a comment),
+    (optionally followed by white space and/or a comment),
     and a new line (optional at the end of a document).</p>
 
   <pre id="ex-comments" class="example nquads" data-transform="updateExample"
@@ -246,7 +246,7 @@
 
   <p class="note">A canonical form of N-Quads can be used to ensure
     that variations in the syntactic representation of terms
-    within that quad is determined; each code point
+    within that quad are determined; each code point
     can be represented by only one of
     <code><a href="#grammar-production-UCHAR">UCHAR</a></code>,
     <code><a href="#grammar-production-ECHAR">ECHAR</a></code>,
@@ -259,8 +259,8 @@
       <code>subject</code>,
       <code>predicate</code>, 
       <code>object</code>,
-      and <code>graphLabel</code>
-      where it MUST be a single space (<code>U+0020</code>).</li>
+      and <code>graphLabel</code>,
+      any of which MUST be a single space (<code>U+0020</code>).</li>
     <li><a data-cite="RDF12-CONCEPTS#literal">Literals</a> with the
       datatype <code>http://www.w3.org/2001/XMLSchema#string</code>
       MUST NOT use the datatype IRI part of the <a href="#grammar-production-literal">literal</a>,
@@ -413,7 +413,7 @@
 
     <p>A <dfn class="no=export">blank line</dfn>, consisting of only white space and/or a comment,
       may appear wherever a <code><a href="#grammar-production-statement">statement</a></code> production is allowed,
-      and are treated as white space.</p>
+      and is treated as white space.</p>
 
     <p class="note">As with, N-Triples [[RDF12-N-TRIPLES]],
       N-Quads allows only horizontal white space  (tab U+0009 or space U+0020).</p>
@@ -553,9 +553,9 @@
       <a href="#sec-grammar-comments">Comments</a>,
       better mirroring [[RDF12-TURTLE]].</li>
     <li>Updated the <a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a>
-      grammar production to be consistent with with Turtle.
+      grammar production to be consistent with Turtle.
       Formerly, <a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a>
-      included "`:`" in N-Triples and N-Quads, but not in Turtle and TriG.
+      included "`:`" in N-Triples and N-Quads, but not in Turtle nor TriG.
       <a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a> is a component
       of <a href="#grammar-production-PN_CHARS_U">BLANK_NODE_LABEL</a>.</li>
     <li>Separated <a href="#security"></a> from <a href="#sec-mediatype"></a>
