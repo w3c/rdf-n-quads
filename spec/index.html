@@ -292,7 +292,7 @@
     <p>A future version may consider requiring all characters between
       `U+0000` and `U+001F` (other than `U+000A` (<code title="LINE FEED"><sub>LF</sub></code>)
       and `U+000D` (<code title="CARRIAGE RETURN"><sub>CR</sub></code>))
-      along with `U+007F` <code title="delete">DEL</code>
+      along with `U+007F` (<code title="delete"><sub>DEL</sub></code>)
       to be represented using `UCHAR`.</p>
   </div>
 </section>
@@ -595,47 +595,7 @@
     <dd>Unicode code points may also be expressed using an \uXXXX (U+0 to U+FFFF)
       or \UXXXXXXXX syntax (for U+10000 onwards) where X is a hexadecimal digit [0-9A-F]</dd>
     <dt>Security considerations:</dt>
-    <dd>N-Quads is a general-purpose assertion language;
-      applications may evaluate given data to infer more assertions or to dereference IRIs,
-      invoking the security considerations of the scheme for that IRI.
-      Note in particular, the privacy issues in [[!RFC3023]] section 10 for HTTP IRIs.
-      Data obtained from an inaccurate or malicious data source may lead to inaccurate or misleading conclusions,
-      as well as the dereferencing of unintended IRIs.
-      Care must be taken to align the trust in consulted resources with the sensitivity of
-      the intended use of the data;
-      inferences of potential medical treatments would likely require different trust than inferences
-      for trip planning.</dd>
-
-    <dd>N-Quads is used to express arbitrary application data; security considerations
-      will vary by domain of use. Security tools and protocols applicable to text
-      (e.g. PGP encryption, MD5 sum validation, password-protected compression)
-      may also be used on N-Quads documents.
-      Security/privacy protocols must be imposed which reflect the sensitivity of the embedded information.</dd>
-    <dd>N-Quads can express data which is presented to the user, for example, RDF Schema labels.
-      Application rendering strings retrieved from untrusted N-Quads documents
-      must ensure that malignant strings may not be used to mislead the reader.
-      The security considerations in the media type registration for XML ([[!RFC3023]] section 10)
-      provide additional guidance around the expression of arbitrary data and markup.</dd>
-    <dd>N-Quads uses IRIs as term identifiers.
-      Applications interpreting data expressed in N-Quads should address the security issues of
-      [[[!RFC3987]]] [[!RFC3987]] Section 8, as well as
-      [[[!RFC3986]]] [[!RFC3986]] Section 7.</dd>
-
-    <dd>Multiple IRIs may have the same appearance. Characters in different scripts may
-      look similar (a Cyrillic &quot;&#1086;&quot; may appear similar to a Latin &quot;o&quot;).
-      A character followed by combining characters may have the same visual representation
-      as another character
-      (LATIN SMALL LETTER E followed by COMBINING ACUTE ACCENT has the same visual representation
-      as LATIN SMALL LETTER E WITH ACUTE).
-      <!-- (<code>foo:resum&#40751;code> and <code>f&#1086;&#1086;:resume&#769;</code>)-->
-      Any person or application that is writing or interpreting data in
-      TriG must take care to use the IRI that matches the intended semantics,
-      and avoid IRIs that make look similar.
-      Further information about matching of similar characters can be found
-      in [[[UNICODE-SECURITY]]] [[UNICODE-SECURITY]] and
-       [[[RFC3987]]] [[RFC3987]] Section 8.
-    </dd>
-
+    <dd>See <a href="#security" class="sectionRef"></a>.</dd>
     <dt>Interoperability considerations:</dt>
     <dd>There are no known interoperability issues.</dd>
     <dt>Published specification:</dt>
