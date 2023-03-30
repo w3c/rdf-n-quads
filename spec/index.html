@@ -93,7 +93,7 @@
     also known as a <a data-cite="RDF12-CONCEPTS#dfn-quad">quad</a>.
     These may be separated by white space (spaces <code>#x20</code> or tabs <code>#x9</code>).
     This sequence is terminated by a '<code>.</code>'
-    (optionaly proceded by white space and/or a comment),
+    (optionally followed by white space and/or a comment),
     and a new line (optional at the end of a document).</p>
 
   <pre id="ex-comments" class="example nquads" data-transform="updateExample"
@@ -125,7 +125,7 @@
     <a data-cite="RDF12-CONCEPTS#dfn-predicate">predicate</a>,
     <a data-cite="RDF12-CONCEPTS#dfn-object">object</a>, an optional
     <a data-cite="RDF12-CONCEPTS#dfn-graph-name">graph name</a>
-    and optional blank lines.
+    and optional <a>blank lines</a>.
     Comments may be given after a '<code>#</code>' that is not part of
     another lexical token and continue to the end of the line.</p>
 
@@ -234,10 +234,6 @@
       _:bob <http://xmlns.com/foaf/0.1/knows> _:alice .
       -->
     </pre>
-    <p class="issue" data-number="2">
-      Note open <a href="https://www.w3.org/2001/sw/wiki/RDF1.1_Errata#erratum_30">erratum</a> on aligning the definition and production
-      for blank node lables with Turtle.
-    </p>
   </section>
 </section>
 
@@ -248,36 +244,56 @@
     less variability in layout.
     The grammar for the language is the same.</p>
 
-  <p class="note">Even when not explicitly serializing
-    canonical N-Quads, implementers are encouraged to produce this form.</p>
+  <p class="note">A canonical form of N-Quads can be used to ensure
+    that variations in the syntactic representation of terms
+    within that quad are determined; each code point
+    can be represented by only one of
+    <code><a href="#grammar-production-UCHAR">UCHAR</a></code>,
+    <code><a href="#grammar-production-ECHAR">ECHAR</a></code>,
+    or unencoded character,
+    where the relevant production allows for a choice in representation.</p>
 
   <p>Canonical N-Quads has the following additional constraints on layout:</p>
   <ul>
-    <li>The white space following <code>subject</code>,
+    <li>White space MUST NOT be used except after
+      <code>subject</code>,
       <code>predicate</code>, 
       <code>object</code>,
-      and <code>graphLabel</code> if present, MUST be a single space, 
-      (<code>U+0020</code>).  All other locations that allow 
-      white space MUST be empty.</li>
-    <li>There MUST be no comments.</li>
-    <li><code>HEX</code> MUST use only uppercase letters (<code>[A-F]</code>).</li>
-    <li>Characters MUST NOT be represented by <code>UCHAR</code>.</li>
+      and <code>graphLabel</code>,
+      any of which MUST be a single space (<code>U+0020</code>).</li>
+    <li><a data-cite="RDF12-CONCEPTS#literal">Literals</a> with the
+      datatype <code>http://www.w3.org/2001/XMLSchema#string</code>
+      MUST NOT use the datatype IRI part of the <a href="#grammar-production-literal">literal</a>,
+      and are represented using only <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>.
+    </li>
+    <!--li><code><a href="#grammar-production-HEX">HEX</a></code> MUST use only uppercase letters (<code>[A-F]</code>).</li-->
+    <li>Characters MUST NOT be represented by <code><a href="#grammar-production-UCHAR">UCHAR</a></code>.</li>
     <li>Within <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>,
-      only the characters 
+      the characters 
       <code>U+0022</code>, <code>U+005C</code>, <code>U+000A</code>, <code>U+000D</code>
-       are encoded using <code>ECHAR</code>.
-      <code>ECHAR</code> MUST NOT be used for characters that are
+       MUST be encoded using <code><a href="#grammar-production-ECHAR">ECHAR</a></code>.
+      <code><a href="#grammar-production-ECHAR">ECHAR</a></code> MUST NOT be used for characters that are
       allowed directly in
-      <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>. </li>
-      <li>The token EOL MUST be a single <code>U+000A</code>.</li>
-      <li>The final EOL MUST be provided.</li>
+      <code><a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a></code>. </li>
+      <li>The token <code><a href="#grammar-production-EOL">EOL</a></code> MUST be a single <code>U+000A</code>.</li>
+      <li>The final <code><a href="#grammar-production-EOL">EOL</a></code> MUST be provided.</li>
   </ul>
-  <div class="issue" data-number="2">
-    Note open errata:
-    <ul>
-      <li><a href="https://www.w3.org/2001/sw/wiki/RDF1.1_Errata#erratum_32">32 – Issues with N-Quads/N-Triples canonicalization</a>.</li>
-      <li><a href="https://www.w3.org/2001/sw/wiki/RDF1.1_Errata#erratum_33">33 – Ambiguity of canonical N-Triples</a></li>
-    </ul>
+
+  <div class="issue" data-number="16">
+    <p>Re-consider the use of `UCHAR` and `ECHAR` escapes in N-Triples/N-Quads canonicalization.
+      The 1.1-based recommendation prohibits the use of `UCHAR` (`U+XXXX`)
+      and allows `ECHAR` only for `U+0022` (quote `\"`),
+      `U+005C` (backslash `\\`),
+      `U+000A` (<code title="LINE FEED"><sub>LF</sub></code> `\n`),
+      and `U+000D` (<code title="CARRIAGE RETURN"><sub>CR</sub></code> `\r`).
+      However, the use of control characters can obfuscate text when presented,
+      creating a potential security concern.</p>
+
+    <p>A future version may consider requiring all characters between
+      `U+0000` and `U+001F` (other than `U+000A` (<code title="LINE FEED"><sub>LF</sub></code>)
+      and `U+000D` (<code title="CARRIAGE RETURN"><sub>CR</sub></code>))
+      along with `U+007F` (<code title="delete"><sub>DEL</sub></code>)
+      to be represented using `UCHAR`.</p>
   </div>
 </section>
 
@@ -395,9 +411,9 @@
 
     <p>White space is significant in the production <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>.</p>
 
-    <p>A blank line, consisting of only white space and/or a comment,
+    <p>A <dfn class="no=export">blank line</dfn>, consisting of only white space and/or a comment,
       may appear wherever a <code><a href="#grammar-production-statement">statement</a></code> production is allowed,
-      and are treated as white space.</p>
+      and is treated as white space.</p>
 
     <p class="note">As with, N-Triples [[RDF12-N-TRIPLES]],
       N-Quads allows only horizontal white space  (tab U+0009 or space U+0020).</p>
@@ -528,7 +544,7 @@
     <li>Better align the use of white space and comments with [[RDF12-TURTLE]].</li>
     <li>Removed language about white space use between terminals that would otherwise
       be (mis-)recognized, is this can't happen in N-Triples.</li>
-    <li>Clarify the use of blank lines, including those composed of white space
+    <li>Clarify the use of <a>blank lines</a>, including those composed of white space
       and/or comments.
       Comments can appear at the end of a triple before the newline as
       was already evident from <a href="#ex-comments"></a>.</li>
@@ -537,7 +553,11 @@
       <a href="#sec-grammar-comments">Comments</a>,
       better mirroring [[RDF12-TURTLE]].</li>
     <li>Updated the <a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a>
-      grammar production to be consisten with with Turtle.</li>
+      grammar production to be consistent with Turtle.
+      Formerly, <a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a>
+      included "`:`" in N-Triples and N-Quads, but not in Turtle nor TriG.
+      <a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a> is a component
+      of <a href="#grammar-production-PN_CHARS_U">BLANK_NODE_LABEL</a>.</li>
     <li>Separated <a href="#security"></a> from <a href="#sec-mediatype"></a>
       and updated language.</li>
   </ul>
