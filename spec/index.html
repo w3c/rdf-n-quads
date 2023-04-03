@@ -80,7 +80,7 @@
     [[!RDF12-CONCEPTS]].
   </p>
 
-  <p>As with N-Triples, an N-Quads document contains no parsing directives.</p>
+  <p>As with N-Triples, an <a>N-Quads document</a> contains no parsing directives.</p>
 
   <p>N-Quads statements are a sequence of RDF terms representing the
     <a data-cite="RDF12-CONCEPTS#dfn-subject">subject</a>,
@@ -106,7 +106,7 @@
     -->
   </pre>
 
-  <p>The <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a> represented by an N-Quads document contains
+  <p>The <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a> represented by an <a>N-Quads document</a> contains
     exactly each <a data-cite="RDF12-CONCEPTS#dfn-quad">quad</a> matching the N-Quads
     <a href="#grammar-production-statement"><code>statement</code></a> production.
   </p>
@@ -116,7 +116,7 @@
 <section id="sec-n-quads-language" class="informative">
   <h2>N-Quads Language</h2>
 
-  <p>An N-Quads document allows writing down an
+  <p>An <a>N-Quads document</a> allows writing down an
     <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>
     in a textual form.
     An RDF dataset is made up of <a href="#simple-triples">simple statements</a>
@@ -179,7 +179,7 @@
     <h3>RDF Literals</h3>
 
     <p>As in N-Triples,
-      <a data-cite="RDF12-CONCEPTS#literal">literals</a> are used to identify values such as strings, numbers, dates.</p>
+      <a data-cite="RDF12-CONCEPTS#dfn-literal">literals</a> are used to identify values such as strings, numbers, dates.</p>
 
     <p>The representation of the lexical form consists of an
       initial delimiter <code>&quot;</code> (<span class="codepoint">U+0022</span>),
@@ -261,7 +261,7 @@
       <code>object</code>,
       and <code>graphLabel</code>,
       any of which MUST be a single space (<code>U+0020</code>).</li>
-    <li><a data-cite="RDF12-CONCEPTS#literal">Literals</a> with the
+    <li><a data-cite="RDF12-CONCEPTS#dfn-literal">Literals</a> with the
       datatype <code>http://www.w3.org/2001/XMLSchema#string</code>
       MUST NOT use the datatype IRI part of the <a href="#grammar-production-literal">literal</a>,
       and are represented using only <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>.
@@ -326,11 +326,11 @@
     security considerations will vary by domain of use.
     Security tools and protocols applicable to text
     (for example, PGP encryption, checksum validation, password-protected compression)
-    may also be used on N-Quads documents.
+    may also be used on <a>N-Quads documents</a>.
     Security/privacy protocols must be imposed which reflect the sensitivity of the embedded information.</p>
 
   <p>N-Quads can express data which is presented to the user, such as RDF Schema labels.
-    Applications rendering strings retrieved from untrusted N-Quads documents,
+    Applications rendering strings retrieved from untrusted <a>N-Quads documents</a>,
     or using unescaped characters,
     SHOULD use warnings and other appropriate means to limit the possibility
     that malignant strings might be used to mislead the reader.
@@ -360,16 +360,16 @@
 <section id="conformance">
   <p>This specification defines conformance criteria for:</p>
   <ul>
-    <li>N-Quads documents
-    <li>N-Quads parsers
+    <li><a>N-Quads documents</a></li>
+    <li><a>N-Quads parsers</a></li>
   </ul>
-  <p>A conforming <strong>N-Quads document</strong> is a Unicode string that conforms to the grammar and additional constraints defined in <a href="#n-quads-grammar" class="sectionRef"></a>,
+  <p>A conforming <dfn>N-Quads document</dfn> is a Unicode string that conforms to the grammar and additional constraints defined in <a href="#n-quads-grammar" class="sectionRef"></a>,
     starting with the <a href="#grammar-production-nquadsDoc"><code>nquadsDoc</code> production</a>.
     An N-Quads document serializes an <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>.</p>
 
   <p class="note">N-Quads documents do not provide a way of serializing empty graphs that may be part of an RDF dataset.</p>
 
-  <p>A conforming <dfn class="lint-ignore">>N-Quads parser</dfn> is a system capable of
+  <p>A conforming <dfn>N-Quads parser</dfn> is a system capable of
     reading N-Quads documents on behalf of an application.
     It makes the serialized <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>,
     as defined in <a href="#sec-parsing" class="sectionRef"></a>,
@@ -400,7 +400,7 @@
 <section id="n-quads-grammar"><span id="sec-grammar"></span>
   <h3>N-Quads Grammar</h3>
 
-  <p>An N-Quads document is a Unicode [[!UNICODE]] character string encoded in UTF-8.</p>
+  <p>An <a>N-Quads document</a> is a Unicode [[!UNICODE]] character string encoded in UTF-8.</p>
 
   <section id="sec-grammar-ws">
     <h3>White Space</h3>
@@ -474,7 +474,7 @@
 
   <section id="rdf-dataset-construction">
     <h3>RDF Dataset Construction</h3>
-    <p>An N-Quads document defines an <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>
+    <p>An <a>N-Quads document</a> defines an <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>
       composed of <a data-cite="RDF12-CONCEPTS#dfn-rdf-graph">RDF graphs</a> composed of a set of
       <a data-cite="RDF12-CONCEPTS#dfn-rdf-triple">RDF triples</a>.
       The  <code><a href="#grammar-production-statement">statement</a></code> production produces a
