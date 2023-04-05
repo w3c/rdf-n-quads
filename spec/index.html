@@ -241,17 +241,18 @@
   <h2>A Canonical form of N-Quads</h2>
 
   <p>This section defines a canonical form of N-Quads which has
-    less variability in layout.
+    a completely specified layout.
     The grammar for the language is the same.</p>
 
-  <p class="note">A canonical form of N-Quads can be used to ensure
-    that variations in the syntactic representation of terms
-    within that quad are determined; each code point
+  <p>While the N-Quads syntax allows choices for the representation and layout of RDF data,
+    the canonical form of N-Quads provides a unique syntactic representation of any quad.
+    Each code point
     can be represented by only one of
     <code><a href="#grammar-production-UCHAR">UCHAR</a></code>,
     <code><a href="#grammar-production-ECHAR">ECHAR</a></code>,
     or unencoded character,
-    where the relevant production allows for a choice in representation.</p>
+    where the relevant production allows for a choice in representation.
+    Each quad is represented entirely on a single line with specified white space.</p>
 
   <p>Canonical N-Quads has the following additional constraints on layout:</p>
   <ul>
@@ -275,8 +276,8 @@
       that are not represented using <code><a href="#grammar-production-ECHAR">ECHAR</a></code>
       MUST be represented by <code><a href="#grammar-production-UCHAR">UCHAR</a></code>.
       All other characters MUST be represented by their native [[UNICODE]] representation.</li>
-      <li>The token <code><a href="#grammar-production-EOL">EOL</a></code> MUST be a single <code>U+000A</code>.</li>
-      <li>The final <code><a href="#grammar-production-EOL">EOL</a></code> MUST be provided.</li>
+    <li>The token <code><a href="#grammar-production-EOL">EOL</a></code> MUST be a single <code>U+000A</code>.</li>
+    <li>The final <code><a href="#grammar-production-EOL">EOL</a></code> MUST be provided.</li>
   </ul>
 </section>
 
