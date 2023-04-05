@@ -266,35 +266,19 @@
       MUST NOT use the datatype IRI part of the <a href="#grammar-production-literal">literal</a>,
       and are represented using only <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>.
     </li>
-    <!--li><code><a href="#grammar-production-HEX">HEX</a></code> MUST use only uppercase letters (<code>[A-F]</code>).</li-->
+    <li><code><a href="#grammar-production-HEX">HEX</a></code> MUST use only uppercase letters (<code>[A-F]</code>).</li>
     <li>Characters MUST NOT be represented by <code><a href="#grammar-production-UCHAR">UCHAR</a></code>.</li>
     <li>Within <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>,
       the characters 
       <code>U+0022</code>, <code>U+005C</code>, <code>U+000A</code>, <code>U+000D</code>
-       MUST be encoded using <code><a href="#grammar-production-ECHAR">ECHAR</a></code>.
-      <code><a href="#grammar-production-ECHAR">ECHAR</a></code> MUST NOT be used for characters that are
-      allowed directly in
-      <code><a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a></code>. </li>
+      MUST be encoded using <code><a href="#grammar-production-ECHAR">ECHAR</a></code>.
+      Characters in the range from <code>U+0000</code> to <code>U+001F</code> and <code>U+007F</code>
+      not represented using <code><a href="#grammar-production-ECHAR">ECHAR</a></code>
+      MUST be represented by <code><a href="#grammar-production-UCHAR">UCHAR</a></code>.
+      All other characters MUST be represented by their native [[UNICODE]] representation..</li>
       <li>The token <code><a href="#grammar-production-EOL">EOL</a></code> MUST be a single <code>U+000A</code>.</li>
       <li>The final <code><a href="#grammar-production-EOL">EOL</a></code> MUST be provided.</li>
   </ul>
-
-  <div class="issue" data-number="16">
-    <p>Re-consider the use of `UCHAR` and `ECHAR` escapes in N-Triples/N-Quads canonicalization.
-      The 1.1-based recommendation prohibits the use of `UCHAR` (`U+XXXX`)
-      and allows `ECHAR` only for `U+0022` (quote `\"`),
-      `U+005C` (backslash `\\`),
-      `U+000A` (<code title="LINE FEED"><sub>LF</sub></code> `\n`),
-      and `U+000D` (<code title="CARRIAGE RETURN"><sub>CR</sub></code> `\r`).
-      However, the use of control characters can obfuscate text when presented,
-      creating a potential security concern.</p>
-
-    <p>A future version may consider requiring all characters between
-      `U+0000` and `U+001F` (other than `U+000A` (<code title="LINE FEED"><sub>LF</sub></code>)
-      and `U+000D` (<code title="CARRIAGE RETURN"><sub>CR</sub></code>))
-      along with `U+007F` (<code title="delete"><sub>DEL</sub></code>)
-      to be represented using `UCHAR`.</p>
-  </div>
 </section>
 
 <section id="privacy-considerations">
