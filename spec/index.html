@@ -301,6 +301,7 @@
   <p>This specification defines conformance criteria for:</p>
   <ul>
     <li><a>N-Quads documents</a></li>
+    <li><a>Canonical N-Quads documents</a></li>
     <li><a>N-Quads parsers</a></li>
   </ul>
   <p>A conforming <dfn>N-Quads document</dfn> is a Unicode string that conforms to the grammar and additional constraints defined in <a href="#n-quads-grammar" class="sectionRef"></a>,
@@ -308,6 +309,10 @@
     An N-Quads document serializes an <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>.</p>
 
   <p class="note">N-Quads documents do not provide a way of serializing empty graphs that may be part of an RDF dataset.</p>
+
+  <p>A conforming <dfn>Canonical N-Quads document</dfn> is an 
+    <strong>N-Quads document</strong> that follows the 
+    <a href="#canonical-quads">additional constraints</a> of Canonical N-Quads.</p>
 
   <p>A conforming <dfn>N-Quads parser</dfn> is a system capable of
     reading N-Quads documents on behalf of an application.
