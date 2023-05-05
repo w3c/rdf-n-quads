@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<meta name="generator" content="ReSpec 34.1.0">
+<meta name="generator" content="ReSpec 34.1.1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 span.example-title{text-transform:none}
@@ -170,7 +170,7 @@ ul.index code{color:inherit}
   "name": "RDF 1.2 N-Quads",
   "inLanguage": "en",
   "license": "https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document",
-  "datePublished": "2023-05-04",
+  "datePublished": "2023-05-16",
   "copyrightHolder": {
     "name": "World Wide Web Consortium",
     "url": "https://www.w3.org/"
@@ -1094,21 +1094,21 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "group": "rdf-star",
   "doJsonLd": true,
   "wgPublicList": "public-rdf-star-wg",
-  "publishDate": "2023-05-04",
-  "publishISODate": "2023-05-04T00:00:00.000Z",
-  "generatedSubtitle": "W3C First Public Working Draft 04 May 2023"
+  "publishDate": "2023-05-16",
+  "publishISODate": "2023-05-16T00:00:00.000Z",
+  "generatedSubtitle": "W3C First Public Working Draft 16 May 2023"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD"></head>
 <body class="h-entry" data-cite="RDF11-CONCEPTS"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">RDF 1.2 N-Quads</h1> <h2 id="subtitle" class="subtitle">A line-based syntax for RDF datasets</h2>
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-05-04">04 May 2023</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#FPWD">W3C First Public Working Draft</a> <time class="dt-published" datetime="2023-05-16">16 May 2023</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt><dd>
-                <a class="u-url" href="https://www.w3.org/TR/2023/WD-rdf12-n-quads-20230504/">https://www.w3.org/TR/2023/WD-rdf12-n-quads-20230504/</a>
+                <a class="u-url" href="https://www.w3.org/TR/2023/WD-rdf12-n-quads-20230516/">https://www.w3.org/TR/2023/WD-rdf12-n-quads-20230516/</a>
               </dd>
         <dt>Latest published version:</dt><dd>
                 <a href="https://www.w3.org/TR/rdf12-n-quads/">https://www.w3.org/TR/rdf12-n-quads/</a>
@@ -1163,6 +1163,14 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 
 <section id="abstract" class="introductory"><h2>Abstract</h2>
   <p>N-Quads is a line-based, plain text format for encoding an <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-dataset" id="ref-for-index-term-rdf-dataset-1">RDF dataset</a>.</p>
+
+  <p>RDF 1.2 N-Quads introduces <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-quoted-triple" id="ref-for-index-term-quoted-triples-1">quoted triples</a>
+    as a fourth kind of <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-term" id="ref-for-index-term-rdf-term-1">RDF term</a>
+    which can be used as the
+    <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-subject" id="ref-for-index-term-subject-1">subject</a> or
+    <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-object" id="ref-for-index-term-object-type-1">object</a> of another
+    <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-triple" id="ref-for-index-term-triple-1">triple</a>,
+    making it possible to make statements about other statements.</p>
 </section>
 
 <section id="sotd" class="introductory"><h2>Status of This Document</h2><p><em>This section describes the status of this
@@ -1240,7 +1248,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   <li><cite><a data-matched-text="[[[SPARQL12-GRAPH-STORE-PROTOCOL]]]" href="https://w3c.github.io/sparql-graph-store-protocol/spec/">SPARQL 1.2 Graph Store HTTP Protocol</a></cite></li>
 </ol>
 </section>
-</section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#related">Set of Documents</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sec-intro"><bdi class="secno">1. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#sec-n-quads-language"><bdi class="secno">2. </bdi>N-Quads Language</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#simple-triples"><bdi class="secno">2.1 </bdi>Simple Statements</a></li><li class="tocline"><a class="tocxref" href="#sec-iri"><bdi class="secno">2.2 </bdi>IRIs</a></li><li class="tocline"><a class="tocxref" href="#sec-literals"><bdi class="secno">2.3 </bdi>RDF Literals</a></li><li class="tocline"><a class="tocxref" href="#BNodes"><bdi class="secno">2.4 </bdi>RDF Blank Nodes</a></li></ol></li><li class="tocline"><a class="tocxref" href="#canonical-quads"><bdi class="secno">3. </bdi>A Canonical form of N-Quads</a></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">4. </bdi>Conformance</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sec-mediatype"><bdi class="secno">4.1 </bdi>Media Type and Content Encoding</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sec-other-media-types"><bdi class="secno">4.1.1 </bdi>Other Media Types</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#n-quads-grammar"><bdi class="secno">5. </bdi>N-Quads Grammar</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sec-grammar-ws"><bdi class="secno">5.1 </bdi>White Space</a></li><li class="tocline"><a class="tocxref" href="#sec-grammar-comments"><bdi class="secno">5.2 </bdi>Comments</a></li><li class="tocline"><a class="tocxref" href="#sec-grammar-grammar"><bdi class="secno">5.3 </bdi>Grammar</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sec-parsing"><bdi class="secno">6. </bdi>Parsing</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sec-parsing-terms"><bdi class="secno">6.1 </bdi>RDF Term Constructors</a></li><li class="tocline"><a class="tocxref" href="#rdf-dataset-construction"><bdi class="secno">6.2 </bdi>RDF Dataset Construction</a></li></ol></li><li class="tocline"><a class="tocxref" href="#privacy-considerations"><bdi class="secno">A. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">B. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#sec-mediaReg"><bdi class="secno">C. </bdi>N-Quads Internet Media Type, File Extension and Macintosh File Type </a></li><li class="tocline"><a class="tocxref" href="#section-ack"><bdi class="secno">D. </bdi>Acknowledgments</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#acknowledgments-for-rdf-1-1"><bdi class="secno">D.1 </bdi>Acknowledgments for RDF 1.1</a></li><li class="tocline"><a class="tocxref" href="#acknowledgments-for-rdf-1-2"><bdi class="secno">D.2 </bdi>Acknowledgments for RDF 1.2</a></li></ol></li><li class="tocline"><a class="tocxref" href="#changes-12"><bdi class="secno">E. </bdi>Changes between RDF 1.1 and RDF 1.2</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">F. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">F.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">F.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#issue-summary"><bdi class="secno">G. </bdi>Issue summary</a></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">H. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">H.1 </bdi>Normative references</a></li><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">H.2 </bdi>Informative references</a></li></ol></li></ol></nav>
+</section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#related">Set of Documents</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sec-intro"><bdi class="secno">1. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#sec-n-quads-language"><bdi class="secno">2. </bdi>N-Quads Language</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#simple-triples"><bdi class="secno">2.1 </bdi>Simple Statements</a></li><li class="tocline"><a class="tocxref" href="#quoted-triples"><bdi class="secno">2.2 </bdi>Quoted Triples</a></li><li class="tocline"><a class="tocxref" href="#sec-iri"><bdi class="secno">2.3 </bdi>IRIs</a></li><li class="tocline"><a class="tocxref" href="#sec-literals"><bdi class="secno">2.4 </bdi>RDF Literals</a></li><li class="tocline"><a class="tocxref" href="#BNodes"><bdi class="secno">2.5 </bdi>RDF Blank Nodes</a></li></ol></li><li class="tocline"><a class="tocxref" href="#canonical-quads"><bdi class="secno">3. </bdi>A Canonical form of N-Quads</a></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">4. </bdi>Conformance</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sec-mediatype"><bdi class="secno">4.1 </bdi>Media Type and Content Encoding</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sec-other-media-types"><bdi class="secno">4.1.1 </bdi>Other Media Types</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#n-quads-grammar"><bdi class="secno">5. </bdi>N-Quads Grammar</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sec-grammar-ws"><bdi class="secno">5.1 </bdi>White Space</a></li><li class="tocline"><a class="tocxref" href="#sec-grammar-comments"><bdi class="secno">5.2 </bdi>Comments</a></li><li class="tocline"><a class="tocxref" href="#sec-grammar-grammar"><bdi class="secno">5.3 </bdi>Grammar</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sec-parsing"><bdi class="secno">6. </bdi>Parsing</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#sec-parsing-terms"><bdi class="secno">6.1 </bdi>RDF Term Constructors</a></li><li class="tocline"><a class="tocxref" href="#rdf-dataset-construction"><bdi class="secno">6.2 </bdi>RDF Dataset Construction</a></li></ol></li><li class="tocline"><a class="tocxref" href="#privacy-considerations"><bdi class="secno">A. </bdi>Privacy Considerations</a></li><li class="tocline"><a class="tocxref" href="#security"><bdi class="secno">B. </bdi>Security Considerations</a></li><li class="tocline"><a class="tocxref" href="#sec-mediaReg"><bdi class="secno">C. </bdi>N-Quads Internet Media Type, File Extension and Macintosh File Type </a></li><li class="tocline"><a class="tocxref" href="#section-ack"><bdi class="secno">D. </bdi>Acknowledgments</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#acknowledgments-for-rdf-1-1"><bdi class="secno">D.1 </bdi>Acknowledgments for RDF 1.1</a></li><li class="tocline"><a class="tocxref" href="#acknowledgments-for-rdf-1-2"><bdi class="secno">D.2 </bdi>Acknowledgments for RDF 1.2</a></li></ol></li><li class="tocline"><a class="tocxref" href="#changes-12"><bdi class="secno">E. </bdi>Changes between RDF 1.1 and RDF 1.2</a></li><li class="tocline"><a class="tocxref" href="#index"><bdi class="secno">F. </bdi>Index</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#index-defined-here"><bdi class="secno">F.1 </bdi>Terms defined by this specification</a></li><li class="tocline"><a class="tocxref" href="#index-defined-elsewhere"><bdi class="secno">F.2 </bdi>Terms defined by reference</a></li></ol></li><li class="tocline"><a class="tocxref" href="#issue-summary"><bdi class="secno">G. </bdi>Issue summary</a></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">H. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">H.1 </bdi>Normative references</a></li><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">H.2 </bdi>Informative references</a></li></ol></li></ol></nav>
 
 <section id="sec-intro" class="informative"><div class="header-wrapper"><h2 id="x1-introduction"><bdi class="secno">1. </bdi>Introduction</h2><a class="self-link" href="#sec-intro" aria-label="Permalink for Section 1."></a></div><p><em>This section is non-normative.</em></p>
   
@@ -1258,10 +1266,10 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   <p>As with N-Triples, an <a href="#dfn-n-quads-document" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-n-quads-document-1">N-Quads document</a> contains no parsing directives.</p>
 
   <p>N-Quads statements are a sequence of RDF terms representing the
-    <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-subject" id="ref-for-index-term-subject-1">subject</a>,
+    <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-subject" id="ref-for-index-term-subject-2">subject</a>,
     <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-predicate" id="ref-for-index-term-predicate-1">predicate</a>, and
-    <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-object" id="ref-for-index-term-object-type-1">object</a>
-    of an <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-triple" id="ref-for-index-term-rdf-triple-1">RDF Triple</a>
+    <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-object" id="ref-for-index-term-object-type-2">object</a>
+    of an <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-triple" id="ref-for-index-term-triple-2">RDF Triple</a>
     and an optional <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-graph-name" id="ref-for-index-term-graph-name-1">graph name</a>
     identifying a <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-named-graph" id="ref-for-index-term-named-graph-1">named graph</a>
     associated with the triple within an <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-dataset" id="ref-for-index-term-rdf-dataset-3">RDF dataset</a>,
@@ -1297,9 +1305,9 @@ _:subject2 &lt;http://an.example/predicate2&gt; "object2" &lt;http://example.org
     in a textual form.
     An RDF dataset is made up of <a href="#simple-triples">simple statements</a>
     consisting of a
-    <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-subject" id="ref-for-index-term-subject-2">subject</a>,
+    <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-subject" id="ref-for-index-term-subject-3">subject</a>,
     <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-predicate" id="ref-for-index-term-predicate-2">predicate</a>,
-    <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-object" id="ref-for-index-term-object-type-2">object</a>, an optional
+    <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-object" id="ref-for-index-term-object-type-3">object</a>, an optional
     <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-graph-name" id="ref-for-index-term-graph-name-2">graph name</a>
     and optional <a href="#dfn-blank-line" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-blank-line-1">blank lines</a>.
     Comments may be given after a '<code>#</code>' that is not part of
@@ -1313,10 +1321,10 @@ _:subject2 &lt;http://an.example/predicate2&gt; "object2" &lt;http://example.org
       with an optional <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-named-graph" id="ref-for-index-term-named-graph-2">named graph</a>.</p>
 
     <p>The simplest statement is a sequence of
-      (<a href="https://w3c.github.io/rdf-concepts/spec/#dfn-subject" id="ref-for-index-term-subject-3">subject</a>,
+      (<a href="https://w3c.github.io/rdf-concepts/spec/#dfn-subject" id="ref-for-index-term-subject-4">subject</a>,
       <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-predicate" id="ref-for-index-term-predicate-3">predicate</a>,
-      <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-object" id="ref-for-index-term-object-type-3">object</a>) terms
-      forming an <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-triple" id="ref-for-index-term-rdf-triple-2">RDF triple</a>
+      <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-object" id="ref-for-index-term-object-type-4">object</a>) terms
+      forming an <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-triple" id="ref-for-index-term-triple-3">RDF triple</a>
       and an optional
       <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-graph-name" id="ref-for-index-term-graph-name-3">graph name</a>
       (a <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-blank-node-identifier" id="ref-for-index-term-blank-node-identifier-1">blank node identifier</a>
@@ -1342,7 +1350,35 @@ _:subject2 &lt;http://an.example/predicate2&gt; "object2" &lt;http://example.org
       </div>
   </section>
 
-  <section id="sec-iri"><div class="header-wrapper"><h3 id="x2-2-iris"><bdi class="secno">2.2 </bdi>IRIs</h3><a class="self-link" href="#sec-iri" aria-label="Permalink for Section 2.2"></a></div>
+  <section id="quoted-triples"><div class="header-wrapper"><h3 id="x2-2-quoted-triples"><bdi class="secno">2.2 </bdi>Quoted Triples</h3><a class="self-link" href="#quoted-triples" aria-label="Permalink for Section 2.2"></a></div>
+    
+
+    <p>A <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-quoted-triple" id="ref-for-index-term-quoted-triples-2">quoted triple</a>
+      may be the <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-subject" id="ref-for-index-term-subject-5">subject</a> or
+      <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-object" id="ref-for-index-term-object-type-5">object</a> of an
+      <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-triple" id="ref-for-index-term-triple-4">RDF triple</a>.</p>
+
+    <p>A <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-quoted-triple" id="ref-for-index-term-quoted-triples-3">quoted triple</a>
+      is represented as a <code><a href="#grammar-production-quotedTriple">quotedTriple</a></code> with
+      <code><a href="#grammar-production-subject">subject</a></code>,
+      <code><a href="#grammar-production-predicate">predicate</a></code>, and
+      <code><a href="#grammar-production-object">object</a></code>
+      preceded by <code>&lt;&lt;</code> and followed by <code>&gt;&gt;</code>.
+      Note that <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-quoted-triple" id="ref-for-index-term-quoted-triples-4">quoted triples</a>
+      may be recursive.
+     </p>
+
+    <div class="example" id="ex-quoted-triple">
+        <div class="marker">
+    <a class="self-link" href="#ex-quoted-triple">Example<bdi> 3</bdi></a><span class="example-title">: Quoted Triple</span>
+  </div> <pre class="ntriples" aria-busy="false"><code class="hljs">
+_:e38                                                &lt;ex:familyName&gt;                  "Smith" .
+&lt;&lt; _:e38 &lt;http://example.com/jobTitle&gt; "Designer" &gt;&gt; &lt;http://example.com/accordingTo&gt; _:e22 .
+</code></pre>
+      </div>
+  </section>
+
+  <section id="sec-iri"><div class="header-wrapper"><h3 id="x2-3-iris"><bdi class="secno">2.3 </bdi>IRIs</h3><a class="self-link" href="#sec-iri" aria-label="Permalink for Section 2.3"></a></div>
     
 
     <p>
@@ -1352,7 +1388,7 @@ _:subject2 &lt;http://an.example/predicate2&gt; "object2" &lt;http://example.org
     </p>
   </section>
 
-  <section id="sec-literals"><div class="header-wrapper"><h3 id="x2-3-rdf-literals"><bdi class="secno">2.3 </bdi>RDF Literals</h3><a class="self-link" href="#sec-literals" aria-label="Permalink for Section 2.3"></a></div>
+  <section id="sec-literals"><div class="header-wrapper"><h3 id="x2-4-rdf-literals"><bdi class="secno">2.4 </bdi>RDF Literals</h3><a class="self-link" href="#sec-literals" aria-label="Permalink for Section 2.4"></a></div>
     
 
     <p>As in N-Triples,
@@ -1385,7 +1421,7 @@ _:subject2 &lt;http://an.example/predicate2&gt; "object2" &lt;http://example.org
     </p>
   </section>
 
-  <section id="BNodes"><div class="header-wrapper"><h3 id="x2-4-rdf-blank-nodes"><bdi class="secno">2.4 </bdi>RDF Blank Nodes</h3><a class="self-link" href="#BNodes" aria-label="Permalink for Section 2.4"></a></div>
+  <section id="BNodes"><div class="header-wrapper"><h3 id="x2-5-rdf-blank-nodes"><bdi class="secno">2.5 </bdi>RDF Blank Nodes</h3><a class="self-link" href="#BNodes" aria-label="Permalink for Section 2.5"></a></div>
     
     <p>
       As in N-Triples,
@@ -1406,10 +1442,10 @@ _:subject2 &lt;http://an.example/predicate2&gt; "object2" &lt;http://example.org
 
     <div class="example" id="ex-bnodes">
         <div class="marker">
-    <a class="self-link" href="#ex-bnodes">Example<bdi> 3</bdi></a><span class="example-title">: Blank nodes in N-Quads</span>
+    <a class="self-link" href="#ex-bnodes">Example<bdi> 4</bdi></a><span class="example-title">: Blank nodes in N-Quads</span>
   </div> <pre class="ntriples" aria-busy="false"><code class="hljs">
 _:alice &lt;http://xmlns.com/foaf/0.1/knows&gt; _:bob .
-_:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
+_:bob   &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
 </code></pre>
       </div>
   </section>
@@ -1566,118 +1602,196 @@ _:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
       However, as only the <a href="#grammar-production-STRING_LITERAL_QUOTE"><code>STRING_LITERAL_QUOTE</code></a>
       production is allowed new lines in literals <em class="rfc2119">MUST</em> be escaped.</p>
 
-    <div><table class="grammar">
-    <tbody class="grammar-productions">
-            <tr id="grammar-production-nquadsDoc" data-grammar-original="[1]  nquadsDoc          ::= statement? (EOL statement)* EOL?" data-grammar-expression="(',', [('?', ('id', 'statement')), ('*', (',', [('id', 'EOL'), ('id', 'statement')])), ('?', ('id', 'EOL'))])">
-    <td>[1]</td>
-    <td><code>nquadsDoc</code></td>
-    <td>::=</td>
-    <td><a href="#grammar-production-statement">statement</a>? (<a href="#grammar-production-EOL">EOL</a> <a href="#grammar-production-statement">statement</a>)<code class="grammar-star">*</code> <a href="#grammar-production-EOL">EOL</a>?</td>
-</tr>
-            <tr id="grammar-production-statement" data-grammar-original="[2]  statement          ::= subject predicate object graphLabel? '.'" data-grammar-expression="(',', [('id', 'subject'), ('id', 'predicate'), ('id', 'object'), ('?', ('id', 'graphLabel')), (&quot;'&quot;, '.')])">
-    <td>[2]</td>
-    <td><code>statement</code></td>
-    <td>::=</td>
-    <td><a href="#grammar-production-subject">subject</a> <a href="#grammar-production-predicate">predicate</a> <a href="#grammar-production-object">object</a> <a href="#grammar-production-graphLabel">graphLabel</a>? '<code class="grammar-literal">.</code>'</td>
-</tr>
-            <tr id="grammar-production-subject" data-grammar-original="[3]  subject            ::= IRIREF | BLANK_NODE_LABEL" data-grammar-expression="('|', [('id', 'IRIREF'), ('id', 'BLANK_NODE_LABEL')])">
-    <td>[3]</td>
-    <td><code>subject</code></td>
-    <td>::=</td>
-    <td><a href="#grammar-production-IRIREF">IRIREF</a> <code>| </code> <a href="#grammar-production-BLANK_NODE_LABEL">BLANK_NODE_LABEL</a></td>
-</tr>
-            <tr id="grammar-production-predicate" data-grammar-original="[4]  predicate          ::= IRIREF" data-grammar-expression="('id', 'IRIREF')">
-    <td>[4]</td>
-    <td><code>predicate</code></td>
-    <td>::=</td>
-    <td><a href="#grammar-production-IRIREF">IRIREF</a></td>
-</tr>
-            <tr id="grammar-production-object" data-grammar-original="[5]  object             ::= IRIREF | BLANK_NODE_LABEL | literal" data-grammar-expression="('|', [('id', 'IRIREF'), ('id', 'BLANK_NODE_LABEL'), ('id', 'literal')])">
-    <td>[5]</td>
-    <td><code>object</code></td>
-    <td>::=</td>
-    <td><a href="#grammar-production-IRIREF">IRIREF</a> <code>| </code> <a href="#grammar-production-BLANK_NODE_LABEL">BLANK_NODE_LABEL</a> <code>| </code> <a href="#grammar-production-literal">literal</a></td>
-</tr>
-            <tr id="grammar-production-graphLabel" data-grammar-original="[6]  graphLabel         ::= IRIREF | BLANK_NODE_LABEL" data-grammar-expression="('|', [('id', 'IRIREF'), ('id', 'BLANK_NODE_LABEL')])">
-    <td>[6]</td>
-    <td><code>graphLabel</code></td>
-    <td>::=</td>
-    <td><a href="#grammar-production-IRIREF">IRIREF</a> <code>| </code> <a href="#grammar-production-BLANK_NODE_LABEL">BLANK_NODE_LABEL</a></td>
-</tr>
-            <tr id="grammar-production-literal" data-grammar-original="[7]  literal            ::= STRING_LITERAL_QUOTE ('^^' IRIREF | LANGTAG )?" data-grammar-expression="(',', [('id', 'STRING_LITERAL_QUOTE'), ('?', ('|', [(',', [(&quot;'&quot;, '^^'), ('id', 'IRIREF')]), (',', [('id', 'LANGTAG')])]))])">
-    <td>[7]</td>
-    <td><code>literal</code></td>
-    <td>::=</td>
-    <td><a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a> ('<code class="grammar-literal">^^</code>' <a href="#grammar-production-IRIREF">IRIREF</a> <code>| </code> <a href="#grammar-production-LANGTAG">LANGTAG</a>)?</td>
-</tr>
-<tr><td colspan="4"><div class="header-wrapper"><h3 id="terminals">Productions for terminals</h3><a class="self-link" href="#terminals" aria-label="Permalink for this Section"></a></div></td></tr>
-            <tr id="grammar-production-LANGTAG" data-grammar-original="[144s] LANGTAG          ::= &quot;@&quot; [a-zA-Z]+ ( &quot;-&quot; [a-zA-Z0-9]+ )*" data-grammar-expression="(',', [(&quot;'&quot;, '@'), ('+', ('[', 'a-zA-Z')), ('*', (',', [(&quot;'&quot;, '-'), ('+', ('[', 'a-zA-Z0-9'))]))])" class="grammar-token">
-    <td>[144s]</td>
-    <td><code>LANGTAG</code></td>
-    <td>::=</td>
-    <td>'<code class="grammar-literal">@</code>' [<code class="grammar-chars">a-zA-Z</code>]<code class="grammar-plus">+</code> ('<code class="grammar-literal">-</code>' [<code class="grammar-chars">a-zA-Z0-9</code>]<code class="grammar-plus">+</code>)<code class="grammar-star">*</code></td>
-</tr>
-            <tr id="grammar-production-EOL" data-grammar-original="[8]  EOL                ::= [#xD#xA]+" data-grammar-expression="('+', ('[', '#xD#xA'))" class="grammar-token">
-    <td>[8]</td>
-    <td><code>EOL</code></td>
-    <td>::=</td>
-    <td>[<code class="grammar-chars">#xD#xA</code>]<code class="grammar-plus">+</code></td>
-</tr>
-            <tr id="grammar-production-IRIREF" data-grammar-original="[10] IRIREF ::=  '<' ([^#x00-#x20<>&quot;{}|^`\] | UCHAR)* '>'" data-grammar-expression="(',', [(&quot;'&quot;, '<'), ('*', ('|', [('[', '^#x00-#x20<>&quot;{}|^`\\'), ('id', 'UCHAR')])), (&quot;'&quot;, '>')])" class="grammar-token">
-    <td>[10]</td>
-    <td><code>IRIREF</code></td>
-    <td>::=</td>
-    <td>'<code class="grammar-literal">&lt;</code>' ([<code class="grammar-chars">^#x00-#x20&lt;&gt;"{}|^`\</code>] <code>| </code> <a href="#grammar-production-UCHAR">UCHAR</a>)<code class="grammar-star">*</code> '<code class="grammar-literal">&gt;</code>'</td>
-</tr>
-            <tr id="grammar-production-STRING_LITERAL_QUOTE" data-grammar-original="[11] STRING_LITERAL_QUOTE ::= '&quot;' ( [^#x22#x5C#xA#xD] | ECHAR | UCHAR )* '&quot;'" data-grammar-expression="(',', [(&quot;'&quot;, '&quot;'), ('*', ('|', [('[', '^#x22#x5C#xA#xD'), ('id', 'ECHAR'), ('id', 'UCHAR')])), (&quot;'&quot;, '&quot;')])" class="grammar-token">
-    <td>[11]</td>
-    <td><code>STRING_LITERAL_QUOTE</code></td>
-    <td>::=</td>
-    <td>'<code class="grammar-literal">"</code>' ([<code class="grammar-chars">^#x22#x5C#xA#xD</code>] <code>| </code> <a href="#grammar-production-ECHAR">ECHAR</a> <code>| </code> <a href="#grammar-production-UCHAR">UCHAR</a>)<code class="grammar-star">*</code> '<code class="grammar-literal">"</code>'</td>
-</tr>
-            <tr id="grammar-production-BLANK_NODE_LABEL" data-grammar-original="[141s] BLANK_NODE_LABEL ::= '_:' ( PN_CHARS_U | [0-9] ) ((PN_CHARS|'.')* PN_CHARS)?" data-grammar-expression="(',', [(&quot;'&quot;, '_:'), ('|', [('id', 'PN_CHARS_U'), ('[', '0-9')]), ('?', (',', [('*', ('|', [('id', 'PN_CHARS'), (&quot;'&quot;, '.')])), ('id', 'PN_CHARS')]))])" class="grammar-token">
-    <td>[141s]</td>
-    <td><code>BLANK_NODE_LABEL</code></td>
-    <td>::=</td>
-    <td>'<code class="grammar-literal">_:</code>' (<a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a> <code>| </code> [<code class="grammar-chars">0-9</code>]) ((<a href="#grammar-production-PN_CHARS">PN_CHARS</a> <code>| </code> '<code class="grammar-literal">.</code>')<code class="grammar-star">*</code> <a href="#grammar-production-PN_CHARS">PN_CHARS</a>)?</td>
-</tr>
-            <tr id="grammar-production-UCHAR" data-grammar-original="[12] UCHAR ::= ( &quot;\u&quot; HEX HEX HEX HEX )| ( &quot;\U&quot; HEX HEX HEX HEX HEX HEX HEX HEX )" data-grammar-expression="('|', [(',', [(&quot;'&quot;, '\\u'), ('id', 'HEX'), ('id', 'HEX'), ('id', 'HEX'), ('id', 'HEX')]), (',', [(&quot;'&quot;, '\\U'), ('id', 'HEX'), ('id', 'HEX'), ('id', 'HEX'), ('id', 'HEX'), ('id', 'HEX'), ('id', 'HEX'), ('id', 'HEX'), ('id', 'HEX')])])" class="grammar-token">
-    <td>[12]</td>
-    <td><code>UCHAR</code></td>
-    <td>::=</td>
-    <td>'<code class="grammar-literal">\u</code>' <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <code>| </code> '<code class="grammar-literal">\U</code>' <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a></td>
-</tr>
-            <tr id="grammar-production-ECHAR" data-grammar-original="[153s] ECHAR ::= &quot;\&quot; [tbnrf&quot;\]" data-grammar-expression="(',', [(&quot;'&quot;, '\\'), ('[', 'tbnrf&quot;\'')])" class="grammar-token">
-    <td>[153s]</td>
-    <td><code>ECHAR</code></td>
-    <td>::=</td>
-    <td>'<code class="grammar-literal">\</code>' [<code class="grammar-chars">tbnrf"'\</code>]</td>
-</tr>
-            <tr id="grammar-production-PN_CHARS_BASE" data-grammar-original="[157s] PN_CHARS_BASE    ::= [A-Z]| [a-z]| [#x00C0-#x00D6]| [#x00D8-#x00F6]| [#x00F8-#x02FF]| [#x0370-#x037D]| [#x037F-#x1FFF]| [#x200C-#x200D]| [#x2070-#x218F]| [#x2C00-#x2FEF]| [#x3001-#xD7FF]| [#xF900-#xFDCF]| [#xFDF0-#xFFFD]| [#x10000-#xEFFFF]" data-grammar-expression="('|', [('[', 'A-Z'), ('[', 'a-z'), ('[', '#x00C0-#x00D6'), ('[', '#x00D8-#x00F6'), ('[', '#x00F8-#x02FF'), ('[', '#x0370-#x037D'), ('[', '#x037F-#x1FFF'), ('[', '#x200C-#x200D'), ('[', '#x2070-#x218F'), ('[', '#x2C00-#x2FEF'), ('[', '#x3001-#xD7FF'), ('[', '#xF900-#xFDCF'), ('[', '#xFDF0-#xFFFD'), ('[', '#x10000-#xEFFFF')])" class="grammar-token">
-    <td>[157s]</td>
-    <td><code>PN_CHARS_BASE</code></td>
-    <td>::=</td>
-    <td>[<code class="grammar-chars">A-Z</code>] <code>| </code> [<code class="grammar-chars">a-z</code>] <code>| </code> [<code class="grammar-chars">#x00C0-#x00D6</code>] <code>| </code> [<code class="grammar-chars">#x00D8-#x00F6</code>] <code>| </code> [<code class="grammar-chars">#x00F8-#x02FF</code>] <code>| </code> [<code class="grammar-chars">#x0370-#x037D</code>] <code>| </code> [<code class="grammar-chars">#x037F-#x1FFF</code>] <code>| </code> [<code class="grammar-chars">#x200C-#x200D</code>] <code>| </code> [<code class="grammar-chars">#x2070-#x218F</code>] <code>| </code> [<code class="grammar-chars">#x2C00-#x2FEF</code>] <code>| </code> [<code class="grammar-chars">#x3001-#xD7FF</code>] <code>| </code> [<code class="grammar-chars">#xF900-#xFDCF</code>] <code>| </code> [<code class="grammar-chars">#xFDF0-#xFFFD</code>] <code>| </code> [<code class="grammar-chars">#x10000-#xEFFFF</code>]</td>
-</tr>
-            <tr id="grammar-production-PN_CHARS_U" data-grammar-original="[164s] PN_CHARS_U       ::=  PN_CHARS_BASE| '_'" data-grammar-expression="('|', [('id', 'PN_CHARS_BASE'), (&quot;'&quot;, '_'), (&quot;'&quot;, ':')])" class="grammar-token">
-    <td>[158s]</td>
-    <td><code>PN_CHARS_U</code></td>
-    <td>::=</td>
-    <td><a href="#grammar-production-PN_CHARS_BASE">PN_CHARS_BASE</a> <code>| </code> '<code class="grammar-literal">_</code>'</td>
-</tr>
-            <tr id="grammar-production-PN_CHARS" data-grammar-original="[160s] PN_CHARS         ::= PN_CHARS_U| &quot;-&quot;| [0-9]| #x00B7| [#x0300-#x036F]| [#x203F-#x2040]" data-grammar-expression="('|', [('id', 'PN_CHARS_U'), (&quot;'&quot;, '-'), ('[', '0-9'), ('#', '#x00B7'), ('[', '#x0300-#x036F'), ('[', '#x203F-#x2040')])" class="grammar-token">
-    <td>[160s]</td>
-    <td><code>PN_CHARS</code></td>
-    <td>::=</td>
-    <td><a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a> <code>| </code> '<code class="grammar-literal">-</code>' <code>| </code> [<code class="grammar-chars">0-9</code>] <code>| </code> <code class="grammar-char-escape">#x00B7</code> <code>| </code> [<code class="grammar-chars">#x0300-#x036F</code>] <code>| </code> [<code class="grammar-chars">#x203F-#x2040</code>]</td>
-</tr>
-            <tr id="grammar-production-HEX" data-grammar-original="[162s] HEX              ::= [0-9] | [A-F] | [a-f]" data-grammar-expression="('|', [('[', '0-9'), ('[', 'A-F'), ('[', 'a-f')])" class="grammar-token">
-    <td>[162s]</td>
-    <td><code>HEX</code></td>
-    <td>::=</td>
-    <td>[<code class="grammar-chars">0-9</code>] <code>| </code> [<code class="grammar-chars">A-F</code>] <code>| </code> [<code class="grammar-chars">a-f</code>]</td>
-</tr>
-</tbody></table>
+    <div>
+<table class="grammar">
+  <tbody id="grammar-productions" class="ebnf">
+    <tr id="grammar-production-nquadsDoc">
+      <td>[1]</td>
+      <td><code>nquadsDoc</code></td>
+      <td>::=</td>
+      <td><a href="#grammar-production-statement">statement</a><code>?</code>  <code>(</code> <a href="#grammar-production-EOL">EOL</a> <a href="#grammar-production-statement">statement</a><code>)</code> <code>*</code>  <a href="#grammar-production-EOL">EOL</a><code>?</code> </td>
+    </tr>
+    <tr id="grammar-production-statement">
+      <td>[2]</td>
+      <td><code>statement</code></td>
+      <td>::=</td>
+      <td><a href="#grammar-production-subject">subject</a> <a href="#grammar-production-predicate">predicate</a> <a href="#grammar-production-object">object</a> <a href="#grammar-production-graphLabel">graphLabel</a><code>?</code>  "<code class="grammar-literal">.</code>"</td>
+    </tr>
+    <tr id="grammar-production-subject">
+      <td>[3]</td>
+      <td><code>subject</code></td>
+      <td>::=</td>
+      <td><a href="#grammar-production-IRIREF">IRIREF</a> <code>|</code> <a href="#grammar-production-BLANK_NODE_LABEL">BLANK_NODE_LABEL</a> <code>|</code> <a href="#grammar-production-quotedTriple">quotedTriple</a></td>
+    </tr>
+    <tr id="grammar-production-predicate">
+      <td>[4]</td>
+      <td><code>predicate</code></td>
+      <td>::=</td>
+      <td><a href="#grammar-production-IRIREF">IRIREF</a></td>
+    </tr>
+    <tr id="grammar-production-object">
+      <td>[5]</td>
+      <td><code>object</code></td>
+      <td>::=</td>
+      <td><a href="#grammar-production-IRIREF">IRIREF</a> <code>|</code> <a href="#grammar-production-BLANK_NODE_LABEL">BLANK_NODE_LABEL</a> <code>|</code> <a href="#grammar-production-literal">literal</a> <code>|</code> <a href="#grammar-production-quotedTriple">quotedTriple</a></td>
+    </tr>
+    <tr id="grammar-production-graphLabel">
+      <td>[6]</td>
+      <td><code>graphLabel</code></td>
+      <td>::=</td>
+      <td><a href="#grammar-production-IRIREF">IRIREF</a> <code>|</code> <a href="#grammar-production-BLANK_NODE_LABEL">BLANK_NODE_LABEL</a></td>
+    </tr>
+    <tr id="grammar-production-literal">
+      <td>[7]</td>
+      <td><code>literal</code></td>
+      <td>::=</td>
+      <td><a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a> <code>(</code> <code>(</code> "^^" <a href="#grammar-production-IRIREF">IRIREF</a><code>)</code>  <code>|</code> <a href="#grammar-production-LANGTAG">LANGTAG</a><code>)</code> <code>?</code> </td>
+    </tr>
+    <tr id="grammar-production-quotedTriple">
+      <td>[8]</td>
+      <td><code>quotedTriple</code></td>
+      <td>::=</td>
+      <td>"&lt;&lt;" <a href="#grammar-production-subject">subject</a> <a href="#grammar-production-predicate">predicate</a> <a href="#grammar-production-object">object</a> "&gt;&gt;"</td>
+    </tr>
+    <tr>
+      <td colspan="2">@terminals</td>
+      <td></td>
+      <td><strong># Productions for terminals</strong></td>
+    </tr>
+    <tr id="grammar-production-IRIREF">
+      <td>[10]</td>
+      <td><code>IRIREF</code></td>
+      <td>::=</td>
+      <td>"<code class="grammar-literal">&lt;</code>" <code>[</code> <code class="grammar-literal">^</code><code class="grammar-char-escape"><abbr title="null">#x00</abbr></code><code class="grammar-literal">-</code><code class="grammar-char-escape"><abbr title="space">#x20</abbr></code><code class="grammar-literal">&lt;&gt;"{}|^`]</code><code class="grammar-char-escape"><abbr title="space">#x20</abbr></code><code class="grammar-literal">|</code><code class="grammar-char-escape"><abbr title="space">#x20</abbr></code><code class="grammar-literal">UCHAR)*</code><code class="grammar-char-escape"><abbr title="space">#x20</abbr></code><code class="grammar-literal">'&gt;'</code><code>]</code> </td>
+    </tr>
+    <tr id="grammar-production-BLANK_NODE_LABEL">
+      <td>[11]</td>
+      <td><code>BLANK_NODE_LABEL</code></td>
+      <td>::=</td>
+      <td>"_:" <code>(</code> <a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a> <code>|</code> <code>[</code> <code class="grammar-literal">0-9</code><code>]</code> <code>)</code>  <code>(</code> <code>(</code> <a href="#grammar-production-PN_CHARS">PN_CHARS</a> <code>|</code> "<code class="grammar-literal">.</code>"<code>)</code> <code>*</code>  <a href="#grammar-production-PN_CHARS">PN_CHARS</a><code>)</code> <code>?</code> </td>
+    </tr>
+    <tr id="grammar-production-LANGTAG">
+      <td>[12]</td>
+      <td><code>LANGTAG</code></td>
+      <td>::=</td>
+      <td>"<code class="grammar-literal">@</code>" <code>[</code> <code class="grammar-literal">a-zA-Z</code><code>]</code> <code>+</code>  <code>(</code> "<code class="grammar-literal">-</code>" <code>[</code> <code class="grammar-literal">a-zA-Z0-9</code><code>]</code> <code>+</code> <code>)</code> <code>*</code> </td>
+    </tr>
+    <tr id="grammar-production-STRING_LITERAL_QUOTE">
+      <td>[13]</td>
+      <td><code>STRING_LITERAL_QUOTE</code></td>
+      <td>::=</td>
+      <td>'<code class="grammar-literal">"</code>' <code>(</code> <code>[</code> <code class="grammar-literal">^</code><code class="grammar-char-escape"><abbr title="quot">&gt;"</abbr></code><code class="grammar-char-escape"><abbr title="ascii '\'">#x5C</abbr></code><code class="grammar-char-escape"><abbr title="new line">#x0A</abbr></code><code class="grammar-char-escape"><abbr title="carriage return">#x0D</abbr></code><code>]</code>  <code>|</code> <a href="#grammar-production-ECHAR">ECHAR</a> <code>|</code> <a href="#grammar-production-UCHAR">UCHAR</a><code>)</code> <code>*</code>  '<code class="grammar-literal">"</code>'</td>
+    </tr>
+    <tr id="grammar-production-UCHAR">
+      <td>[14]</td>
+      <td><code>UCHAR</code></td>
+      <td>::=</td>
+      <td><code>(</code> "<code class="grammar-literal">u</code>" <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a><code>)</code>  <code>|</code> <code>(</code> "<code class="grammar-literal">U</code>" <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a> <a href="#grammar-production-HEX">HEX</a><code>)</code> </td>
+    </tr>
+    <tr id="grammar-production-ECHAR">
+      <td>[15]</td>
+      <td><code>ECHAR</code></td>
+      <td>::=</td>
+      <td>"<code class="grammar-literal">\</code>" <code>[</code> <code class="grammar-literal">tbnrf"'</code><code>]</code> </td>
+    </tr>
+    <tr id="grammar-production-PN_CHARS_BASE">
+      <td>[16]</td>
+      <td><code>PN_CHARS_BASE</code></td>
+      <td>::=</td>
+      <td><code>[</code> <code class="grammar-literal">A-Z</code><code>]</code></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td>|</td>
+      <td><code>[</code> <code class="grammar-literal">a-z</code><code>]</code></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td>|</td>
+      <td><code>[</code> <code class="grammar-char-escape"><abbr title="extended ascii '#xC0'">#xC0</abbr></code><code class="grammar-literal">-</code><code class="grammar-char-escape"><abbr title="extended ascii '#xD6'">#xD6</abbr></code><code>]</code></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td>|</td>
+      <td><code>[</code> <code class="grammar-char-escape"><abbr title="extended ascii '#xD8'">#xD8</abbr></code><code class="grammar-literal">-</code><code class="grammar-char-escape"><abbr title="extended ascii '#xF6'">#xF6</abbr></code><code>]</code></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td>|</td>
+      <td><code>[</code> <code class="grammar-char-escape"><abbr title="extended ascii '#xF8'">#xF8</abbr></code><code class="grammar-literal">-</code><code class="grammar-char-escape"><abbr title="unicode 'Graphic'">#x02FF</abbr></code><code>]</code></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td>|</td>
+      <td><code>[</code> <code class="grammar-char-escape"><abbr title="unicode 'Graphic'">#x0370</abbr></code><code class="grammar-literal">-</code><code class="grammar-char-escape"><abbr title="unicode 'Graphic'">#x037D</abbr></code><code>]</code></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td>|</td>
+      <td><code>[</code> <code class="grammar-char-escape"><abbr title="unicode 'Graphic'">#x037F</abbr></code><code class="grammar-literal">-</code><code class="grammar-char-escape"><abbr title="unicode 'Reserved'">#x1FFF</abbr></code><code>]</code></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td>|</td>
+      <td><code>[</code> <code class="grammar-char-escape"><abbr title="unicode 'Format'">#x200C</abbr></code><code class="grammar-literal">-</code><code class="grammar-char-escape"><abbr title="unicode 'Format'">#x200D</abbr></code><code>]</code></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td>|</td>
+      <td><code>[</code> <code class="grammar-char-escape"><abbr title="unicode 'Graphic'">#x2070</abbr></code><code class="grammar-literal">-</code><code class="grammar-char-escape"><abbr title="unicode 'Reserved'">#x218F</abbr></code><code>]</code></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td>|</td>
+      <td><code>[</code> <code class="grammar-char-escape"><abbr title="unicode 'Graphic'">#x2C00</abbr></code><code class="grammar-literal">-</code><code class="grammar-char-escape"><abbr title="unicode 'Reserved'">#x2FEF</abbr></code><code>]</code></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td>|</td>
+      <td><code>[</code> <code class="grammar-char-escape"><abbr title="unicode 'Graphic'">#x3001</abbr></code><code class="grammar-literal">-</code><code class="grammar-char-escape"><abbr title="unicode 'Reserved'">#xD7FF</abbr></code><code>]</code></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td>|</td>
+      <td><code>[</code> <code class="grammar-char-escape"><abbr title="unicode 'Graphic'">#xF900</abbr></code><code class="grammar-literal">-</code><code class="grammar-char-escape"><abbr title="unicode 'Graphic'">#xFDCF</abbr></code><code>]</code></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td>|</td>
+      <td><code>[</code> <code class="grammar-char-escape"><abbr title="unicode 'Graphic'">#xFDF0</abbr></code><code class="grammar-literal">-</code><code class="grammar-char-escape"><abbr title="unicode 'Graphic'">#xFFFD</abbr></code><code>]</code></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td>|</td>
+      <td><code>[</code> <code class="grammar-char-escape"><abbr title="unicode 'Graphic'">#x00010000</abbr></code><code class="grammar-literal">-</code><code class="grammar-char-escape"><abbr title="unicode 'Noncharacter'">#x000EFFFF</abbr></code><code>]</code> </td>
+    </tr>
+    <tr id="grammar-production-PN_CHARS_U">
+      <td>[17]</td>
+      <td><code>PN_CHARS_U</code></td>
+      <td>::=</td>
+      <td><a href="#grammar-production-PN_CHARS_BASE">PN_CHARS_BASE</a> <code>|</code> "<code class="grammar-literal">_</code>"</td>
+    </tr>
+    <tr id="grammar-production-PN_CHARS">
+      <td>[18]</td>
+      <td><code>PN_CHARS</code></td>
+      <td>::=</td>
+      <td><a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a> <code>|</code> "<code class="grammar-literal">-</code>" <code>|</code> <code>[</code> <code class="grammar-literal">0-9</code><code>]</code>  <code>|</code> <code class="grammar-char-escape"><abbr title="extended ascii '#xB7'">#xB7</abbr></code> <code>|</code> <code>[</code> <code class="grammar-char-escape"><abbr title="unicode 'Graphic'">#x0300</abbr></code><code class="grammar-literal">-</code><code class="grammar-char-escape"><abbr title="unicode 'Graphic'">#x036F</abbr></code><code>]</code>  <code>|</code> <code>[</code> <code class="grammar-char-escape"><abbr title="unicode 'Graphic'">#x203F</abbr></code><code class="grammar-literal">-</code><code class="grammar-char-escape"><abbr title="unicode 'Graphic'">#x2040</abbr></code><code>]</code> </td>
+    </tr>
+    <tr id="grammar-production-HEX">
+      <td>[19]</td>
+      <td><code>HEX</code></td>
+      <td>::=</td>
+      <td><code>[</code> <code class="grammar-literal">0-9</code><code>]</code>  <code>|</code> <code>[</code> <code class="grammar-literal">A-F</code><code>]</code>  <code>|</code> <code>[</code> <code class="grammar-literal">a-f</code><code>]</code> </td>
+    </tr>
+    <tr id="grammar-production-EOL">
+      <td>[20]</td>
+      <td><code>EOL</code></td>
+      <td>::=</td>
+      <td><code>[</code> <code class="grammar-char-escape"><abbr title="carriage return">#x0D</abbr></code><code class="grammar-char-escape"><abbr title="new line">#x0A</abbr></code><code>]</code> <code>+</code> </td>
+    </tr>
+  </tbody>
+</table>
+    
 </div>
   </section>
 </section>
@@ -1698,11 +1812,91 @@ _:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
         <tr><th>production</th><th>type</th><th>procedure</th></tr>
       </thead>
       <tbody>
-        <tr id="handle-IRIREF"><td style="text-align:left;"><a class="type IRI" href="#grammar-production-IRIREF">IRIREF</a></td><td><a href="https://w3c.github.io/rdf-concepts/spec/#dfn-iri" id="ref-for-index-term-iri-3">IRI</a></td><td>The characters between "&lt;" and "&gt;" are taken, with the escape sequences unescaped, to form the unicode string of the IRI.</td></tr>
-        <tr id="handle-STRING_LITERAL_QUOTE"><td style="text-align:left;"><a class="type lexicalForm" href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a></td><td><a href="https://w3c.github.io/rdf-concepts/spec/#dfn-lexical-form" id="ref-for-index-term-rdf-lexical-form-2">lexical form</a></td><td>The characters between the outermost '"'s   are taken, with escape sequences unescaped, to form the unicode string of a lexical form.</td></tr>
-        <tr id="handle-LANGTAG"><td style="text-align:left;"><a class="type langTag" href="#grammar-production-LANGTAG">LANGTAG</a></td><td><a href="https://w3c.github.io/rdf-concepts/spec/#dfn-language-tag" id="ref-for-index-term-language-tag-2">language tag</a></td><td>The characters following the <code>@</code> form the unicode string of the language tag.</td></tr>
-        <tr id="handle-literal"><td style="text-align:left;"><a class="type literal" href="#grammar-production-literal">literal</a></td><td><a href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal" id="ref-for-index-term-literals-3">literal</a></td><td>The literal has a lexical form of the first rule argument, <code>   STRING_LITERAL_QUOTE</code>, and either a language tag of <code>LANGTAG</code> or a datatype IRI of <code>iri</code>, depending on which rule matched the input.  If the <code>LANGTAG</code> rule matched, the datatype is <code>rdf:langString</code> and the language tag is <code>LANGTAG</code>. If neither a language tag nor a datatype IRI is provided, the literal has a datatype of <code>xsd:string</code>.</td></tr>
-        <tr id="handle-BLANK_NODE_LABEL"><td style="text-align:left;"><a class="type bNode" href="#grammar-production-BLANK_NODE_LABEL">BLANK_NODE_LABEL</a></td><td><a href="https://w3c.github.io/rdf-concepts/spec/#dfn-blank-node" id="ref-for-index-term-rdf-blank-nodes-3">blank node</a></td><td>The string matching the second argument, <code>PN_LOCAL</code>, is a key in <a href="#bnodeLabels">bnodeLabels</a>. If there is no corresponding blank node in the map, one is allocated.</td></tr>
+        <tr id="handle-BLANK_NODE_LABEL">
+          <td style="text-align:left;">
+            <a href="#grammar-production-BLANK_NODE_LABEL" class="type bNode">BLANK_NODE_LABEL</a>
+          </td>
+          <td>
+            <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-blank-node" id="ref-for-index-term-rdf-blank-nodes-3">blank node</a>
+          </td>
+          <td>
+            The string after '<code>_:</code>',
+            is a key in <a href="#bnodeLabels">bnodeLabels</a>.
+            If there is no corresponding blank node in the map,
+            one is allocated.
+          </td>
+        </tr>
+        <tr id="handle-IRIREF">
+          <td style="text-align:left;">
+            <a href="#grammar-production-IRIREF" class="type IRI">IRIREF</a>
+          </td>
+          <td>
+            <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-iri" id="ref-for-index-term-iri-3">IRI</a>
+          </td>
+          <td>
+            The characters between "&lt;" and "&gt;" are taken,
+            with escape sequences unescaped,
+            to form the unicode string of the IRI.
+          </td>
+        </tr>
+        <tr id="handle-LANGTAG">
+          <td style="text-align:left;">
+            <a href="#grammar-production-LANGTAG" class="type langTag">LANGTAG</a>
+          </td>
+          <td>
+            <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-language-tag" id="ref-for-index-term-language-tag-2">language tag</a>
+          </td>
+          <td>
+            The characters following the <code>@</code> form the unicode string of the language tag.
+          </td>
+        </tr>
+        <tr id="handle-STRING_LITERAL_QUOTE">
+          <td style="text-align:left;">
+            <a href="#grammar-production-STRING_LITERAL_QUOTE" class="type lexicalForm">STRING_LITERAL_QUOTE</a>
+          </td>
+          <td>
+            <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-lexical-form" id="ref-for-index-term-rdf-lexical-form-2">lexical form</a>
+          </td>
+          <td>
+            The characters between the outermost quotation marks (<code>"</code>) are taken,
+            with escape sequences unescaped,
+            to form the unicode string of a lexical form.
+          </td>
+        </tr>
+        <tr id="handle-literal">
+          <td style="text-align:left;">
+            <a href="#grammar-production-literal" class="type literal">literal</a>
+          </td>
+          <td><a href="https://w3c.github.io/rdf-concepts/spec/#dfn-literal" id="ref-for-index-term-literals-3">literal</a>
+          </td>
+          <td>
+            The literal has a lexical form of the first rule argument,
+            <code>STRING_LITERAL_QUOTE</code>,
+            and either a language tag of <code>LANGTAG</code>
+            or a datatype IRI of <code>iri</code>,
+            depending on which rule matched the input.
+            If the <code>LANGTAG</code> rule matched,
+            the datatype is <code>rdf:langString</code>
+            and the language tag is <code>LANGTAG</code>.
+            If neither a language tag nor a datatype IRI is provided,
+            the literal has a datatype of <code>xsd:string</code>.
+          </td>
+        </tr>
+        <tr id="handle-quotedTriple">
+          <td style="text-align:left;">
+            <a href="#grammar-production-quotedTriple" class="type quotedTriple">quotedTriple</a>
+          </td>
+          <td>
+            <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-quoted-triple" id="ref-for-index-term-quoted-triples-5">quoted triple</a>
+          </td>
+          <td>
+            The <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-quoted-triple" id="ref-for-index-term-quoted-triples-6">quoted triple</a>
+            is composed of the terms constructed from
+            the <code><a href="#grammar-production-subject">subject</a></code>,
+            <code><a href="#grammar-production-predicate">predicate</a></code>, and
+            <code><a href="#grammar-production-object">object</a></code> productions.
+          </td>
+        </tr>
       </tbody>
     </table>
   </section>
@@ -1711,7 +1905,7 @@ _:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
     
     <p>An <a href="#dfn-n-quads-document" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-n-quads-document-7">N-Quads document</a> defines an <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-dataset" id="ref-for-index-term-rdf-dataset-10">RDF dataset</a>
       composed of <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-graph" id="ref-for-index-term-rdf-graphs-1">RDF graphs</a> composed of a set of
-      <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-triple" id="ref-for-index-term-rdf-triple-3">RDF triples</a>.
+      <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-triple" id="ref-for-index-term-triple-5">RDF triples</a>.
       The  <code><a href="#grammar-production-statement">statement</a></code> production produces a
       triple defined by the terms constructed for
       <code><a href="#grammar-production-subject">subject</a></code>,
@@ -1902,6 +2096,9 @@ _:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
       included "<code>:</code>" in N-Triples and N-Quads, but not in Turtle nor TriG.
       <a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a> is a component
       of <a href="#grammar-production-PN_CHARS_U">BLANK_NODE_LABEL</a>.</li>
+     <li>Adds support for <a href="https://w3c.github.io/rdf-concepts/spec/#dfn-quoted-triple" id="ref-for-index-term-quoted-triples-7">quoted triples</a>
+        as described in <a href="#quoted-triples" class="sectionRef sec-ref"><bdi class="secno">2.2 </bdi>Quoted Triples</a>
+        with updates to <a href="#sec-parsing-terms" class="sectionRef sec-ref"><bdi class="secno">6.1 </bdi>RDF Term Constructors</a>.</li>
     <li>Separated <a href="#security" class="sec-ref"><bdi class="secno">B. </bdi>Security Considerations</a> from <a href="#sec-mediatype" class="sec-ref"><bdi class="secno">4.1 </bdi>Media Type and Content Encoding</a>
       and updated language.</li>
   </ul>
@@ -1949,6 +2146,8 @@ _:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-quad" id="index-term-quad" tabindex="0" aria-haspopup="dialog">quad</span>
   </li><li>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-quoted-triple" id="index-term-quoted-triples" tabindex="0" aria-haspopup="dialog">quoted triples</span>
+  </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-blank-node" id="index-term-rdf-blank-nodes" tabindex="0" aria-haspopup="dialog">RDF blank nodes</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-dataset" id="index-term-rdf-dataset" tabindex="0" aria-haspopup="dialog">RDF dataset</span>
@@ -1959,11 +2158,13 @@ _:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-lexical-form" id="index-term-rdf-lexical-form" tabindex="0" aria-haspopup="dialog">RDF lexical form</span>
   </li><li>
-    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-triple" id="index-term-rdf-triple" tabindex="0" aria-haspopup="dialog">RDF Triple</span>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-term" id="index-term-rdf-term" tabindex="0" aria-haspopup="dialog">RDF term</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-simple-literal" id="index-term-simple-literal" tabindex="0" aria-haspopup="dialog">simple literal</span>
   </li><li>
     <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-subject" id="index-term-subject" tabindex="0" aria-haspopup="dialog">subject</span>
+  </li><li>
+    <span class="index-term" data-href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-triple" id="index-term-triple" tabindex="0" aria-haspopup="dialog">triple</span>
   </li>
         </ul>
       </li><li>
@@ -2132,7 +2333,7 @@ _:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-index-term-datatype-iri-1" title="§ 2.3 RDF Literals">§ 2.3 RDF Literals</a> 
+    <a href="#ref-for-index-term-datatype-iri-1" title="§ 2.4 RDF Literals">§ 2.4 RDF Literals</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-default-graph" aria-label="Links in this document to definition: default graph">
@@ -2174,7 +2375,7 @@ _:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
     <li>
     <a href="#ref-for-index-term-iri-1" title="§ 2.1 Simple Statements">§ 2.1 Simple Statements</a> 
   </li><li>
-    <a href="#ref-for-index-term-iri-2" title="§ 2.2 IRIs">§ 2.2 IRIs</a> 
+    <a href="#ref-for-index-term-iri-2" title="§ 2.3 IRIs">§ 2.3 IRIs</a> 
   </li><li>
     <a href="#ref-for-index-term-iri-3" title="§ 6.1 RDF Term Constructors">§ 6.1 RDF Term Constructors</a> 
   </li><li>
@@ -2190,7 +2391,7 @@ _:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-index-term-language-tag-1" title="§ 2.3 RDF Literals">§ 2.3 RDF Literals</a> 
+    <a href="#ref-for-index-term-language-tag-1" title="§ 2.4 RDF Literals">§ 2.4 RDF Literals</a> 
   </li><li>
     <a href="#ref-for-index-term-language-tag-2" title="§ 6.1 RDF Term Constructors">§ 6.1 RDF Term Constructors</a> 
   </li>
@@ -2204,7 +2405,7 @@ _:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-index-term-literals-1" title="§ 2.3 RDF Literals">§ 2.3 RDF Literals</a> 
+    <a href="#ref-for-index-term-literals-1" title="§ 2.4 RDF Literals">§ 2.4 RDF Literals</a> 
   </li><li>
     <a href="#ref-for-index-term-literals-2" title="§ 3. A Canonical form of N-Quads">§ 3. A Canonical form of N-Quads</a> 
   </li><li>
@@ -2236,11 +2437,15 @@ _:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-index-term-object-type-1" title="§ 1. Introduction">§ 1. Introduction</a> 
+    <a href="#ref-for-index-term-object-type-1" title="§ Abstract">§ Abstract</a> 
   </li><li>
-    <a href="#ref-for-index-term-object-type-2" title="§ 2. N-Quads Language">§ 2. N-Quads Language</a> 
+    <a href="#ref-for-index-term-object-type-2" title="§ 1. Introduction">§ 1. Introduction</a> 
   </li><li>
-    <a href="#ref-for-index-term-object-type-3" title="§ 2.1 Simple Statements">§ 2.1 Simple Statements</a> 
+    <a href="#ref-for-index-term-object-type-3" title="§ 2. N-Quads Language">§ 2. N-Quads Language</a> 
+  </li><li>
+    <a href="#ref-for-index-term-object-type-4" title="§ 2.1 Simple Statements">§ 2.1 Simple Statements</a> 
+  </li><li>
+    <a href="#ref-for-index-term-object-type-5" title="§ 2.2 Quoted Triples">§ 2.2 Quoted Triples</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-predicate" aria-label="Links in this document to definition: predicate">
@@ -2271,6 +2476,24 @@ _:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
     <a href="#ref-for-index-term-quad-1" title="§ 1. Introduction">§ 1. Introduction</a> <a href="#ref-for-index-term-quad-2" title="Reference 2">(2)</a> 
   </li>
   </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-quoted-triples" aria-label="Links in this document to definition: quoted triples">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-quoted-triple" aria-label="Permalink for definition: quoted triples. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-quoted-triples-1" title="§ Abstract">§ Abstract</a> 
+  </li><li>
+    <a href="#ref-for-index-term-quoted-triples-2" title="§ 2.2 Quoted Triples">§ 2.2 Quoted Triples</a> <a href="#ref-for-index-term-quoted-triples-3" title="Reference 2">(2)</a> <a href="#ref-for-index-term-quoted-triples-4" title="Reference 3">(3)</a> 
+  </li><li>
+    <a href="#ref-for-index-term-quoted-triples-5" title="§ 6.1 RDF Term Constructors">§ 6.1 RDF Term Constructors</a> <a href="#ref-for-index-term-quoted-triples-6" title="Reference 2">(2)</a> 
+  </li><li>
+    <a href="#ref-for-index-term-quoted-triples-7" title="§ E. Changes between RDF 1.1 and RDF 1.2">§ E. Changes between RDF 1.1 and RDF 1.2</a> 
+  </li>
+  </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-blank-nodes" aria-label="Links in this document to definition: RDF blank nodes">
       <span class="caret"></span>
       <div>
@@ -2280,7 +2503,7 @@ _:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-index-term-rdf-blank-nodes-1" title="§ 2.4 RDF Blank Nodes">§ 2.4 RDF Blank Nodes</a> 
+    <a href="#ref-for-index-term-rdf-blank-nodes-1" title="§ 2.5 RDF Blank Nodes">§ 2.5 RDF Blank Nodes</a> 
   </li><li>
     <a href="#ref-for-index-term-rdf-blank-nodes-2" title="§ 6. Parsing">§ 6. Parsing</a> 
   </li><li>
@@ -2344,25 +2567,21 @@ _:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-index-term-rdf-lexical-form-1" title="§ 2.3 RDF Literals">§ 2.3 RDF Literals</a> 
+    <a href="#ref-for-index-term-rdf-lexical-form-1" title="§ 2.4 RDF Literals">§ 2.4 RDF Literals</a> 
   </li><li>
     <a href="#ref-for-index-term-rdf-lexical-form-2" title="§ 6.1 RDF Term Constructors">§ 6.1 RDF Term Constructors</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-triple" aria-label="Links in this document to definition: RDF Triple">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-rdf-term" aria-label="Links in this document to definition: RDF term">
       <span class="caret"></span>
       <div>
-        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-triple" aria-label="Permalink for definition: RDF Triple. Activate to close this dialog.">Permalink</a>
+        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-term" aria-label="Permalink for definition: RDF term. Activate to close this dialog.">Permalink</a>
          
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-index-term-rdf-triple-1" title="§ 1. Introduction">§ 1. Introduction</a> 
-  </li><li>
-    <a href="#ref-for-index-term-rdf-triple-2" title="§ 2.1 Simple Statements">§ 2.1 Simple Statements</a> 
-  </li><li>
-    <a href="#ref-for-index-term-rdf-triple-3" title="§ 6.2 RDF Dataset Construction">§ 6.2 RDF Dataset Construction</a> 
+    <a href="#ref-for-index-term-rdf-term-1" title="§ Abstract">§ Abstract</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-simple-literal" aria-label="Links in this document to definition: simple literal">
@@ -2374,7 +2593,7 @@ _:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-index-term-simple-literal-1" title="§ 2.3 RDF Literals">§ 2.3 RDF Literals</a> 
+    <a href="#ref-for-index-term-simple-literal-1" title="§ 2.4 RDF Literals">§ 2.4 RDF Literals</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-subject" aria-label="Links in this document to definition: subject">
@@ -2386,11 +2605,35 @@ _:bob &lt;http://xmlns.com/foaf/0.1/knows&gt; _:alice .
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-index-term-subject-1" title="§ 1. Introduction">§ 1. Introduction</a> 
+    <a href="#ref-for-index-term-subject-1" title="§ Abstract">§ Abstract</a> 
   </li><li>
-    <a href="#ref-for-index-term-subject-2" title="§ 2. N-Quads Language">§ 2. N-Quads Language</a> 
+    <a href="#ref-for-index-term-subject-2" title="§ 1. Introduction">§ 1. Introduction</a> 
   </li><li>
-    <a href="#ref-for-index-term-subject-3" title="§ 2.1 Simple Statements">§ 2.1 Simple Statements</a> 
+    <a href="#ref-for-index-term-subject-3" title="§ 2. N-Quads Language">§ 2. N-Quads Language</a> 
+  </li><li>
+    <a href="#ref-for-index-term-subject-4" title="§ 2.1 Simple Statements">§ 2.1 Simple Statements</a> 
+  </li><li>
+    <a href="#ref-for-index-term-subject-5" title="§ 2.2 Quoted Triples">§ 2.2 Quoted Triples</a> 
+  </li>
+  </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-triple" aria-label="Links in this document to definition: triple">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="https://w3c.github.io/rdf-concepts/spec/#dfn-rdf-triple" aria-label="Permalink for definition: triple. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-index-term-triple-1" title="§ Abstract">§ Abstract</a> 
+  </li><li>
+    <a href="#ref-for-index-term-triple-2" title="§ 1. Introduction">§ 1. Introduction</a> 
+  </li><li>
+    <a href="#ref-for-index-term-triple-3" title="§ 2.1 Simple Statements">§ 2.1 Simple Statements</a> 
+  </li><li>
+    <a href="#ref-for-index-term-triple-4" title="§ 2.2 Quoted Triples">§ 2.2 Quoted Triples</a> 
+  </li><li>
+    <a href="#ref-for-index-term-triple-5" title="§ 6.2 RDF Dataset Construction">§ 6.2 RDF Dataset Construction</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-index-term-canonical-n-triples" aria-label="Links in this document to definition: Canonical N-Triples">
