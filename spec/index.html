@@ -342,7 +342,7 @@
       and <code>U+007F</code> (<code title="delete"><sub>DEL</sub></code>)
       that are not represented using <code><a href="#grammar-production-ECHAR">ECHAR</a></code>
       MUST be represented by <code><a href="#grammar-production-UCHAR">UCHAR</a></code>.
-      All other characters MUST be represented by their native [[UNICODE]] representation.</li>
+      All other characters MUST be represented by their native Unicode representation [[UNICODE]].</li>
     <li>The token <code><a href="#grammar-production-EOL">EOL</a></code> MUST be a single <code>U+000A</code>.</li>
     <li>The final <code><a href="#grammar-production-EOL">EOL</a></code> MUST be provided.</li>
   </ul>
@@ -355,7 +355,7 @@
     <li><a>Canonical N-Quads documents</a></li>
     <li><a>N-Quads parsers</a></li>
   </ul>
-  <p>A conforming <dfn>N-Quads document</dfn> is a Unicode string that conforms to the grammar and additional constraints defined in <a href="#n-quads-grammar" class="sectionRef"></a>,
+  <p>A conforming <dfn>N-Quads document</dfn> is a Unicode string [[UNICODE]] that conforms to the grammar and additional constraints defined in <a href="#n-quads-grammar" class="sectionRef"></a>,
     starting with the <a href="#grammar-production-nquadsDoc"><code>nquadsDoc</code> production</a>.
     An N-Quads document serializes an <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>.</p>
 
@@ -396,7 +396,7 @@
 <section id="n-quads-grammar"><span id="sec-grammar"></span>
   <h3>N-Quads Grammar</h3>
 
-  <p>An <a>N-Quads document</a> is a Unicode [[!UNICODE]] character string encoded in UTF-8.</p>
+  <p>An <a>N-Quads document</a> is a Unicode string [[!UNICODE]] encoded in UTF-8 [[!RFC3629]].</p>
 
   <section id="sec-grammar-ws">
     <h3>White Space</h3>
@@ -483,7 +483,7 @@
           <td>
             The characters between &quot;&lt;&quot; and &quot;&gt;&quot; are taken,
             with escape sequences unescaped,
-            to form the unicode string of the IRI.
+            to form the IRI.
           </td>
         </tr>
         <tr id="handle-LANGTAG">
@@ -494,7 +494,7 @@
             <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
           </td>
           <td>
-            The characters following the <code>@</code> form the unicode string of the language tag.
+            The characters following the <code>@</code> form the language tag.
           </td>
         </tr>
         <tr id="handle-STRING_LITERAL_QUOTE">
