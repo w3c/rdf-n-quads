@@ -172,7 +172,7 @@
       or <a data-cite="RDF12-CONCEPTS#dfn-iri">IRI</a>) labeling what
       <a data-cite="RDF12-CONCEPTS#dfn-named-graph">named graph</a>
       in a <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">dataset</a> the triple belongs to.
-      White space (spaces <code>U+0020</code> or tabs <code>U+0009</code>) may surround terms,
+      White space (spaces <code class="codepoint">U+0020</code> or tabs <code class="codepoint">U+0009</code>) may surround terms,
       except where significant as noted in the <a href="#n-quads-grammar">grammar</a>.</p>
 
     <p>Comments are treated as white space, and may be given after a '<code>#</code>' that is not part of
@@ -203,8 +203,8 @@
       <code><a href="#grammar-production-subject">subject</a></code>,
       <code><a href="#grammar-production-predicate">predicate</a></code>, and
       <code><a href="#grammar-production-object">object</a></code>
-      preceded by two concatenated <code>&lt;</code> characters, each having the code point <span class="codepoint">U+003C</span>, and
-      followed by two concatenated <code>&gt;</code> characters, each having the code point <span class="codepoint">U+003E</span>.
+      preceded by two concatenated <code>&lt;</code> characters, each having the code point <code class="codepoint">U+003C</code>, and
+      followed by two concatenated <code>&gt;</code> characters, each having the code point <code class="codepoint">U+003E</code>.
       Note that <a data-cite="RDF12-CONCEPTS#dfn-quoted-triple">quoted triples</a>
       may be nested.
      </p>
@@ -223,8 +223,8 @@
 
     <p>
       As in N-Triples, <a data-cite="RDF12-CONCEPTS#dfn-iri">IRIs</a> may be written only as absolute IRIs.
-      IRIs are preceded by <code>&lt;</code> (code point <span class="codepoint">U+003C</span>) and
-      followed by <code>&gt;</code> (code point <span class="codepoint">U+003E</span>),
+      IRIs are preceded by <code>&lt;</code> (code point <code class="codepoint">U+003C</code>) and
+      followed by <code>&gt;</code> (code point <code class="codepoint">U+003E</code>),
       and may contain numeric escape sequences (described below).
       For example <code>&lt;http://example.org/#green-goblin&gt;</code>.
     </p>
@@ -237,27 +237,27 @@
       <a data-cite="RDF12-CONCEPTS#dfn-literal">literals</a> are used to identify values such as strings, numbers, dates.</p>
 
     <p>The representation of the <a data-cite="RDF12-CONCEPTS#dfn-lexical-form">lexical form</a> consists of an
-      initial delimiter <code>&quot;</code> (<span class="codepoint">U+0022</span>),
+      initial delimiter <code>&quot;</code> (quotation mark, code point <code class="codepoint">U+0022</code>),
       a sequence of permitted characters or numeric escape sequence or string escape sequence,
       and a final delimiter.</p>
 
-    <p>Literals may not contain the characters <code>&quot;</code>,
-      <code title="LINE FEED"><sub>LF</sub></code> (<span class="codepoint">U+000A</span>), or
-      <code title="CARRIAGE RETURN"><sub>CR</sub></code> (<span class="codepoint">U+000D</span>)
+    <p>Literals may not contain the characters <code>&quot;</code> (quotation mark, code point <code class="codepoint">U+0022</code>),
+      <code title="LINE FEED"><sub>LF</sub></code> (line feed, code point <code class="codepoint">U+000A</code>), or
+      <code title="CARRIAGE RETURN"><sub>CR</sub></code> (carriage return, code point <code class="codepoint">U+000D</code>)
       except in their escaped forms.
-      In addition '<code>\</code>' (<span class="codepoint">U+005C</span>)
+      In addition '<code>\</code>' (backslash, code point <code class="codepoint">U+005C</code>)
       may not appear in any quoted literal except as part of an escape sequence
-      and a <code>"</code> (<span class="codepoint">U+0022</span>) character
+      and a <code>&quot;</code> (quotation mark, code point <code class="codepoint">U+0022</code>) character
       can only be included in a quoted literal using an escape sequence.
       </p>
 
     <p>The corresponding <a data-cite="RDF12-CONCEPTS#dfn-lexical-form">lexical form</a>
       is the characters between the delimiters, after processing any escape sequences.
       If present, the <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
-      is preceded by a '<code>@</code>' (<span class="codepoint">U+0040</span>).
+      is preceded by an '<code>@</code>' (at sign, <code class="codepoint">U+0040</code>).
       If there is no language tag, there may be a <a data-cite="RDF12-CONCEPTS#dfn-datatype-iri">datatype IRI</a>,
       preceded by two concatenated <code>^</code> characters,
-      each having the code point <span class="codepoint">U+005E</span>.
+      each having the code point <code class="codepoint">U+005E</code>.
       If there is no datatype IRI and no language tag
       it is a <a data-cite="RDF12-CONCEPTS#dfn-simple-literal">simple literal</a>
       and the datatype is <code>http://www.w3.org/2001/XMLSchema#string</code>.
@@ -276,7 +276,12 @@
     <ul>
       <li>The characters <code>_</code> and <code>[0-9]</code> may appear anywhere in a blank node label.</li>
       <li>The character <code>.</code> may appear anywhere except the first or last character.</li>
-      <li>The characters <code>-</code>, <code>U+00B7</code>, <code>U+0300</code> to <code>U+036F</code> and <code>U+203F</code> to <code>U+2040</code> are permitted anywhere except the first character.</li>
+      <li>The characters
+        <code>-</code>,
+        <code class="codepoint">U+00B7</code>,
+        <code class="codepoint">U+0300</code> to <code class="codepoint">U+036F</code>, and
+        <code class="codepoint">U+203F</code> to <code class="codepoint">U+2040</code>
+        are permitted anywhere except the first character.</li>
     </ul>
     <p>
       A fresh RDF blank node is allocated for each unique blank node label in a document.
@@ -321,7 +326,7 @@
       <code>predicate</code>, 
       <code>object</code>,
       and <code>graphLabel</code>,
-      any of which MUST be a single space (<code>U+0020</code>).</li>
+      any of which MUST be a single space (code point <code class="codepoint">U+0020</code>).</li>
     <li><a data-cite="RDF12-CONCEPTS#dfn-literal">Literals</a> with the
       datatype <code>http://www.w3.org/2001/XMLSchema#string</code>
       MUST NOT use the datatype IRI part of the <a href="#grammar-production-literal">literal</a>,
@@ -330,20 +335,20 @@
     <li><code><a href="#grammar-production-HEX">HEX</a></code> MUST use only uppercase letters (<code>[A-F]</code>).</li>
     <li>Within <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>,
       the characters
-      <code>U+0008</code> (<code title="BACKSPACE"><sub>BS</sub></code>),
-      <code>U+0009</code> (<code title="HORIZONTAL TAB"><sub>HT</sub></code>),
-      <code>U+000A</code> (<code title="LINE FEED"><sub>LF</sub></code>),
-      <code>U+000C</code> (<code title="FORM FEED"><sub>FF</sub></code>),
-      <code>U+000D</code> (<code title="CARRIAGE RETURN"><sub>CR</sub></code>),
-      <code>U+0022</code> (<code title="DOUBLE QUOTE">&quot;</code>), and
-      <code>U+005C</code> (<code title="BACKSLASH">\</code>)
+      <code title="BACKSPACE"><sub>BS</sub></code> (code point <code class="codepoint">U+0008</code>),
+      <code title="HORIZONTAL TAB"><sub>HT</sub></code> (code point <code class="codepoint">U+0009</code>),
+      <code title="LINE FEED"><sub>LF</sub></code> (code point <code class="codepoint">U+000A</code>),
+      <code title="FORM FEED"><sub>FF</sub></code> (code point <code class="codepoint">U+000C</code>),
+      <code title="CARRIAGE RETURN"><sub>CR</sub></code> (code point <code class="codepoint">U+000D</code>),
+      <code title="DOUBLE QUOTE">&quot;</code> (code point <code class="codepoint">U+0022</code>), and
+      <code title="BACKSLASH">\</code> (code point <code class="codepoint">U+005C</code>)
       MUST be encoded using <code><a href="#grammar-production-ECHAR">ECHAR</a></code>.
-      Characters in the range from <code>U+0000</code> to <code>U+001F</code>
-      and <code>U+007F</code> (<code title="delete"><sub>DEL</sub></code>)
+      Characters in the range from <code class="codepoint">U+0000</code> to <code class="codepoint">U+001F</code>
+      and <code title="DELETE"><sub>DEL</sub></code> (delete, code point <code class="codepoint">U+007F</code>)
       that are not represented using <code><a href="#grammar-production-ECHAR">ECHAR</a></code>
       MUST be represented by <code><a href="#grammar-production-UCHAR">UCHAR</a></code>.
       All other characters MUST be represented by their native Unicode representation [[UNICODE]].</li>
-    <li>The token <code><a href="#grammar-production-EOL">EOL</a></code> MUST be a single <code>U+000A</code>.</li>
+    <li>The token <code><a href="#grammar-production-EOL">EOL</a></code> MUST be a single <code title="LINE FEED"><sub>LF</sub></code> (line feed, code point <code class="codepoint">U+000A</code>).</li>
     <li>The final <code><a href="#grammar-production-EOL">EOL</a></code> MUST be provided.</li>
   </ul>
 </section>
@@ -401,7 +406,7 @@
   <section id="sec-grammar-ws">
     <h3>White Space</h3>
 
-    <p>White space (tab U+0009 or space U+0020) is allowed outside of terminals.
+    <p>White space (tab <code class="codepoint">U+0009</code> or space <code  class="codepoint">U+0020</code>) is allowed outside of terminals.
       Rule names below in capitals indicate where white space is significant.
 </p>
 
@@ -412,7 +417,7 @@
       and is treated as white space.</p>
 
     <p class="note">As with, N-Triples [[RDF12-N-TRIPLES]],
-      N-Quads allows only horizontal white space  (tab U+0009 or space U+0020).</p>
+      N-Quads allows only horizontal white space  (tab <code class="codepoint">U+0009</code> or space <code  class="codepoint">U+0020</code>).</p>
   </section>
 
   <section id="sec-grammar-comments">
@@ -422,8 +427,8 @@
       outside an <a href="#grammar-production-IRIREF">IRIREF</a> or <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>,
       and continue to the end of line
       (marked by characters
-      <code title="CARRIAGE RETURN"><sub>CR</sub></code> (<span class="codepoint">U+000D</span> or
-      <code title="LINE FEED"><sub>LF</sub></code> (<span class="codepoint">U+000A</span>))
+      <code title="CARRIAGE RETURN"><sub>CR</sub></code> (carriage return, <code class="codepoint">U+000D</code> or
+      <code title="LINE FEED"><sub>LF</sub></code> (line feed, <code class="codepoint">U+000A</code>))
       or end of file if there is no end of line after the comment
       marker.
       Comments are treated as white space.</p>
@@ -663,8 +668,8 @@
     <dt>Encoding considerations:</dt>
     <dd>The syntax of N-Quads is expressed over code points in Unicode [[!UNICODE]].
       The encoding is always UTF-8 [[!UTF-8]].</dd>
-    <dd>Unicode code points may also be expressed using an \uXXXX (U+0 to U+FFFF)
-      or \UXXXXXXXX syntax (for U+10000 onwards) where X is a hexadecimal digit [0-9A-F]</dd>
+    <dd>Unicode code points may also be expressed using an `\uXXXX` (<code class="codepoint">U+0000</code> to <code class="codepoint">U+FFFF</code>)
+      or `\UXXXXXXXX` syntax (for <code class="codepoint">U+10000</code> onwards) where `X` is a hexadecimal digit `[0-9A-F]`</dd>
     <dt>Security considerations:</dt>
     <dd>See <a href="#security" class="sectionRef"></a>.</dd>
     <dt>Interoperability considerations:</dt>
