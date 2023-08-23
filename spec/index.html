@@ -254,7 +254,7 @@
     <p>The corresponding <a data-cite="RDF12-CONCEPTS#dfn-lexical-form">lexical form</a>
       is the characters between the delimiters, after processing any escape sequences.
       If present, the <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
-      is preceded by an '<code>@</code>' (at sign, <code class="codepoint">U+0040</code>).
+      is preceded by an '<code>@</code>' (at sign, code point <code class="codepoint">U+0040</code>).
       If there is no language tag, there may be a <a data-cite="RDF12-CONCEPTS#dfn-datatype-iri">datatype IRI</a>,
       preceded by two concatenated <code>^</code> characters,
       each having the code point <code class="codepoint">U+005E</code>.
@@ -406,7 +406,7 @@
   <section id="sec-grammar-ws">
     <h3>White Space</h3>
 
-    <p>White space (tab <code class="codepoint">U+0009</code> or space <code  class="codepoint">U+0020</code>) is allowed outside of terminals.
+    <p>White space (tab, code point <code class="codepoint">U+0009</code> or space, code point <code class="codepoint">U+0020</code>) is allowed outside of terminals.
       Rule names below in capitals indicate where white space is significant.
 </p>
 
@@ -417,7 +417,7 @@
       and is treated as white space.</p>
 
     <p class="note">As with, N-Triples [[RDF12-N-TRIPLES]],
-      N-Quads allows only horizontal white space  (tab <code class="codepoint">U+0009</code> or space <code  class="codepoint">U+0020</code>).</p>
+      N-Quads allows only horizontal white space  (tab, code point <code class="codepoint">U+0009</code> or space, code point <code  class="codepoint">U+0020</code>).</p>
   </section>
 
   <section id="sec-grammar-comments">
@@ -427,8 +427,8 @@
       outside an <a href="#grammar-production-IRIREF">IRIREF</a> or <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>,
       and continue to the end of line
       (marked by characters
-      <code>CR</code> (carriage return, <code class="codepoint">U+000D</code> or
-      <code>LF</code> (line feed, <code class="codepoint">U+000A</code>))
+      <code>CR</code> (carriage return, code point <code class="codepoint">U+000D</code> or
+      <code>LF</code> (line feed, code point <code class="codepoint">U+000A</code>))
       or end of file if there is no end of line after the comment
       marker.
       Comments are treated as white space.</p>
