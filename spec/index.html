@@ -172,7 +172,7 @@
       or <a data-cite="RDF12-CONCEPTS#dfn-iri">IRI</a>) labeling what
       <a data-cite="RDF12-CONCEPTS#dfn-named-graph">named graph</a>
       in a <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">dataset</a> the triple belongs to.
-      White space (spaces <code class="codepoint">U+0020</code> or tabs <code class="codepoint">U+0009</code>) may surround terms,
+      White space (spaces, code point <code class="codepoint">U+0020</code> or tabs, code point <code class="codepoint">U+0009</code>) may surround terms,
       except where significant as noted in the <a href="#n-quads-grammar">grammar</a>.</p>
 
     <p>Comments are treated as white space, and may be given after a '<code>#</code>' that is not part of
@@ -242,8 +242,8 @@
       and a final delimiter.</p>
 
     <p>Literals may not contain the characters <code>&quot;</code> (quotation mark, code point <code class="codepoint">U+0022</code>),
-      <code title="LINE FEED"><sub>LF</sub></code> (line feed, code point <code class="codepoint">U+000A</code>), or
-      <code title="CARRIAGE RETURN"><sub>CR</sub></code> (carriage return, code point <code class="codepoint">U+000D</code>)
+      <code>LF</code> (line feed, code point <code class="codepoint">U+000A</code>), or
+      <code>CR</code> (carriage return, code point <code class="codepoint">U+000D</code>)
       except in their escaped forms.
       In addition '<code>\</code>' (backslash, code point <code class="codepoint">U+005C</code>)
       may not appear in any quoted literal except as part of an escape sequence
@@ -335,20 +335,20 @@
     <li><code><a href="#grammar-production-HEX">HEX</a></code> MUST use only uppercase letters (<code>[A-F]</code>).</li>
     <li>Within <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>,
       the characters
-      <code title="BACKSPACE"><sub>BS</sub></code> (code point <code class="codepoint">U+0008</code>),
-      <code title="HORIZONTAL TAB"><sub>HT</sub></code> (code point <code class="codepoint">U+0009</code>),
-      <code title="LINE FEED"><sub>LF</sub></code> (code point <code class="codepoint">U+000A</code>),
-      <code title="FORM FEED"><sub>FF</sub></code> (code point <code class="codepoint">U+000C</code>),
-      <code title="CARRIAGE RETURN"><sub>CR</sub></code> (code point <code class="codepoint">U+000D</code>),
-      <code title="DOUBLE QUOTE">&quot;</code> (code point <code class="codepoint">U+0022</code>), and
-      <code title="BACKSLASH">\</code> (code point <code class="codepoint">U+005C</code>)
+      <code>BS</code> (backspace, code point <code class="codepoint">U+0008</code>),
+      <code>HT</code> (horizontal tab, code point <code class="codepoint">U+0009</code>),
+      <code>LF</code> (line feed, code point <code class="codepoint">U+000A</code>),
+      <code>FF</code> (form feed, code point <code class="codepoint">U+000C</code>),
+      <code>CR</code> (carriage return, code point <code class="codepoint">U+000D</code>),
+      <code>&quot;</code> (quotation mark, code point <code class="codepoint">U+0022</code>), and
+      <code>\</code> (backslash, code point <code class="codepoint">U+005C</code>)
       MUST be encoded using <code><a href="#grammar-production-ECHAR">ECHAR</a></code>.
       Characters in the range from <code class="codepoint">U+0000</code> to <code class="codepoint">U+001F</code>
-      and <code title="DELETE"><sub>DEL</sub></code> (delete, code point <code class="codepoint">U+007F</code>)
+      and <code>DEL</code> (delete, code point <code class="codepoint">U+007F</code>)
       that are not represented using <code><a href="#grammar-production-ECHAR">ECHAR</a></code>
       MUST be represented by <code><a href="#grammar-production-UCHAR">UCHAR</a></code>.
       All other characters MUST be represented by their native Unicode representation [[UNICODE]].</li>
-    <li>The token <code><a href="#grammar-production-EOL">EOL</a></code> MUST be a single <code title="LINE FEED"><sub>LF</sub></code> (line feed, code point <code class="codepoint">U+000A</code>).</li>
+    <li>The token <code><a href="#grammar-production-EOL">EOL</a></code> MUST be a single <code>LF</code> (line feed, code point <code class="codepoint">U+000A</code>).</li>
     <li>The final <code><a href="#grammar-production-EOL">EOL</a></code> MUST be provided.</li>
   </ul>
 </section>
@@ -427,8 +427,8 @@
       outside an <a href="#grammar-production-IRIREF">IRIREF</a> or <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>,
       and continue to the end of line
       (marked by characters
-      <code title="CARRIAGE RETURN"><sub>CR</sub></code> (carriage return, <code class="codepoint">U+000D</code> or
-      <code title="LINE FEED"><sub>LF</sub></code> (line feed, <code class="codepoint">U+000A</code>))
+      <code>CR</code> (carriage return, <code class="codepoint">U+000D</code> or
+      <code>LF</code> (line feed, <code class="codepoint">U+000A</code>))
       or end of file if there is no end of line after the comment
       marker.
       Comments are treated as white space.</p>
