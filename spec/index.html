@@ -363,7 +363,8 @@
     <li><a>Canonical N-Quads documents</a></li>
     <li><a>N-Quads parsers</a></li>
   </ul>
-  <p>A conforming <dfn>N-Quads document</dfn> is a Unicode string [[UNICODE]] that conforms to the grammar and additional constraints defined in <a href="#n-quads-grammar" class="sectionRef"></a>,
+  <p>A conforming <dfn>N-Quads document</dfn> is an <a data-cite="RDF12-CONCEPTS#dfn-rdf-string">RDF string</a>
+    that conforms to the grammar and additional constraints defined in <a href="#n-quads-grammar" class="sectionRef"></a>,
     starting with the <a href="#grammar-production-nquadsDoc"><code>nquadsDoc</code> production</a>.
     An N-Quads document serializes an <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>.</p>
 
@@ -404,7 +405,7 @@
 <section id="n-quads-grammar"><span id="sec-grammar"></span>
   <h3>N-Quads Grammar</h3>
 
-  <p>An <a>N-Quads document</a> is a Unicode string [[!UNICODE]] encoded in UTF-8 [[!RFC3629]].</p>
+  <p>An <a>N-Quads document</a> is an <a data-cite="RDF12-CONCEPTS#dfn-rdf-string">RDF string</a> encoded in UTF-8 [[!RFC3629]].</p>
 
   <section id="sec-grammar-ws">
     <h3>White Space</h3>
@@ -515,7 +516,7 @@
           <td>
             The characters between the outermost quotation marks (<code>&quot;</code>) are taken,
             with escape sequences unescaped,
-            to form the Unicode string of the <a data-cite="RDF12-CONCEPTS#dfn-lexical-form">lexical form</a>.
+            to form the <a data-cite="RDF12-CONCEPTS#dfn-rdf-string">string</a> of the <a data-cite="RDF12-CONCEPTS#dfn-lexical-form">lexical form</a>.
           </td>
         </tr>
         <tr id="handle-literal">
