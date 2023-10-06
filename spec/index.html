@@ -274,7 +274,7 @@
     <h3>RDF Blank Nodes</h3>
     <p>
       As in N-Triples,
-      <a data-cite="RDF12-CONCEPTS#dfn-blank-node">RDF blank nodes</a> are expressed as <code>_:</code>
+      <a data-cite="RDF12-CONCEPTS#dfn-blank-node">RDF blank nodes</a> are expressed as <a href="#cp-underscore-colon"><code>_:</code></a>
       followed by a blank node label which is a series of name characters.
       The characters in the label are built upon <a href="#grammar-production-PN_CHARS_BASE">PN_CHARS_BASE</a>,
       liberalized as follows:
@@ -537,6 +537,11 @@
           <td><code title="digit nine">9</code></td>
           <td>Digit nine</td>
         </tr>
+        <tr id="cp-colon">
+          <td><code class="codepoint">U+003B</code></td>
+          <td><code title="colon">:</code></td>
+          <td>Colon</td>
+        </tr>
         <tr id="cp-less-than">
           <td><code class="codepoint">U+003C</code></td>
           <td><code title="less than sign">&lt;</code></td>
@@ -601,6 +606,8 @@
       <dd>two concatenated greater-than sign characters, each having the code point <code class="codepoint">U+003E</code></dd>
       <dt id="cp-double-circumflex"><code>^^</code></dt>
       <dd>two concatenated circumflex accent characters, each having the code point <code class="codepoint">U+005E</code></dd>
+      <dt id="cp-underscore-colon"><code>_:</code></dt>
+      <dd><a href="#cp-underscore"><code title="underscore">_</code></a> followed by <a href="#cp-colon"><code title="colon">:</code></a></dd>
     </dl>
   </section>
 </section>
@@ -631,7 +638,7 @@
             <a data-cite="RDF12-CONCEPTS#dfn-blank-node">blank node</a>
           </td>
           <td>
-            The string after <code>_:</code>,
+            The string after <a href="#cp-underscore-colon"><code>_:</code></a>,
             is a key in <a href="#bnodeLabels">bnodeLabels</a>.
             If there is no corresponding blank node in the map,
             one is allocated.
