@@ -124,7 +124,7 @@
     associated with the triple within an <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>,
     also known as a <a data-cite="RDF12-CONCEPTS#dfn-quad">quad</a>.
     These may be separated by white space (<a href="#cp-space"><code title="space">spaces</code></a>, and/or <a href="#cp-tab"><code title="horizontal tab">tabs</code></a>).
-    This sequence is terminated by a <a data-cite="RDF12-CONCEPTS#dfn-named-graph">named graph</a>
+    This sequence is terminated by a <a href="#cp-full-stop"><code title="full stop">.</code></a>
     (optionally followed by white space and/or a comment),
     and a new line (optional at the end of a document).</p>
 
@@ -358,9 +358,9 @@
           <a href="#cp-backslash"><code title="backslash">\</code></a>
           MUST be encoded using <code><a href="#grammar-production-ECHAR">ECHAR</a></code>.</li>
         <li>Characters in the range from <code class="codepoint">U+0000</code> to <code class="codepoint">U+0007</code>,
-          <code>VT</code> (vertical tab, code point <code class="codepoint">U+000B</code>),
+          <a href="#cp-vertical-tab"><code title="vertical tab">VT</code></a>,
           characters in the range from <code class="codepoint">U+000E</code> to <code class="codepoint">U+001F</code>,
-          <code>DEL</code> (delete, code point <code class="codepoint">U+007F</code>),
+          <a href="#cp-delete"><code title="delete">DEL</code></a>,
           and characters not matching the <a data-cite="XML11#charsets">Char</a> production from [[XML11]]
           MUST be represented by <code><a href="#grammar-production-UCHAR">UCHAR</a></code>
           using a lowercase <code>\u</code> with 4 <code><a href="#grammar-production-HEX">HEX</a></code>es.</li>
@@ -497,6 +497,11 @@
           <td><code title="line feed">LF</code></td>
           <td>Line feed</td>
         </tr>
+        <tr id="cp-vertical-tab">
+          <td><code class="codepoint">U+000B</code></td>
+          <td><code title="vertical tab">VT</code></td>
+          <td>Vertical tab</td>
+        </tr>
         <tr id="cp-form-feed">
           <td><code class="codepoint">U+000C</code></td>
           <td><code title="form feed">FF</code></td>
@@ -576,6 +581,11 @@
           <td><code class="codepoint">U+005F</code></td>
           <td><code title="underscore">_</code></td>
           <td>Underscore</td>
+        </tr>
+        <tr id="cp-delete">
+          <td><code class="codepoint">U+007F</code></td>
+          <td><code title="delete">DEL</code></td>
+          <td>Delete</td>
         </tr>
         <tr id="cp-middle-dot">
           <td><code class="codepoint">U+00B7</code></td>
