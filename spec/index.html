@@ -423,7 +423,7 @@
       Rule names below in capitals indicate where white space is significant.
 </p>
 
-    <p>White space is significant in the production <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>.</p>
+    <p>White space is significant in the production <code><a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a></code>.</p>
 
     <p>A <dfn class="no=export">blank line</dfn>, consisting of only white space and/or a comment,
       may appear wherever a <code><a href="#grammar-production-statement">statement</a></code> production is allowed,
@@ -437,7 +437,7 @@
     <h3>Comments</h3>
 
     <p>Comments in N-Quads start at '<code>#</code>'
-      outside an <a href="#grammar-production-IRIREF">IRIREF</a> or <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>,
+      outside an <code><a href="#grammar-production-IRIREF">IRIREF</a></code> or <code><a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a></code>,
       and continue to the end of line
       (marked by characters
       <code>CR</code> (carriage return, code point <code class="codepoint">U+000D</code> or
@@ -600,7 +600,7 @@
 <section id="security" class="appendix informative">
   <h2>Security Considerations</h2>
 
-  <p>The <a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a>
+  <p>The <code><a href="#grammar-production-STRING_LITERAL_QUOTE">STRING_LITERAL_QUOTE</a></code>
     production allows the use of unescaped control characters.
     Although this specification does not directly expose this content to an end user,
     it might be presented through a user agent, which may cause the presented text to 
