@@ -86,7 +86,9 @@
     <a data-cite="RDF12-CONCEPTS#dfn-subject">subject</a> or
     <a data-cite="RDF12-CONCEPTS#dfn-object">object</a> of another
     <a data-cite="RDF12-CONCEPTS#dfn-rdf-triple">triple</a>,
-    making it possible to make statements about other statements.</p>
+    making it possible to make statements about other statements.
+    RDF 1.2 N-Quads also adds support for
+    <a data-cite="RDF12-CONCEPTS#dfn-dir-lang-string">directional language-tagged strings</a>.</p>
 </section>
 
 <section id='sotd'>
@@ -243,6 +245,13 @@
     <p>As in N-Triples,
       <a data-cite="RDF12-CONCEPTS#dfn-literal">literals</a> are used to identify values such as strings, numbers, dates.</p>
 
+    <p>Literals (Grammar production <a href="#grammar-production-literal"><code>Literal</code></a>)
+      have a lexical form followed by either a
+      <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
+      (possibly including <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>),
+      a <a data-cite="RDF12-CONCEPTS#dfn-datatype-iri">datatype IRI</a>,
+      or neither.</p>
+
     <p>The representation of the <a data-cite="RDF12-CONCEPTS#dfn-lexical-form">lexical form</a> consists of an
       initial delimiter <a href="#cp-quotation-mark"><code title="quotation mark">&quot;</code></a>,
       a sequence of permitted characters or numeric escape sequence or string escape sequence,
@@ -260,11 +269,17 @@
 
     <p>The corresponding <a data-cite="RDF12-CONCEPTS#dfn-lexical-form">lexical form</a>
       is the characters between the delimiters, after processing any escape sequences.
-      If present, the <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
-      is preceded by an <a href="#cp-at-sign"><code title="at sign">@</code></a>.
+      If present, the <a href="#grammar-production-LANG_DIR" class="type langDir"><code>LANG_DIR</code></a>
+      terminal matches the <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
+      and optionally the <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>.
+      The <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
+      is preceded by an <a href="#cp-at-sign"><code title="at sign">@</code></a>,
+      and, if present, the <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>
+      is separated from the <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
+      by <a href="#cp-hyphen-hyphen"><code>--</code></a>.
       If there is no language tag, there may be a <a data-cite="RDF12-CONCEPTS#dfn-datatype-iri">datatype IRI</a>,
       preceded by <a href="#cp-double-circumflex"><code>^^</code></a>.
-      If there is no datatype IRI and no language tag
+      If there is no datatype IRI and no language tag, then
       it is a <a data-cite="RDF12-CONCEPTS#dfn-simple-literal">simple literal</a>
       and the datatype is <code>http://www.w3.org/2001/XMLSchema#string</code>.
     </p>
@@ -276,7 +291,7 @@
       As in N-Triples,
       <a data-cite="RDF12-CONCEPTS#dfn-blank-node">RDF blank nodes</a> are expressed as <a href="#cp-underscore-colon"><code>_:</code></a>
       followed by a blank node label which is a series of name characters.
-      The characters in the label are built upon <a href="#grammar-production-PN_CHARS_BASE">PN_CHARS_BASE</a>,
+      The characters in the label are built upon <a href="#grammar-production-PN_CHARS_BASE"><code>PN_CHARS_BASE</code></a>,
       liberalized as follows:
     </p>
     <ul>
@@ -295,8 +310,8 @@
         are permitted anywhere except the first character.</li>
     </ul>
     <p>
-      A fresh RDF blank node is allocated for each unique blank node label in a document.
-      Repeated use of the same blank node label identifies the same RDF blank node.
+      A fresh RDF <a data-cite="RDF12-CONCEPTS#dfn-blank-node">blank node</a> is allocated for each unique <a data-cite="RDF12-CONCEPTS#dfn-blank-node-identifier">blank node identifier</a> in a document.
+      Repeated use of the same <a data-cite="RDF12-CONCEPTS#dfn-blank-node-identifier">blank node identifier</a> identifies the same blank node.
     </p>
 
     <pre id="ex-bnodes" class="example ntriples" data-transform="updateExample"
@@ -340,7 +355,7 @@
       any of which MUST be a single <a href="#cp-space"><code title="space">space</code></a>.</li>
     <li><a data-cite="RDF12-CONCEPTS#dfn-literal">Literals</a> with the
       datatype <code>http://www.w3.org/2001/XMLSchema#string</code>
-      MUST NOT use the datatype IRI part of the <a href="#grammar-production-literal">literal</a>,
+      MUST NOT use the <a data-cite="RDF12-CONCEPTS#dfn-datatype-iri">datatype IRI</a> part of the <a href="#grammar-production-literal"><code>literal</code></a>,
       and are represented using only <a href="#grammar-production-STRING_LITERAL_QUOTE"><code>STRING_LITERAL_QUOTE</code></a>.
     </li>
     <li><a href="#grammar-production-HEX"><code>HEX</code></a> MUST use only digits
@@ -394,7 +409,7 @@
     <a href="#canonical-quads">additional constraints</a> of Canonical N-Quads.</p>
 
   <p>A conforming <dfn>N-Quads parser</dfn> is a system capable of
-    reading N-Quads documents on behalf of an application.
+    reading <a>N-Quads documents</a> on behalf of an application.
     It makes the serialized <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>,
     as defined in <a href="#sec-parsing" class="sectionRef"></a>,
     available to the application, usually through some form of API.</p>
@@ -430,8 +445,7 @@
     <h3>White Space</h3>
 
     <p>White space (<a href="#cp-space"><code title="space">spaces</code></a>, and/or <a href="#cp-tab"><code title="horizontal tab">tabs</code></a>) is allowed outside of terminals.
-      Rule names below in capitals indicate where white space is significant.
-    </p>
+      Rule names below in capitals indicate where white space is significant.</p>
 
     <p>White space is significant in the production <a href="#grammar-production-STRING_LITERAL_QUOTE"><code>STRING_LITERAL_QUOTE</code></a>.</p>
 
@@ -649,7 +663,7 @@
           <td>
             The string after <a href="#cp-underscore-colon"><code>_:</code></a>,
             is a key in <a href="#bnodeLabels">bnodeLabels</a>.
-            If there is no corresponding blank node in the map,
+            If there is no corresponding <a data-cite="RDF12-CONCEPTS#dfn-blank-node">blank node</a> in the map,
             one is allocated.
           </td>
         </tr>
@@ -661,20 +675,25 @@
             <a data-cite="RDF12-CONCEPTS#dfn-iri">IRI</a>
           </td>
           <td>
-            The characters between &quot;&lt;&quot; and &quot;&gt;&quot; are taken,
+            The characters between <a href="#cp-less-than"><code title="less-than sign">&lt;</code></a>
+            and <a href="#cp-greater-than"><code title="greater-than sign">&gt;</code></a> are taken,
             with escape sequences unescaped,
             to form the IRI.
           </td>
         </tr>
-        <tr id="handle-LANGTAG">
+        <tr id="handle-LANG_DIR">
           <td style="text-align:left;">
-            <a href="#grammar-production-LANGTAG" class="type langTag">LANGTAG</a>
+            <a href="#grammar-production-LANG_DIR" class="type langDir">LANG_DIR</a>
           </td>
           <td>
             <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
           </td>
           <td>
-            The characters following the <a href="#cp-at-sign"><code title="at sign">@</code></a> form the language tag.
+            The characters following the <a href="#cp-at-sign"><code title="at sign">@</code></a>
+            form the <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
+            and optionally the <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>,
+            if the matched characters include
+            <a href="#cp-hyphen-hyphen"><code>--</code></a>.
           </td>
         </tr>
         <tr id="handle-STRING_LITERAL_QUOTE">
@@ -699,13 +718,21 @@
           <td>
             The literal has a <a data-cite="RDF12-CONCEPTS#dfn-lexical-form">lexical form</a> of the first rule argument,
             <a href="#grammar-production-STRING_LITERAL_QUOTE" class="type lexicalForm"><code>STRING_LITERAL_QUOTE</code></a>,
-            and either a <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a> of <a href="#grammar-production-LANGTAG" class="type langTag"><code>LANGTAG</code></a>
-            or a datatype IRI of <code>iri</code>,
+            and either a <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
+            with optional <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>
+            from <a href="#handle-LANG_DIR" class="type langDir"><code>LANG_DIR</code></a>
+            or a <a data-cite="RDF12-CONCEPTS#dfn-datatype-iri">datatype IRI</a> of <code>iri</code>,
             depending on which rule matched the input.
-            If the <a href="#grammar-production-LANGTAG" class="type langTag"><code>LANGTAG</code></a> rule matched,
-            the datatype is <code>rdf:langString</code>
-            and the language tag is <a href="#grammar-production-LANGTAG" class="type langTag"><code>LANGTAG</code></a>.
-            If neither a language tag nor a datatype IRI is provided,
+            If the <a href="#grammar-production-LANG_DIR" class="type langDir"><code>LANG_DIR</code></a> rule matched,
+            the <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
+            and <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>
+            are taken from <a href=#handle-LANG_DIR class="type langDir">LANG_DIR</a>.
+            If there is no <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>,
+            the datatype is <code>rdf:langString</code>.
+            If there is a <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>,
+            the datatype is <code>rdf:dirLangString</code>.
+            If neither <a href="#handle-LANG_DIR" class="type langDir"><code>LANG_DIR</code></a>
+            nor <a data-cite="RDF12-CONCEPTS#dfn-datatype-iri">datatype IRI</a> match,
             the literal has a datatype of <code>xsd:string</code>.
           </td>
         </tr>
@@ -927,17 +954,20 @@
       for <a href="#sec-grammar-ws">White space</a> and
       <a href="#sec-grammar-comments">Comments</a>,
       better mirroring [[RDF12-TURTLE]].</li>
-    <li>Updated the <a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a>
+    <li>Updated the <a href="#grammar-production-PN_CHARS_U"><code>PN_CHARS_U</code></a>
       grammar production to be consistent with Turtle.
-      Formerly, <a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a>
+      Formerly, <a href="#grammar-production-PN_CHARS_U"><code>PN_CHARS_U</code></a>
       included "`:`" in N-Triples and N-Quads, but not in Turtle nor TriG.
-      <a href="#grammar-production-PN_CHARS_U">PN_CHARS_U</a> is a component
-      of <a href="#grammar-production-PN_CHARS_U">BLANK_NODE_LABEL</a>.</li>
-     <li>Adds support for <a data-cite="RDF12-CONCEPTS#dfn-quoted-triple">quoted triples</a>
+      <a href="#grammar-production-PN_CHARS_U"><code>PN_CHARS_U</code></a> is a component
+      of <a href="#grammar-production-PN_CHARS_U"><code>BLANK_NODE_LABEL</code></a>.</li>
+    <li>Adds support for <a data-cite="RDF12-CONCEPTS#dfn-quoted-triple">quoted triples</a>
         as described in <a href="#quoted-triples" class="sectionRef"></a>
         with updates to <a href="#sec-parsing-terms" class="sectionRef"></a>.</li>
     <li>Separated <a href="#security"></a> from <a href="#sec-mediatype"></a>
       and updated language.</li>
+    <li>Changes the `LANGTAG` terminal production to
+      <a href="#grammar-production-LANG_DIR" class="type langDir"><code>LANG_DIR</code></a> to include
+      an optional <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>.</li>
   </ul>
 </section>
 
