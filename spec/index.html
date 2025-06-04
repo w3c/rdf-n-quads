@@ -199,6 +199,32 @@
     </pre>
   </section>
 
+  <section id="sec-version">
+    <h3>Version Announcement</h3>
+
+    <p>The N-Quads language has evolved since its origin, and RDF 1.2
+      adds new syntax.
+      RDF 1.2 N-Quads introduces an optional `version` <a href="#sec-mediaReg">Media Type parameter</a>.
+      When serializing N-Triple with new features such as
+      <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>
+      or <a data-cite="RDF12-CONCEPTS#dfn-triple-term">triple terms</a>,
+      servers can use the `version` <a href="#sec-mediaReg">Media Type parameter</a>.
+    </p>
+
+    <p>When providing content over HTTP, servers can announce the version
+      using the optional `version` <a href="#sec-mediaReg">Media Type parameter</a>:</p>
+
+    <pre id="ex-http-version-decl"
+         class="example http" data-transform="updateExample"
+         title="HTTP version announcement">
+      <!--
+      GET /document.ttl HTTP/1.1
+      Host: example.com
+      Accept: application/n-quads; version=1.2
+      -->
+    </pre>
+  </section>
+
   <section id="triple-terms">
     <h3>Triple Terms</h3>
 
@@ -217,7 +243,7 @@
       may be nested.
      </p>
 
-    <pre id="ex-triple-term" class="example ntriples" data-transform="updateExample"
+    <pre id="ex-triple-term" class="example nquads" data-transform="updateExample"
          title="Triple Term">
       <!--
       _:e38  <ex:familyName>                                      "Smith" .
@@ -248,7 +274,7 @@
     <p>Literals (Grammar production <a href="#grammar-production-literal"><code>Literal</code></a>)
       have a lexical form followed by either a
       <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
-      (possibly including <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>),
+      (possibly including <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>),
       a <a data-cite="RDF12-CONCEPTS#dfn-datatype-iri">datatype IRI</a>,
       or neither.</p>
 
@@ -271,10 +297,10 @@
       is the characters between the delimiters, after processing any escape sequences.
       If present, the <a href="#grammar-production-LANG_DIR" class="type langDir"><code>LANG_DIR</code></a>
       terminal matches the <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
-      and optionally the <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>.
+      and optionally the <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>.
       The <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
       is preceded by an <a href="#cp-at-sign"><code title="at sign">@</code></a>,
-      and, if present, the <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>
+      and, if present, the <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>
       is separated from the <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
       by <a href="#cp-hyphen-hyphen"><code>--</code></a>.
       If there is no language tag, there may be a <a data-cite="RDF12-CONCEPTS#dfn-datatype-iri">datatype IRI</a>,
@@ -314,7 +340,7 @@
       Repeated use of the same <a data-cite="RDF12-CONCEPTS#dfn-blank-node-identifier">blank node identifier</a> identifies the same blank node.
     </p>
 
-    <pre id="ex-bnodes" class="example ntriples" data-transform="updateExample"
+    <pre id="ex-bnodes" class="example nquads" data-transform="updateExample"
          title="Blank nodes in N-Quads">
       <!--
       _:alice <http://xmlns.com/foaf/0.1/knows> _:bob .
@@ -656,10 +682,16 @@
 
 <section id="sec-parsing">
   <h3>Parsing</h3>
-  <p>Parsing N-Quads requires a state of one item:</p>
+    <p>Parsing N-Quads requires a state of two items:</p>
   <ul>
     <li id="bnodeLabels">Map[string -&gt; <a data-cite="RDF12-CONCEPTS#dfn-blank-node">blank node</a>] <code class="dfn">bnodeLabels</code>
       — A mapping from string to blank node.</li>
+    <li id="curVersion">`xsd:string` |curVersion| –
+      The RDF version used for parsing the document into <a data-cite="RDF12-CONCEPTS#dfn-quad">Quads</a>.
+      If specified as part of a <a href="#sec-mediaReg">Media Type</a>, the default value for |curVersion| is taken from the `version` parameter.
+      The only defined value is `"1.2"`. Parser behavior for other version values is undefined.
+      This specification does not define behavior if different versions are provided for |curVersion|.
+    </li>
   </ul>
 
   <section id="sec-parsing-terms">
@@ -710,7 +742,7 @@
           <td>
             The characters following the <a href="#cp-at-sign"><code title="at sign">@</code></a>
             form the <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
-            and optionally the <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>,
+            and optionally the <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>,
             if the matched characters include
             <a href="#cp-hyphen-hyphen"><code>--</code></a>.
           </td>
@@ -738,17 +770,17 @@
             The literal has a <a data-cite="RDF12-CONCEPTS#dfn-lexical-form">lexical form</a> of the first rule argument,
             <a href="#grammar-production-STRING_LITERAL_QUOTE" class="type lexicalForm"><code>STRING_LITERAL_QUOTE</code></a>,
             and either a <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
-            with optional <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>
+            with optional <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>
             from <a href="#handle-LANG_DIR" class="type langDir"><code>LANG_DIR</code></a>
             or a <a data-cite="RDF12-CONCEPTS#dfn-datatype-iri">datatype IRI</a> of <code>iri</code>,
             depending on which rule matched the input.
             If the <a href="#grammar-production-LANG_DIR" class="type langDir"><code>LANG_DIR</code></a> rule matched,
             the <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
-            and <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>
+            and <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>
             are taken from <a href=#handle-LANG_DIR class="type langDir">LANG_DIR</a>.
-            If there is no <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>,
+            If there is no <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>,
             the datatype is <code>rdf:langString</code>.
-            If there is a <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>,
+            If there is a <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>,
             the datatype is <code>rdf:dirLangString</code>.
             If neither <a href="#handle-LANG_DIR" class="type langDir"><code>LANG_DIR</code></a>
             nor <a data-cite="RDF12-CONCEPTS#dfn-datatype-iri">datatype IRI</a> match,
@@ -873,7 +905,7 @@
     <dt>Required parameters:</dt>
     <dd>None</dd>
     <dt>Optional parameters:</dt>
-    <dd>None</dd>
+    <dd><code>version</code> — this parameter is required when using RDF 1.2-specific features. If present, the value of <code>version</code> is always <code>"1.2"</code>.</dd>
 
     <dt>Encoding considerations:</dt>
     <dd>The syntax of N-Quads is expressed over code points in Unicode [[!UNICODE]].
@@ -976,7 +1008,11 @@
       and updated language.</li>
     <li>Changes the `LANGTAG` terminal production to
       <a href="#grammar-production-LANG_DIR" class="type langDir"><code>LANG_DIR</code></a> to include
-      an optional <a data-cite="RDF12-CONCEPTS#dfn-base-direction">base direction</a>.</li>
+      an optional <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>.</li>
+    <li>Added <a href="#sec-version"></a> and parser
+     state to announce the RDF version
+     associated with the input document.
+   </li>
   </ul>
 </section>
 
