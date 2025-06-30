@@ -129,7 +129,9 @@
     [[RDF12-CONCEPTS]].
   </p>
 
-  <p>As with N-Triples, an <a>N-Quads document</a> contains no parsing directives.</p>
+  <p>As with N-Triples, an <a>N-Quads document</a> can contain a single kind of parsing directive
+    for announcing the RDF version of the content.
+    See <a href="#sec-version" class="sectionRef"></a>.</p>
 
   <p>N-Quads statements are a sequence of RDF terms representing the
     <a data-cite="RDF12-CONCEPTS#dfn-subject">subject</a>,
@@ -190,12 +192,13 @@
       <a data-cite="RDF12-CONCEPTS#dfn-predicate">predicate</a>,
       <a data-cite="RDF12-CONCEPTS#dfn-object">object</a>) terms
       forming an <a data-cite="RDF12-CONCEPTS#dfn-rdf-triple">RDF triple</a>
-      and an optional
+      an optional
       <a data-cite="RDF12-CONCEPTS#dfn-graph-name">graph name</a>
       (a <a data-cite="RDF12-CONCEPTS#dfn-blank-node-identifier">blank node identifier</a>
       or <a data-cite="RDF12-CONCEPTS#dfn-iri">IRI</a>) labeling what
       <a data-cite="RDF12-CONCEPTS#dfn-named-graph">named graph</a>
-      in a <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">dataset</a> the triple belongs to.
+      in a <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">dataset</a> the triple belongs to,
+      and terminated by <a href="#cp-full-stop"><code title="full stop">.</code></a>.
       White space (<a href="#cp-space"><code title="space">spaces</code></a>, and/or <a href="#cp-tab"><code title="horizontal tab">tabs</code></a>) may surround terms,
       except where significant as noted in the <a href="#n-quads-grammar">grammar</a>.</p>
 
@@ -219,12 +222,28 @@
 
     <p>The N-Quads language has evolved since its origin, and RDF 1.2
       adds new syntax.
-      RDF 1.2 N-Quads introduces an optional `version` <a href="#sec-mediaReg">Media Type parameter</a>.
-      When serializing N-Triple with new features such as
+      RDF 1.2 N-Quads introduces the
+      <a href="#grammar-production-versionDirective"><code>VERSION</code></a> directive
+      along with an optional `version` <a href="#sec-mediaReg">Media Type parameter</a>.
+      When serializing N-Quads with new features such as
       <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>
       or <a data-cite="RDF12-CONCEPTS#dfn-triple-term">triple terms</a>,
+      authors can announce the use of the new syntax forms using these directives, or
       servers can use the `version` <a href="#sec-mediaReg">Media Type parameter</a>.
     </p>
+
+    <p class="issue atrisk" data-number="76"></p>
+
+    <p>As with with N-Triples, the version declaration is case-sensitive.</p>
+
+    <pre id="ex-sparql-version-decl"
+         class="example n-quads" data-transform="updateExample"
+         title="Version announcement">
+      <!--
+      VERSION "1.2"
+      <http://example.org/#spiderman> <http://www.perceive.net/schemas/relationship/enemyOf> <http://example.org/#green-goblin> <http://example.org/#graph> .
+      -->
+    </pre>
 
     <p>When providing content over HTTP, servers can announce the version
       using the optional `version` <a href="#sec-mediaReg">Media Type parameter</a>:</p>
@@ -233,7 +252,7 @@
          class="example http" data-transform="updateExample"
          title="HTTP version announcement">
       <!--
-      GET /document.ttl HTTP/1.1
+      GET /document.nq HTTP/1.1
       Host: example.com
       Accept: application/n-quads; version=1.2
       -->
@@ -407,6 +426,8 @@
       <code>object</code>,
       and <code>graphLabel</code>,
       any of which MUST be a single <a href="#cp-space"><code title="space">space</code></a>.</li>
+     <li>A Canonical N-Quads document MUST NOT include a
+      <a href="#grammar-production-versionDirective"><code>VERSION</code></a> announcement directive.</li>
     <li id="c14n-dt-tests" data-tests="c14n/index.html#literal_with_string_dt">
       <a data-cite="RDF12-CONCEPTS#dfn-literal">Literals</a> with the
       datatype <code>http://www.w3.org/2001/XMLSchema#string</code>
@@ -572,6 +593,12 @@
     <p>Escape sequence rules are the same as N-Triples [[RDF12-N-TRIPLES]] and Turtle [[RDF12-TURTLE]].
       However, as only the <a href="#grammar-production-STRING_LITERAL_QUOTE"><code>STRING_LITERAL_QUOTE</code></a>
       production is allowed new lines in literals MUST be escaped.</p>
+
+    <p>
+      The '<code class="grammar-literal">VERSION</code>' terminal is in single quotes
+      to indicate that it is case-sensitive.
+    </p>
+    <p class="issue atrisk" data-number="76"></p>
 
     <div data-include="nquads-bnf.html"></div>
     <p>A text version of this grammar is available <a href="nquads.bnf">here</a>.</p>
@@ -754,8 +781,10 @@
       The RDF version used for parsing the document into <a data-cite="RDF12-CONCEPTS#dfn-quad">Quads</a>.
       If specified as part of a <a href="#sec-mediaReg">Media Type</a>, the default value for |curVersion| is taken from the `version` parameter.
       Acceptable values for `version` are defined in <a data-cite="RDF12-CONCEPTS#defined-version-labels">2.1 Version Lables</a> in [[RDF12-CONCEPTS]].
-      Parser behavior for version values is undefined and MAY be used
-      to signal errors or warnings.
+      The version announcement is only a hint;
+      this specification does not mandate any parser behavior based on |curVersion|,
+      but a parser MAY signal an error or a warning
+      when it encounters a feature that does not match the value of |curVersion|.
     </li>
   </ul>
 
@@ -769,6 +798,16 @@
         <tr><th>production</th><th>type</th><th>procedure</th></tr>
       </thead>
       <tbody>
+        <tr id="handle-versionSpecifier">
+          <td style="text-align:left;">
+            <a class="type literal" href="#grammar-production-versionSpecifier">versionSpecifier</a>
+          </td>
+          <td><a data-cite="RDF12-CONCEPTS#dfn-literal">literal</a></td>
+          <td>The |curVersion| is taken from a literal
+            using the matched <a data-cite="RDF12-CONCEPTS#dfn-rdf-string">RDF string</a>
+            lexical form and `xsd:string` datatype.
+          </td>
+        </tr>
         <tr id="handle-BLANK_NODE_LABEL">
           <td style="text-align:left;">
             <a href="#grammar-production-BLANK_NODE_LABEL" class="type bNode">BLANK_NODE_LABEL</a>
