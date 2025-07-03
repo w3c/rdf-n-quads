@@ -190,15 +190,16 @@
     <p>The simplest statement is a sequence of
       (<a data-cite="RDF12-CONCEPTS#dfn-subject">subject</a>,
       <a data-cite="RDF12-CONCEPTS#dfn-predicate">predicate</a>,
-      <a data-cite="RDF12-CONCEPTS#dfn-object">object</a>) terms
-      forming an <a data-cite="RDF12-CONCEPTS#dfn-rdf-triple">RDF triple</a>
-      an optional
+      <a data-cite="RDF12-CONCEPTS#dfn-object">object</a>) terms,
+      forming an <a data-cite="RDF12-CONCEPTS#dfn-rdf-triple">RDF triple</a>,
+      and an optional
       <a data-cite="RDF12-CONCEPTS#dfn-graph-name">graph name</a>
       (a <a data-cite="RDF12-CONCEPTS#dfn-blank-node-identifier">blank node identifier</a>
-      or <a data-cite="RDF12-CONCEPTS#dfn-iri">IRI</a>) labeling what
+      or <a data-cite="RDF12-CONCEPTS#dfn-iri">IRI</a>) denoting the
       <a data-cite="RDF12-CONCEPTS#dfn-named-graph">named graph</a>
-      in a <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">dataset</a> the triple belongs to,
-      and terminated by <a href="#cp-full-stop"><code title="full stop">.</code></a>.
+      in a <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">dataset</a>
+      to which the triple belongs,
+      and terminated by a period (<a href="#cp-full-stop"><code title="full stop">.</code></a>).
       White space (<a href="#cp-space"><code title="space">spaces</code></a>, and/or <a href="#cp-tab"><code title="horizontal tab">tabs</code></a>) may surround terms,
       except where significant as noted in the <a href="#n-quads-grammar">grammar</a>.</p>
 
@@ -225,16 +226,16 @@
       RDF 1.2 N-Quads introduces the
       <a href="#grammar-production-versionDirective"><code>VERSION</code></a> directive
       along with an optional `version` <a href="#sec-mediaReg">Media Type parameter</a>.
-      When serializing N-Quads with new features such as
-      <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>
+      When respectively serializing and parsing N-Quads with new features such as
+      <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text directions</a>
       or <a data-cite="RDF12-CONCEPTS#dfn-triple-term">triple terms</a>,
-      authors can announce the use of the new syntax forms using these directives, or
-      servers can use the `version` <a href="#sec-mediaReg">Media Type parameter</a>.
+      authors and parsers can announce and detect the use of the new syntax forms using these directives; similarly,
+      HTTP clients and servers can use the `version` <a href="#sec-mediaReg">Media Type parameter</a>.
     </p>
 
     <p class="issue atrisk" data-number="76"></p>
 
-    <p>As with with N-Triples, the version declaration is case-sensitive.</p>
+    <p>As with N-Triples, the version declaration is case-sensitive.</p>
 
     <pre id="ex-sparql-version-decl"
          class="example n-quads" data-transform="updateExample"
@@ -427,7 +428,7 @@
       and <code>graphLabel</code>,
       any of which MUST be a single <a href="#cp-space"><code title="space">space</code></a>.</li>
      <li>A Canonical N-Quads document MUST NOT include a
-      <a href="#grammar-production-versionDirective"><code>VERSION</code></a> announcement directive.</li>
+      <a href="#grammar-production-versionDirective"><code>VERSION</code></a> directive.</li>
     <li id="c14n-dt-tests" data-tests="c14n/index.html#literal_with_string_dt">
       <a data-cite="RDF12-CONCEPTS#dfn-literal">Literals</a> with the
       datatype <code>http://www.w3.org/2001/XMLSchema#string</code>
