@@ -195,9 +195,10 @@
       and an optional
       <a data-cite="RDF12-CONCEPTS#dfn-graph-name">graph name</a>
       (a <a data-cite="RDF12-CONCEPTS#dfn-blank-node-identifier">blank node identifier</a>
-      or <a data-cite="RDF12-CONCEPTS#dfn-iri">IRI</a>) labeling which
+      or <a data-cite="RDF12-CONCEPTS#dfn-iri">IRI</a>) denoting the
       <a data-cite="RDF12-CONCEPTS#dfn-named-graph">named graph</a>
-      in a <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">dataset</a> the triple belongs to,
+      in a <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">dataset</a>
+      to which the triple belongs,
       and terminated by a period (<a href="#cp-full-stop"><code title="full stop">.</code></a>).
       White space (<a href="#cp-space"><code title="space">spaces</code></a>, and/or <a href="#cp-tab"><code title="horizontal tab">tabs</code></a>) may surround terms,
       except where significant as noted in the <a href="#n-quads-grammar">grammar</a>.</p>
@@ -225,10 +226,10 @@
       RDF 1.2 N-Quads introduces the
       <a href="#grammar-production-versionDirective"><code>VERSION</code></a> directive
       along with an optional `version` <a href="#sec-mediaReg">Media Type parameter</a>.
-      When serializing N-Quads with new features such as
+      When respectively serializing and parsing N-Quads with new features such as
       <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text directions</a>
       or <a data-cite="RDF12-CONCEPTS#dfn-triple-term">triple terms</a>,
-      authors can announce the use of the new syntax forms using these directives, and
+      authors and parsers can announce and detect the use of the new syntax forms using these directives; similarly,
       HTTP clients and servers can use the `version` <a href="#sec-mediaReg">Media Type parameter</a>.
     </p>
 
