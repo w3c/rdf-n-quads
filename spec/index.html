@@ -851,10 +851,11 @@
             and <a href="#cp-greater-than"><code title="greater-than sign">&gt;</code></a> are taken,
             with escape sequences unescaped,
             to form the IRI.
-            The resulting IRI MUST comply with the
-            <a data-cite="RFC3987#section-2.2">syntactic restrictions</a> of generic IRI syntax,
-            and SHOULD conform to <a data-cite="RFC3986#section-3.3">section 3.3</a> of [[RFC3986]]
-            and comply with any narrower restrictions imposed by the corresponding IRI scheme specification.
+            <span id="tc-iriref-tests" data-tests="
+              syntax/index.html#ntriples12-bad-iri-1">The resulting IRI MUST comply with the
+              <a data-cite="RFC3987#section-2.2">syntactic restrictions</a> of generic IRI syntax,
+              and SHOULD conform to <a data-cite="RFC3986#section-3.3">section 3.3</a> of [[RFC3986]]
+              and comply with any narrower restrictions imposed by the corresponding IRI scheme specification.</span>
           </td>
         </tr>
         <tr id="handle-LANG_DIR">
@@ -870,12 +871,18 @@
             and optionally the <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>,
             if the matched characters include
             <a href="#cp-hyphen-hyphen" style="white-space: nowrap"><code>--</code></a>.<br/>
-            The <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
-            MUST be well-formed according to
-            <a data-cite="bcp47#section-2.2.9">section 2.2.9</a>
-            of [[!BCP47]].<br/>
-            If present, the <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>
-            MUST be either `ltr` or `rtl`.
+            <span id="tc-langdir-tests" data-tests="
+              syntax/index.html#nquads-langdir-bad-1,
+              syntax/index.html#nquads-langdir-bad-2,
+              syntax/index.html#nquads-langdir-bad-3,
+              syntax/index.html#nquads-langdir-bad-4,
+              syntax/index.html#nquads-langdir-bad-5">
+              The <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
+              MUST be well-formed according to
+              <a data-cite="bcp47#section-2.2.9">section 2.2.9</a>
+              of [[!BCP47]].
+              If present, the <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>
+              MUST be either `ltr` or `rtl`.</span>
           </td>
         </tr>
         <tr id="handle-STRING_LITERAL_QUOTE">
