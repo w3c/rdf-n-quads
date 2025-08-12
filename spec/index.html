@@ -157,8 +157,8 @@
     associated with the triple within an <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>,
     also known as a <a data-cite="RDF12-CONCEPTS#dfn-quad">quad</a>.
     These may be separated by white space (<a href="#cp-space"><code title="space">spaces</code></a>, and/or <a href="#cp-tab"><code title="horizontal tab">tabs</code></a>).
-    This sequence is terminated by a <a href="#cp-full-stop"><code title="full stop">.</code></a>
-    (optionally followed by white space and/or a comment),
+    This sequence is terminated by a period (<a href="#cp-full-stop"><code title="full stop">.</code></a>),
+    optionally followed by white space and/or a comment,
     and a new line (optional at the end of a document).</p>
 
   <pre id="ex-comments" class="example nquads" data-transform="updateExample"
@@ -318,7 +318,7 @@
     <h3>RDF Literals</h3>
 
     <p>As in N-Triples,
-      <a data-cite="RDF12-CONCEPTS#dfn-literal">literals</a> are used to identify values such as strings, numbers, dates.</p>
+      <a data-cite="RDF12-CONCEPTS#dfn-rdf-literal">literals</a> are used to identify values such as strings, numbers, dates.</p>
 
     <p>Literals (Grammar production <a href="#grammar-production-literal"><code>Literal</code></a>)
       have a lexical form followed by either a
@@ -444,7 +444,7 @@
      <li>A Canonical N-Quads document MUST NOT include a
       <a href="#grammar-production-versionDirective"><code>VERSION</code></a> directive.</li>
     <li id="c14n-dt-tests" data-tests="c14n/index.html#literal_with_string_dt">
-      <a data-cite="RDF12-CONCEPTS#dfn-literal">Literals</a> with the
+      <a data-cite="RDF12-CONCEPTS#dfn-rdf-literal">Literals</a> with the
       datatype <code>http://www.w3.org/2001/XMLSchema#string</code>
       MUST NOT use the <a data-cite="RDF12-CONCEPTS#dfn-datatype-iri">datatype IRI</a> part of the <a href="#grammar-production-literal"><code>literal</code></a>,
       and are represented using only <a href="#grammar-production-STRING_LITERAL_QUOTE"><code>STRING_LITERAL_QUOTE</code></a>.
@@ -819,7 +819,7 @@
           <td style="text-align:left;">
             <a class="type literal" href="#grammar-production-versionSpecifier">versionSpecifier</a>
           </td>
-          <td><a data-cite="RDF12-CONCEPTS#dfn-literal">literal</a></td>
+          <td><a data-cite="RDF12-CONCEPTS#dfn-rdf-literal">literal</a></td>
           <td>The |curVersion| is taken from a literal
             using the matched <a data-cite="RDF12-CONCEPTS#dfn-rdf-string">RDF string</a>
             lexical form and `xsd:string` datatype.
@@ -894,7 +894,7 @@
           <td style="text-align:left;">
             <a href="#grammar-production-literal" class="type literal">literal</a>
           </td>
-          <td><a data-cite="RDF12-CONCEPTS#dfn-literal">literal</a>
+          <td><a data-cite="RDF12-CONCEPTS#dfn-rdf-literal">literal</a>
           </td>
           <td>
             The literal has a <a data-cite="RDF12-CONCEPTS#dfn-lexical-form">lexical form</a> of the first rule argument,
@@ -936,10 +936,10 @@
     </table>
 
     <p class="note">As processors which detect errors on input can result in
-      graphs which contain fewer triples than are described in the input
+      datasets which contain fewer triples than are described in the input
       (including no triples whatsoever),
       consumers should consider information of any errors signaled
-      when using the resulting graph,
+      when using the resulting dataset,
       which may be incomplete and/or include
       <a data-cite="RDF12-CONCEPTS#dfn-ill-typed">ill-typed</a>
       or ill-formed terms.</p>
