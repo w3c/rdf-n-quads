@@ -52,9 +52,13 @@
   <style>
     /* Style Turtle script blocks to be visible */
     pre.example script { display:block;  overflow-x: auto; }
-    .separated thead tr th { border:1px solid black; padding: .2em; }
-    .separated tbody tr td { border:1px solid black; text-align: center; }
+    .separated { border-collapse:collapse; }
+    .separated thead tr th { border:1px solid black; padding: .2em; min-width: 10vw }
+    .separated tbody tr td { border:1px solid black; text-align: center; min-width: 10vw }
     .separated tbody tr td.r { text-align: right; padding: .5em; }
+    .separated tbody tr td:first-child,
+    .separated tbody tr td:last-child {text-align: left; padding: .5em; }
+    .separated.last-center tbody tr td:last-child {text-align: center; padding: .5em; }
     .grammar td {
       font-family: Menlo, Consolas, "DejaVu Sans Mono", Monaco, monospace;
       font-size: .9em;
@@ -67,27 +71,37 @@
     .grammar-plus,
     .grammar-star,
     .grammar-brac { color: gray;}
+    .grammar_comment { color: #A52A2A; font-style: italic; }
     #grammar-declaration-terminals h3 {
       margin-top: 1em;
     }
-    .grammar_comment { color: #A52A2A; font-style: italic; }
+    .hl-bold { font-weight: bold; color: #0a3; }
     code { color: #ff4500; }  /* Old W3C Style */
     var { color: #ff4500; }
     abbr[title] {text-decoration: none;}
     @media (max-width: 850px) {
-        .simple th, .simple td { font-size: 13px; padding: 3px 5px;}
-    }     
-    @media (max-width: 767px) {
-        table { word-break: normal; }
-        .separated thead tr th { border: 1px solid black; padding: .2em; min-width: 10vw }
-        .separated tbody tr td { border: 1px solid black; text-align: center; min-width: 10vw }
+        table th, table td { font-size: 12px; padding: 3px 4px;}
+        table.ex th, table.ex td {overflow-x: scroll; max-width: 42vw !important;}
     }
+    @media (max-width: 767px) {
+      table { word-break: break-all; }
+      .separated thead tr th { border:1px solid black; padding: .2em; min-width: 10vw }
+      .separated thead tr th:nth-child(2) { word-break: break-all; }
+      .separated tbody tr td:nth-child(2) {padding: 3px 2px;}
+      .separated tbody tr td:nth-child(3) {padding: 3px 2px;}
+      .separated tbody tr td { border:1px solid black; text-align: center; min-width: 10vw }
+      table { word-break: normal; overflow-wrap: anywhere; }
+      table.ex, .ex th, .ex td { border: none; padding: 0; }
+      table.ex { font-size: 1.4vw; }
+      .separated tbody tr td:first-child, .separated tbody tr th:first-child {max-width: 220px; overflow-wrap: anywhere;}
+    }
+    .ex th { text-align: center; }
 
     table.cp-definitions { border-collapse:collapse; background-color: #DDDDFF}
 
     table.cp-definitions,
     table.cp-definitions th,
-    table.cp-definitions td { border:1px solid black; padding:0.2em; }
+    table.cp-definitions td { border:0px solid black; padding:0.2em; }
     table.cp-definitions td:nth-child(2) { text-align: center; }
   </style>
 </head>
@@ -143,8 +157,8 @@
     associated with the triple within an <a data-cite="RDF12-CONCEPTS#dfn-rdf-dataset">RDF dataset</a>,
     also known as a <a data-cite="RDF12-CONCEPTS#dfn-quad">quad</a>.
     These may be separated by white space (<a href="#cp-space"><code title="space">spaces</code></a>, and/or <a href="#cp-tab"><code title="horizontal tab">tabs</code></a>).
-    This sequence is terminated by a <a href="#cp-full-stop"><code title="full stop">.</code></a>
-    (optionally followed by white space and/or a comment),
+    This sequence is terminated by a period (<a href="#cp-full-stop"><code title="full stop">.</code></a>),
+    optionally followed by white space and/or a comment,
     and a new line (optional at the end of a document).</p>
 
   <pre id="ex-comments" class="example nquads" data-transform="updateExample"
@@ -304,7 +318,7 @@
     <h3>RDF Literals</h3>
 
     <p>As in N-Triples,
-      <a data-cite="RDF12-CONCEPTS#dfn-literal">literals</a> are used to identify values such as strings, numbers, dates.</p>
+      <a data-cite="RDF12-CONCEPTS#dfn-rdf-literal">literals</a> are used to identify values such as strings, numbers, dates.</p>
 
     <p>Literals (Grammar production <a href="#grammar-production-literal"><code>Literal</code></a>)
       have a lexical form followed by either a
@@ -339,7 +353,7 @@
       is preceded by an <a href="#cp-at-sign"><code title="at sign">@</code></a>,
       and, if present, the <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>
       is separated from the <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
-      by <a href="#cp-hyphen-hyphen"><code>--</code></a>.
+      by <a href="#cp-hyphen-hyphen" style="white-space: nowrap"><code>--</code></a>.
       If there is no language tag, there may be a <a data-cite="RDF12-CONCEPTS#dfn-datatype-iri">datatype IRI</a>,
       preceded by <a href="#cp-double-circumflex"><code>^^</code></a>.
       If there is no datatype IRI and no language tag, then
@@ -430,7 +444,7 @@
      <li>A Canonical N-Quads document MUST NOT include a
       <a href="#grammar-production-versionDirective"><code>VERSION</code></a> directive.</li>
     <li id="c14n-dt-tests" data-tests="c14n/index.html#literal_with_string_dt">
-      <a data-cite="RDF12-CONCEPTS#dfn-literal">Literals</a> with the
+      <a data-cite="RDF12-CONCEPTS#dfn-rdf-literal">Literals</a> with the
       datatype <code>http://www.w3.org/2001/XMLSchema#string</code>
       MUST NOT use the <a data-cite="RDF12-CONCEPTS#dfn-datatype-iri">datatype IRI</a> part of the <a href="#grammar-production-literal"><code>literal</code></a>,
       and are represented using only <a href="#grammar-production-STRING_LITERAL_QUOTE"><code>STRING_LITERAL_QUOTE</code></a>.
@@ -466,7 +480,9 @@
           <a href="#cp-quotation-mark"><code title="quotation mark">&quot;</code></a>, and
           <a href="#cp-backslash"><code title="backslash">\</code></a>
           MUST be encoded using <a href="#grammar-production-ECHAR"><code>ECHAR</code></a>.</li>
-        <li id="c14n-uchar-tests" data-tests="c14n/index.html#literal_with_UTF8_boundaries">
+        <li id="c14n-uchar-tests" data-tests="
+          c14n/index.html#literal_needing_uchar_escaping-01,
+          c14n/index.html#literal_needing_uchar_escaping-02">
           Characters in the range from <code class="codepoint">U+0000</code> to <code class="codepoint">U+0007</code>,
           <a href="#cp-vertical-tab"><code title="vertical tab">VT</code></a>,
           characters in the range from <code class="codepoint">U+000E</code> to <code class="codepoint">U+001F</code>,
@@ -766,7 +782,7 @@
       <dd>two concatenated circumflex accent characters, each having the code point <code class="codepoint">U+005E</code></dd>
       <dt id="cp-underscore-colon"><code>_:</code></dt>
       <dd><a href="#cp-underscore"><code title="underscore">_</code></a> followed by <a href="#cp-colon"><code title="colon">:</code></a></dd>
-      <dt id="cp-hyphen-hyphen"><code>--</code></dt>
+      <dt id="cp-hyphen-hyphen" style="white-space: nowrap"><code>--</code></dt>
       <dd>two concatenated <a href="#cp-hyphen"><code title="hyphen">-</code></a> characters</dd>
     </dl>
   </section>
@@ -794,23 +810,23 @@
     <p>This table maps productions and lexical tokens to <a data-cite="RDF12-CONCEPTS#dfn-rdf-term">RDF terms</a>
       or components of <a data-cite="RDF12-CONCEPTS#dfn-rdf-term">RDF terms</a>
       listed in <a href="#sec-parsing" class="sectionRef"></a>:</p>
-    <table class="simple">
+    <table id="tab-term-constructors" class="separated">
       <thead>
         <tr><th>production</th><th>type</th><th>procedure</th></tr>
       </thead>
       <tbody>
         <tr id="handle-versionSpecifier">
-          <td style="text-align:left;">
+          <td>
             <a class="type literal" href="#grammar-production-versionSpecifier">versionSpecifier</a>
           </td>
-          <td><a data-cite="RDF12-CONCEPTS#dfn-literal">literal</a></td>
+          <td><a data-cite="RDF12-CONCEPTS#dfn-rdf-literal">literal</a></td>
           <td>The |curVersion| is taken from a literal
             using the matched <a data-cite="RDF12-CONCEPTS#dfn-rdf-string">RDF string</a>
             lexical form and `xsd:string` datatype.
           </td>
         </tr>
         <tr id="handle-BLANK_NODE_LABEL">
-          <td style="text-align:left;">
+          <td>
             <a href="#grammar-production-BLANK_NODE_LABEL" class="type bNode">BLANK_NODE_LABEL</a>
           </td>
           <td>
@@ -824,7 +840,7 @@
           </td>
         </tr>
         <tr id="handle-IRIREF">
-          <td style="text-align:left;">
+          <td>
             <a href="#grammar-production-IRIREF" class="type IRI">IRIREF</a>
           </td>
           <td>
@@ -835,10 +851,15 @@
             and <a href="#cp-greater-than"><code title="greater-than sign">&gt;</code></a> are taken,
             with escape sequences unescaped,
             to form the IRI.
+            <span id="tc-iriref-tests" data-tests="
+              syntax/index.html#ntriples12-bad-iri-1">The resulting IRI MUST comply with the
+              <a data-cite="RFC3987#section-2.2">syntactic restrictions</a> of generic IRI syntax,
+              and SHOULD conform to <a data-cite="RFC3986#section-3.3">section 3.3</a> of [[RFC3986]]
+              and comply with any narrower restrictions imposed by the corresponding IRI scheme specification.</span>
           </td>
         </tr>
         <tr id="handle-LANG_DIR">
-          <td style="text-align:left;">
+          <td>
             <a href="#grammar-production-LANG_DIR" class="type langDir">LANG_DIR</a>
           </td>
           <td>
@@ -849,11 +870,23 @@
             form the <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
             and optionally the <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>,
             if the matched characters include
-            <a href="#cp-hyphen-hyphen"><code>--</code></a>.
+            <a href="#cp-hyphen-hyphen" style="white-space: nowrap"><code>--</code></a>.<br/>
+            <span id="tc-langdir-tests" data-tests="
+              syntax/index.html#nquads-langdir-bad-1,
+              syntax/index.html#nquads-langdir-bad-2,
+              syntax/index.html#nquads-langdir-bad-3,
+              syntax/index.html#nquads-langdir-bad-4,
+              syntax/index.html#nquads-langdir-bad-5">
+              The <a data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</a>
+              MUST be well-formed according to
+              <a data-cite="bcp47#section-2.2.9">section 2.2.9</a>
+              of [[!BCP47]].
+              If present, the <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text direction</a>
+              MUST be either `ltr` or `rtl`.</span>
           </td>
         </tr>
         <tr id="handle-STRING_LITERAL_QUOTE">
-          <td style="text-align:left;">
+          <td>
             <a href="#grammar-production-STRING_LITERAL_QUOTE" class="type lexicalForm">STRING_LITERAL_QUOTE</a>
           </td>
           <td>
@@ -866,10 +899,10 @@
           </td>
         </tr>
         <tr id="handle-literal">
-          <td style="text-align:left;">
+          <td>
             <a href="#grammar-production-literal" class="type literal">literal</a>
           </td>
-          <td><a data-cite="RDF12-CONCEPTS#dfn-literal">literal</a>
+          <td><a data-cite="RDF12-CONCEPTS#dfn-rdf-literal">literal</a>
           </td>
           <td>
             The literal has a <a data-cite="RDF12-CONCEPTS#dfn-lexical-form">lexical form</a> of the first rule argument,
@@ -893,7 +926,7 @@
           </td>
         </tr>
         <tr id="handle-tripleTerm">
-          <td style="text-align:left;">
+          <td>
             <a href="#grammar-production-tripleTerm" class="type tripleTerm">tripleTerm</a>
           </td>
           <td>
@@ -909,6 +942,15 @@
         </tr>
       </tbody>
     </table>
+
+    <p class="note">As processors which detect errors on input can result in
+      datasets which contain fewer triples than are described in the input
+      (including no triples whatsoever),
+      consumers should consider information of any errors signaled
+      when using the resulting dataset,
+      which may be incomplete and/or include
+      <a data-cite="RDF12-CONCEPTS#dfn-ill-typed">ill-typed</a>
+      or ill-formed terms.</p>
   </section>
 
   <section id="rdf-dataset-construction">
