@@ -1,5 +1,5 @@
 nquadsDoc         ::= statement? (EOL statement)* EOL?
-statement         ::= directive | quad '.'
+statement         ::= directive | quad
 directive         ::= versionDirective
 versionDirective  ::= 'VERSION' versionSpecifier
 versionSpecifier  ::= STRING_LITERAL_QUOTE
