@@ -385,49 +385,50 @@
     </p>
   </section>
 
-<section id="BNodes">
-  <h3>RDF Blank Nodes</h3>
-  <p>
-    As in N-Triples,
-    <a data-cite="RDF12-CONCEPTS#dfn-blank-node">RDF blank nodes</a> are expressed as
-    <a href="#cp-underscore-colon"><code>_:</code></a>
-    followed by a blank node label matching the
-    <a href="#grammar-production-BLANK_NODE_LABEL"><code>BLANK_NODE_LABEL</code></a>
-    production.
-  </p>
+  <section id="BNodes">
+    <h3>RDF Blank Nodes</h3>
+    <p>
+      As in N-Triples,
+      <a data-cite="RDF12-CONCEPTS#dfn-blank-node">RDF blank nodes</a> are expressed as
+      <a href="#cp-underscore-colon"><code>_:</code></a>
+      followed by a blank node label matching the
+      <a href="#grammar-production-BLANK_NODE_LABEL"><code>BLANK_NODE_LABEL</code></a>
+      production.
+    </p>
 
-  <p>
-    Informally, the first character after
-    <a href="#cp-underscore-colon"><code>_:</code></a>
-    is either a character matched by
-    <a href="#grammar-production-PN_CHARS_U"><code>PN_CHARS_U</code></a>
-    or a digit. Any following characters, if present, are matched by
-    <a href="#grammar-production-PN_CHARS"><code>PN_CHARS</code></a>
-    or by <a href="#cp-full-stop"><code title="full stop">.</code></a>,
-    except that <a href="#cp-full-stop"><code title="full stop">.</code></a>
-    is not permitted as the last character.
-  </p>
+    <p>
+      Informally, the first character after
+      <a href="#cp-underscore-colon"><code>_:</code></a>
+      is either a character matched by
+      <a href="#grammar-production-PN_CHARS_U"><code>PN_CHARS_U</code></a>
+      or a digit. Any following characters, if present, are matched by
+      <a href="#grammar-production-PN_CHARS"><code>PN_CHARS</code></a>
+      or by <a href="#cp-full-stop"><code title="full stop">.</code></a>,
+      except that <a href="#cp-full-stop"><code title="full stop">.</code></a>
+      is not permitted as the last character.
+    </p>
 
-  <p class="note">
-    This paragraph is explanatory; the normative definition is the grammar production
-    <a href="#grammar-production-BLANK_NODE_LABEL"><code>BLANK_NODE_LABEL</code></a>.
-  </p>
+    <p class="note">
+      This paragraph is explanatory; the normative definition is the grammar production
+      <a href="#grammar-production-BLANK_NODE_LABEL"><code>BLANK_NODE_LABEL</code></a>.
+    </p>
 
-  <p>
-    A fresh RDF <a data-cite="RDF12-CONCEPTS#dfn-blank-node">blank node</a> is allocated for each unique
-    <a data-cite="RDF12-CONCEPTS#dfn-blank-node-identifier">blank node identifier</a> in a document.
-    Repeated use of the same
-    <a data-cite="RDF12-CONCEPTS#dfn-blank-node-identifier">blank node identifier</a>
-    identifies the same blank node.
-  </p>
+    <p>
+      A fresh RDF <a data-cite="RDF12-CONCEPTS#dfn-blank-node">blank node</a> is allocated for each unique
+      <a data-cite="RDF12-CONCEPTS#dfn-blank-node-identifier">blank node identifier</a> in a document.
+      Repeated use of the same
+      <a data-cite="RDF12-CONCEPTS#dfn-blank-node-identifier">blank node identifier</a>
+      identifies the same blank node.
+    </p>
 
-  <pre id="ex-bnodes" class="example nquads" data-transform="updateExample"
-       title="Blank nodes in N-Quads">
+    <pre id="ex-bnodes" class="example nquads" data-transform="updateExample"
+         title="Blank nodes in N-Quads">
     <!--
     _:alice <http://xmlns.com/foaf/0.1/knows> _:bob .
     _:bob   <http://xmlns.com/foaf/0.1/knows> _:alice .
     -->
-  </pre>
+    </pre>
+  </section>
 </section>
 
 <section id="canonical-nquads">
