@@ -218,7 +218,7 @@
     <p>The N-Quads language has evolved since its origin, and RDF 1.2
       adds new syntax.
       RDF 1.2 N-Quads introduces the
-      <a href="#grammar-production-versionDirective"><code>VERSION</code></a> directive
+      <a href="#grammar-production-versionSpecifier"><code>VERSION</code></a> directive
       along with an optional `version` <a href="#sec-mediaReg">Media Type parameter</a>.
       When respectively serializing and parsing N-Quads with new features such as
       <a data-cite="RDF12-CONCEPTS#dfn-base-direction">initial text directions</a>
@@ -535,6 +535,17 @@
         using 7-bit US-ASCII.</p>
     </section>
   </section>
+
+ <section id="future-proof">
+  <h2>Future-proofness of N-Quads</h2>
+
+  <p>Any future evolution of the N-Quads format, if it reuses the same media type,
+   MUST require the use of the <a href="#grammar-production-versionDirective">`VERSION` directive</a>,
+   with a version label posterior to `1.2`,
+   for any document that is not strictly compliant with N-Quads 1.2.
+   This will allow parsers to gracefully handle more recent features that they do not support.
+  </p>
+ </section>
 </section>
 
 <section id="n-quads-grammar"><span id="sec-grammar"></span>
